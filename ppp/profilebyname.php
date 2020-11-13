@@ -26,7 +26,7 @@ if (!isset($_SESSION["mikhmon"])) {
   if (substr($userprofile, 0, 1) == "*") {
     $userprofile = $userprofile;
   } elseif (substr($userprofile, 0, 1) != "") {
-    $getprofile = $API->comm("/ip/hotspot/user/profile/print", array(
+    $getprofile = $API->comm("/ppp/profile/print", array(
       "?name" => "$userprofile",
     ));
     $userprofile = $getprofile[0]['.id'];
@@ -37,7 +37,7 @@ if (!isset($_SESSION["mikhmon"])) {
 
   $getpool = $API->comm("/ip/pool/print");
 
-  $getprofile = $API->comm("/ip/hotspot/user/profile/print", array(
+  $getprofile = $API->comm("/ppp/profile/print", array(
     "?.id" => "$userprofile"
   ));
   $profiledetalis = $getprofile[0];
