@@ -341,8 +341,8 @@ if ($idleto != "disable") {
         <i class="fa fa-caret-down"></i>
       </div>
       <div class="dropdown-container <?= $pppmenu; ?>">
-        <a href="./?ppp=secrets-list&session=<?= $session; ?>" class=" <?= $suserprofiles; ?>"> &nbsp;&nbsp;&nbsp;<i class="fa fa-list "></i> Secrets List </a>
-        <a href="./?secrets-list=add&session=<?= $session; ?>" class=" <?= $sadduserprof; ?>"> &nbsp;&nbsp;&nbsp;<i class="fa fa-plus-square "></i> Add Secrets </a>
+        <a href="./?ppp=secrets&session=<?= $session; ?>" class=" <?= $ssecrets; ?>"> &nbsp;&nbsp;&nbsp;<i class="fa fa-list "></i> Secrets List </a>
+        <a href="./?ppp=addsecret&session=<?= $session; ?>" class=" <?= $ssecrets; ?>"> &nbsp;&nbsp;&nbsp;<i class="fa fa-plus-square "></i> Add Secrets </a>
       </div>
 
       <!-- ppp profile-->
