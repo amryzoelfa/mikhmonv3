@@ -73,7 +73,7 @@ if (!isset($_SESSION["mikhmon"])) {
             </tr>
             <tr>
               <td class="align-middle">Rate Limit</td>
-              <td><input class="form-control" type="text" size="4" autocomplete="off" name="retelimit" placeholder="rx/tx" required="1"></td>
+              <td><input class="form-control" type="text" size="4" autocomplete="off" name="retelimit" placeholder="example: rx/tx" required="1"></td>
             </tr>
             <tr>
               <td class="align-middle">Only One</td>
