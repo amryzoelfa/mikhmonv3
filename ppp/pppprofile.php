@@ -41,39 +41,38 @@ if (!isset($_SESSION["mikhmon"])) {
 }
 ?>
 <div class="row">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-header align-middle">
-                <h3><i class=" fa fa-pie-chart"></i> PPP Profile
-                    &nbsp; | &nbsp; <a href="./?user-profile=add&session=<?= $session; ?>" title="Add User"><i
-                            class="fa fa-user-plus"></i> Add</a>
-                </h3>
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body">
-                <div class="overflow box-bordered" style="max-height: 75vh">
-                    <table id="tFilter" class="table table-bordered table-hover text-nowrap">
-                        <thead>
-                            <tr>
-                                <th style="min-width:50px;" class="text-center">
-                                    <?php
+	<div class="col-12">
+		<div class="card">
+			<div class="card-header align-middle">
+				<h3><i class=" fa fa-pie-chart"></i> PPP Profile
+					&nbsp; | &nbsp; <a href="./?ppp=add-profile&session=<?= $session; ?>" title="Add User"><i class="fa fa-user-plus"></i> Add</a>
+				</h3>
+			</div>
+			<!-- /.card-header -->
+			<div class="card-body">
+				<div class="overflow box-bordered" style="max-height: 75vh">
+					<table id="tFilter" class="table table-bordered table-hover text-nowrap">
+						<thead>
+							<tr>
+								<th style="min-width:50px;" class="text-center">
+									<?php
 									if ($countprofile < 2) {
 										echo "$countprofile item  ";
 									} elseif ($countprofile > 1) {
 										echo "$countprofile items   ";
 									}
 									?></th>
-                                <th class="align-middle"><?= $_name ?></th>
-                                <th class="align-middle">Local<br>Address</th>
-                                <th class="align-middle">Remote<br>Address</th>
-                                <th class="align-middle">Bridge</th>
-                                <th class="align-middle">Rate<br>Limit</th>
-                                <th class="align-middle">Only<br>One</th>
-                                <th class="align-middle">Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
+								<th class="align-middle"><?= $_name ?></th>
+								<th class="align-middle">Local<br>Address</th>
+								<th class="align-middle">Remote<br>Address</th>
+								<th class="align-middle">Bridge</th>
+								<th class="align-middle">Rate<br>Limit</th>
+								<th class="align-middle">Only<br>One</th>
+								<th class="align-middle">Aksi</th>
+							</tr>
+						</thead>
+						<tbody>
+							<?php
 
 							for ($i = 0; $i < $TotalReg; $i++) {
 
@@ -86,20 +85,22 @@ if (!isset($_SESSION["mikhmon"])) {
 								$rate_limit = $profiledetalis['rate-limit'];
 								$only_one = $profiledetalis['only-one'];
 								$getmonexpired = $API->comm("/system/scheduler/print", array(
-							    	"?name" => "$pname",
-							  	));
-							  	$monexpired = $getmonexpired[0];
-							  	$monid = $monexpired['.id'];
+									"?name" => "$pname",
+								));
+								$monexpired = $getmonexpired[0];
+								$monid = $monexpired['.id'];
 								$pmon = $monexpired['name'];
 								$chkpmon = $monexpired['disabled'];
-								if(empty($pmon) || $chkpmon == "true"){$moncolor = "text-orange";}else{$moncolor = "text-green";}
+								if (empty($pmon) || $chkpmon == "true") {
+									$moncolor = "text-orange";
+								} else {
+									$moncolor = "text-green";
+								}
 							?>
-                            <td style='text-align:center;'><i class='fa fa-minus-square text-danger pointer'
-                                    onclick="if(confirm('Are you sure to delete profile (<?= $pname; ?>)?')){loadpage('./?remove-ppp-profile=<?= $pid; ?>&pname=<?= $pname ?>&session=<?= $session; ?>')}else{}"
-                                    title='Remove <?= $pname; ?>'></i>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                                <?php
+								<td style='text-align:center;'><i class='fa fa-minus-square text-danger pointer' onclick="if(confirm('Are you sure to delete profile (<?= $pname; ?>)?')){loadpage('./?remove-ppp-profile=<?= $pid; ?>&pname=<?= $pname ?>&session=<?= $session; ?>')}else{}" title='Remove <?= $pname; ?>'></i>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+								<?php
 								echo "<a title='Open User by profile " . $pname . "'  href='./?ppp=users&profile=" . $pname . "&session=" . $session . "'><i class='fa fa-users'></i></a></td>";
-								echo "<td><a title='Open User Profile " . $pname . "' href='./?user-profile=" . $pid . "&session=" . $session . "'><i class='fa fa-edit'></i> <i class='fa fa-ci fa-circle ".$moncolor."'></i> $pname</a></td>";
+								echo "<td><a title='Open User Profile " . $pname . "' href='./?user-profile=" . $pid . "&session=" . $session . "'><i class='fa fa-edit'></i> <i class='fa fa-ci fa-circle " . $moncolor . "'></i> $pname</a></td>";
 								//$profiledetalis = $ARRAY[$i];echo "<td>" . $profiledetalis['name'];echo "</td>";
 								echo "<td>" . $local_address;
 								echo "</td>";
@@ -116,10 +117,10 @@ if (!isset($_SESSION["mikhmon"])) {
 								echo "</tr>";
 							}
 								?>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

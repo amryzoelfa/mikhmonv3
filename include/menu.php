@@ -350,8 +350,8 @@ if ($idleto != "disable") {
         <i class="fa fa-caret-down"></i>
       </div>
       <div class="dropdown-container <?= $pppmenu; ?>">
-        <a href="./?hotspot=user-profiles&session=<?= $session; ?>" class=" <?= $suserprofiles; ?>"> &nbsp;&nbsp;&nbsp;<i class="fa fa-list "></i> <?= $_user_profile_list ?> </a>
-        <a href="./?user-profile=add&session=<?= $session; ?>" class=" <?= $sadduserprof; ?>"> &nbsp;&nbsp;&nbsp;<i class="fa fa-plus-square "></i> <?= $_add_user_profile ?> </a>
+        <a href="./?ppp=profiles&session=<?= $session; ?>" class=" <?= $spprofile; ?>"> &nbsp;&nbsp;&nbsp;<i class="fa fa-list "></i> <?= $_user_profile_list ?> </a>
+        <a href="./?ppp=add-profile&session=<?= $session; ?>" class=" <?= $spprofile; ?>"> &nbsp;&nbsp;&nbsp;<i class="fa fa-plus-square "></i> <?= $_add_user_profile ?> </a>
       </div>
 
       <!-- ppp active -->
