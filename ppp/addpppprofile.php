@@ -29,6 +29,16 @@ if (!isset($_SESSION["mikhmon"])) {
     $bridge = ($_POST['bridge']);
     $ratelimit = ($_POST['ratelimit']);
     $onlyone = ($_POST['onlyone']);
+    $bridgeportpriority = ($_POST['bridgeportpriority']);
+    $bridgepathcost = ($_POST['bridgepathcost']);
+    $bridgehorizon = ($_POST['bridgehorizon']);
+    $incomingfilter = ($_POST['incomingfilter']);
+    $outgoingfilter = ($_POST['outgoingfilter']);
+    $addresslist = ($_POST['addresslist']);
+    $interfacelist = ($_POST['interfacelist']);
+    $dnsserver = ($_POST['dnsserver']);
+    $winsserver = ($_POST['winsserver']);
+    $changetcp = ($_POST['changetcp']);
 
     $API->comm("/ppp/profile/add", array(
       /*"add-mac-cookie" => "yes",*/
@@ -38,6 +48,16 @@ if (!isset($_SESSION["mikhmon"])) {
       "bridge" => "$bridge",
       "rate-limit" => "$ratelimit",
       "only-one" => "$onlyone",
+      "bridge-port-priority" => "$bridgeportpriority",
+      "bridge-path-cost" => "$bridgepathcost",
+      "bridge-horizon" => "$bridgehorizon",
+      "incoming-filter" => "$incomingfilter",
+      "outgoing-filter" => "$outgoingfilter",
+      "address-list" => "$addresslist",
+      "interface-list" => "$interfacelist",
+      "dns-server" => "$dnsserver",
+      "wins-server" => "$winsserver",
+      "change-tcp-mss" => "$changetcp",
     ));
   }
 }
@@ -70,6 +90,53 @@ if (!isset($_SESSION["mikhmon"])) {
             <tr>
               <td class="align-middle">Bridge</td>
               <td><input class="form-control" type="text" size="4" autocomplete="off" name="bridge" required="0"></td>
+            </tr>
+            <tr>
+              <td class="align-middle">Bridge Port Priority</td>
+              <td><input class="form-control" type="text" size="4" autocomplete="off" name="bridgeportpriority" required="0"></td>
+            </tr>
+            <tr>
+              <td class="align-middle">Bridge Port Cost</td>
+              <td><input class="form-control" type="text" size="4" autocomplete="off" name="bridgepathcost" required="0"></td>
+            </tr>
+            <tr>
+              <td class="align-middle">Bridge Horizon</td>
+              <td><input class="form-control" type="text" size="4" autocomplete="off" name="bridgehorizon" required="0"></td>
+            </tr>
+            <tr>
+              <td class="align-middle">Incoming Filter</td>
+              <td><input class="form-control" type="text" size="4" autocomplete="off" name="incomingfilter" required="0"></td>
+            </tr>
+            <tr>
+              <td class="align-middle">Outgoing Filter</td>
+              <td><input class="form-control" type="text" size="4" autocomplete="off" name="outgoingfilter" required="0"></td>
+            </tr>
+            <tr>
+              <td class="align-middle">Address List</td>
+              <td><input class="form-control" type="text" size="4" autocomplete="off" name="addresslist" required="0"></td>
+            </tr>
+            <tr>
+              <td class="align-middle">Interface List</td>
+              <td><input class="form-control" type="text" size="4" autocomplete="off" name="interfacelist" required="0"></td>
+            </tr>
+            <tr>
+              <td class="align-middle">DNS Server</td>
+              <td><input class="form-control" type="text" size="4" autocomplete="off" name="dnsserver" required="0"></td>
+            </tr>
+            <tr>
+              <td class="align-middle">WINS Server</td>
+              <td><input class="form-control" type="text" size="4" autocomplete="off" name="winsserver" required="0"></td>
+            </tr>
+            <tr>
+              <td class="align-middle">Change TCP MSS</td>
+              <td>
+                <input type="radio" id="" name="changetcp" value="default">
+                <label for="">Default</label><br>
+                <input type="radio" id="" name="changetcp" value="no">
+                <label for="no">No</label><br>
+                <input type="radio" id="" name="changetcp" value="yes">
+                <label for="yes">Yes</label><br>
+              </td>
             </tr>
             <tr>
               <td class="align-middle">Rate Limit</td>
