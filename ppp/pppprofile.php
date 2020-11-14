@@ -63,12 +63,12 @@ if (!isset($_SESSION["mikhmon"])) {
 									}
 									?></th>
 								<th class="align-middle"><?= $_name ?></th>
+								<th class="align-middle">Id</th>
 								<th class="align-middle">Local<br>Address</th>
 								<th class="align-middle">Remote<br>Address</th>
 								<th class="align-middle">Bridge</th>
 								<th class="align-middle">Rate<br>Limit</th>
 								<th class="align-middle">Only<br>One</th>
-								<th class="align-middle">Aksi</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -100,8 +100,10 @@ if (!isset($_SESSION["mikhmon"])) {
 								<td style='text-align:center;'><i class='fa fa-minus-square text-danger pointer' onclick="if(confirm('Are you sure to delete profile (<?= $pname; ?>)?')){loadpage('./?remove-ppp-profile=<?= $pid; ?>&pname=<?= $pname ?>&session=<?= $session; ?>')}else{}" title='Remove <?= $pname; ?>'></i>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 								<?php
 								echo "<a title='Open User by profile " . $pname . "'  href='./?ppp=users&profile=" . $pname . "&session=" . $session . "'><i class='fa fa-users'></i></a></td>";
-								echo "<td><a title='Open User Profile " . $pname . "' href='./?user-profile=" . $pid . "&session=" . $session . "'><i class='fa fa-edit'></i> <i class='fa fa-ci fa-circle " . $moncolor . "'></i> $pname</a></td>";
+								echo "<td><a title='Open User Profile " . $pname . "' href='./?ppp=edit-profile=" . $pid . "&session=" . $session . "'><i class='fa fa-edit'></i> <i class='fa fa-ci fa-circle " . $moncolor . "'></i> $pname</a></td>";
 								//$profiledetalis = $ARRAY[$i];echo "<td>" . $profiledetalis['name'];echo "</td>";
+								echo "<td>" . $pid;
+								echo "</td>";
 								echo "<td>" . $local_address;
 								echo "</td>";
 								echo "<td>" . $remote_address;
@@ -109,8 +111,6 @@ if (!isset($_SESSION["mikhmon"])) {
 								echo "<td>" . $bridge;
 								echo "</td>";
 								echo "<td>" . $rate_limit;
-								echo "</td>";
-								echo "<td>" . $only_one;
 								echo "</td>";
 								echo "<td>" . $only_one;
 								echo "</td>";
