@@ -463,10 +463,15 @@ elseif ($report == "export") {
     include_once('./ppp/addpppprofile.php');
   }
 
-// add ppp profile
-elseif ($ppp == "edit-profile") {
-  include_once('./ppp/profilebyname.php');
-}
+// ppp profile by name
+// elseif ($ppp == "edit-profile") {
+//   include_once('./ppp/profilebyname.php');
+// }
+  elseif (substr($ppp, 0, 1) == "*") {
+    include_once('./ppp/profilebyname.php');
+  } elseif ($ppp != "") {
+    include_once('./ppp/profilebyname.php');
+  }
 // remove enable disable profile
   elseif ($removepprofile != "") {
     echo "<b class='cl-w'><i class='fa fa-circle-o-notch fa-spin' style='font-size:24px'></i> Processing...</b>";
@@ -600,7 +605,29 @@ $(document).ready(function(){
 
 </script>
 ';
-}
+} elseif ($ppp == "add" || substr($ppp, 0, 1) == "*" || $ppp != "") {
+  echo "<script>
+  //enable disable input on ready
+$(document).ready(function(){
+    var exp = document.getElementById('expmode').value;
+    var val = document.getElementById('validity').style;
+    var vali = document.getElementById('validi');
+    if (exp === 'rem' || exp === 'remc') {
+      val.display= 'table-row';
+      vali.type = 'text';
+      $('#validi').focus();
+    } else if (exp === 'ntf' || exp === 'ntfc') {
+      val.display = 'table-row';
+      vali.type = 'text';
+      $('#validi').focus();
+    } else {
+      val.display = 'none';
+      vali.type = 'hidden';
+    }
+});
+</script>";
+
+} 
 }
 ?>
 </body>

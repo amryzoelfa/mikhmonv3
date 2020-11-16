@@ -19,86 +19,86 @@ session_start();
 // hide all error
 error_reporting(0);
 if (!isset($_SESSION["mikhmon"])) {
-  header("Location:../admin.php?id=login");
+    header("Location:../admin.php?id=login");
 } else {
 
 
-  if (substr($userprofile, 0, 1) == "*") {
-    $userprofile = $userprofile;
-  } elseif (substr($userprofile, 0, 1) != "") {
-    $getprofile = $API->comm("/ppp/profile/print", array(
-      "?name" => "$userprofile",
-    ));
-    $userprofile = $getprofile[0]['.id'];
-    if ($userprofile == "") {
-      echo "<b>User Profile not found</b>";
+    if (substr($ppp, 0, 1) == "*") {
+        $ppp = $ppp;
+    } elseif (substr($ppp, 0, 1) != "") {
+        $getprofile = $API->comm("/ppp/profile/print", array(
+            "?name" => "$ppp",
+        ));
+        $ppp = $getprofile[0]['.id'];
+        if ($ppp == "") {
+            echo "<b>User Profile not found</b>";
+        }
     }
-  }
 
-  $getprofile = $API->comm("/ppp/profile/print", array(
-    "?.id" => "$userprofile"
-  ));
-  $profiledetalis = $getprofile[0];
-  $pid = $profiledetalis['.id'];
-  $pname = $profiledetalis['name'];
-  $localaddress = $profiledetalis['localaddress'];
-  $remoteaddress = $profiledetalis['remoteaddress'];
-  $bridge = $profiledetalis['bridge'];
-  $ratelimit = $profiledetalis['ratelimit'];
-  $onlyone = $profiledetalis['onlyone'];
-  $bridgeportpriority = $profiledetalis['bridgeportpriority'];
-  $bridgepathcost = $profiledetalis['bridgepathcost'];
-  $bridgehorizon = $profiledetalis['bridgehorizon'];
-  $incomingfilter = $profiledetalis['incomingfilter'];
-  $outgoingfilter = $profiledetalis['outgoingfilter'];
-  $addresslist = $profiledetalis['addresslist'];
-  $interfacelist = $profiledetalis['interfacelist'];
-  $dnsserver = $profiledetalis['dnsserver'];
-  $winsserver = $profiledetalis['winsserver'];
-  $changetcp = $profiledetalis['changetcp'];
-
-  if (isset($_POST['name'])) {
-    $name = (preg_replace('/\s+/', '-', $_POST['name']));
-    $localaddress = ($_POST['localaddress']);
-    $remoteaddress = ($_POST['remoteaddress']);
-    $bridge = ($_POST['bridge']);
-    $ratelimit = ($_POST['ratelimit']);
-    $onlyone = ($_POST['onlyone']);
-    $bridgeportpriority = ($_POST['bridgeportpriority']);
-    $bridgepathcost = ($_POST['bridgepathcost']);
-    $bridgehorizon = ($_POST['bridgehorizon']);
-    $incomingfilter = ($_POST['incomingfilter']);
-    $outgoingfilter = ($_POST['outgoingfilter']);
-    $addresslist = ($_POST['addresslist']);
-    $interfacelist = ($_POST['interfacelist']);
-    $dnsserver = ($_POST['dnsserver']);
-    $winsserver = ($_POST['winsserver']);
-    $changetcp = ($_POST['changetcp']);
-
-
-    $API->comm("/ppp/profile/set", array(
-      /*"add-mac-cookie" => "yes",*/
-      ".id" => "$pid",
-      "name" => "$name",
-      "local-address" => "$localaddress",
-      "remote-address" => "$remoteaddress",
-      "bridge" => "$bridge",
-      "rate-limit" => "$ratelimit",
-      "only-one" => "$onlyone",
-      "bridge-port-priority" => "$bridgeportpriority",
-      "bridge-path-cost" => "$bridgepathcost",
-      "bridge-horizon" => "$bridgehorizon",
-      "incoming-filter" => "$incomingfilter",
-      "outgoing-filter" => "$outgoingfilter",
-      "address-list" => "$addresslist",
-      "interface-list" => "$interfacelist",
-      "dns-server" => "$dnsserver",
-      "wins-server" => "$winsserver",
-      "change-tcp-mss" => "$changetcp",
+    $getprofile = $API->comm("/ppp/profile/print", array(
+        "?.id" => "*FFFFFFFE"
     ));
+    $profiledetalis = $getprofile[0];
+    $pid = $profiledetalis['.id'];
+    $pname = $profiledetalis['name'];
+    $localaddress = $profiledetalis['local-address'];
+    $remoteaddress = $profiledetalis['remote-address'];
+    $bridge = $profiledetalis['bridge'];
+    $ratelimit = $profiledetalis['rate-limit'];
+    $onlyone = $profiledetalis['only-one'];
+    // $bridgeportpriority = $profiledetalis['bridgeportpriority'];
+    // $bridgepathcost = $profiledetalis['bridgepathcost'];
+    // $bridgehorizon = $profiledetalis['bridgehorizon'];
+    // $incomingfilter = $profiledetalis['incomingfilter'];
+    // $outgoingfilter = $profiledetalis['outgoingfilter'];
+    // $addresslist = $profiledetalis['addresslist'];
+    // $interfacelist = $profiledetalis['interfacelist'];
+    // $dnsserver = $profiledetalis['dnsserver'];
+    // $winsserver = $profiledetalis['winsserver'];
+    // $changetcp = $profiledetalis['changetcp'];
 
-    echo "<script>window.location='./?user-profile=" . $pid . "&session=" . $session . "'</script>";
-  }
+    // if (isset($_POST['name'])) {
+    //     $name = (preg_replace('/\s+/', '-', $_POST['name']));
+    //     $localaddress = ($_POST['localaddress']);
+    //     $remoteaddress = ($_POST['remoteaddress']);
+    //     $bridge = ($_POST['bridge']);
+    //     $ratelimit = ($_POST['ratelimit']);
+    //     $onlyone = ($_POST['onlyone']);
+    //     $bridgeportpriority = ($_POST['bridgeportpriority']);
+    //     $bridgepathcost = ($_POST['bridgepathcost']);
+    //     $bridgehorizon = ($_POST['bridgehorizon']);
+    //     $incomingfilter = ($_POST['incomingfilter']);
+    //     $outgoingfilter = ($_POST['outgoingfilter']);
+    //     $addresslist = ($_POST['addresslist']);
+    //     $interfacelist = ($_POST['interfacelist']);
+    //     $dnsserver = ($_POST['dnsserver']);
+    //     $winsserver = ($_POST['winsserver']);
+    //     $changetcp = ($_POST['changetcp']);
+
+
+    //     $API->comm("/ppp/profile/set", array(
+    //         /*"add-mac-cookie" => "yes",*/
+    //         ".id" => "$pid",
+    //         "name" => "$name",
+    //         "local-address" => "$localaddress",
+    //         "remote-address" => "$remoteaddress",
+    //         "bridge" => "$bridge",
+    //         "rate-limit" => "$ratelimit",
+    //         "only-one" => "$onlyone",
+    //         "bridge-port-priority" => "$bridgeportpriority",
+    //         "bridge-path-cost" => "$bridgepathcost",
+    //         "bridge-horizon" => "$bridgehorizon",
+    //         "incoming-filter" => "$incomingfilter",
+    //         "outgoing-filter" => "$outgoingfilter",
+    //         "address-list" => "$addresslist",
+    //         "interface-list" => "$interfacelist",
+    //         "dns-server" => "$dnsserver",
+    //         "wins-server" => "$winsserver",
+    //         "change-tcp-mss" => "$changetcp",
+    //     ));
+
+    //     echo "<script>window.location='./?ppp=edit-profile=" . $pid . "&session=" . $session . "'</script>";
+    // }
 }
 ?>
 <div class="row">
@@ -119,7 +119,7 @@ if (!isset($_SESSION["mikhmon"])) {
                         <tr>
                             <td class="align-middle"><?= $_name ?></td>
                             <td><input class="form-control" type="text" onchange="remSpace();" autocomplete="off"
-                                    name="name" value="?= $pname; ?>" required="1" autofocus></td>
+                                    name="name" value="<?= $pname; ?>" required="1" autofocus></td>
                         </tr>
                         <tr>
                             <td class="align-middle">Local Address</td>
@@ -184,22 +184,22 @@ if (!isset($_SESSION["mikhmon"])) {
                         <tr>
                             <td class="align-middle">Change TCP MSS</td>
                             <td>
-                                <?php if ($changetcp != 'No') { ?>
+                                <?php if ($changetcp != 'no') { ?>
                                 <input type="radio" id="" name="changetcp" value="Default">
                                 <label for="">Default</label><br>
-                                <input type="radio" id="no" name="changetcp" checked="1" value="no">
+                                <input type="radio" id="no" name="changetcp" checked value="no">
                                 <label for="no">No</label><br>
                                 <input type="radio" id="yes" name="changetcp" value="yes">
                                 <label for="yes">Yes</label><br>
-                                <?php  } elseif ($changetcp == 'Yes') { ?>
+                                <?php  } elseif ($changetcp == 'yes') { ?>
                                 <input type="radio" id="" name="changetcp" value="Default">
                                 <label for="">Default</label><br>
                                 <input type="radio" id="no" name="changetcp" value="no">
                                 <label for="no">No</label><br>
-                                <input type="radio" id="yes" name="changetcp" checked="1" value="yes">
+                                <input type="radio" id="yes" name="changetcp" checked value="yes">
                                 <label for="yes">Yes</label><br>
                                 <?php } else { ?>
-                                <input type="radio" id="" name="changetcp" checked="1" value="Default">
+                                <input type="radio" id="" name="changetcp" checked value="Default">
                                 <label for="">Default</label><br>
                                 <input type="radio" id="no" name="changetcp" value="no">
                                 <label for="no">No</label><br>
@@ -210,28 +210,28 @@ if (!isset($_SESSION["mikhmon"])) {
                         </tr>
                         <tr>
                             <td class="align-middle">Rate Limit</td>
-                            <td><input class="form-control" type="text" size="4" autocomplete="off" name="retelimit"
-                                    placeholder="example: rx/tx" required="1"></td>
+                            <td><input class="form-control" type="text" value="<?= $ratelimit; ?>" size="4"
+                                    autocomplete="off" name="retelimit" placeholder="example: rx/tx" required="1"></td>
                         </tr>
                         <tr>
                             <td class="align-middle">Only One</td>
                             <td>
-                                <?php if ($onlyone != 'No') { ?>
-                                <input type="radio" id="" name="onlyone" value="default">
+                                <?php if ($onlyone != 'no') { ?>
+                                <input type="radio" id="default" name="onlyone" value="default">
                                 <label for="">Default</label><br>
-                                <input type="radio" id="no" name="onlyone" checked="1" value="no">
+                                <input type="radio" id="no" name="onlyone" checked value="no">
                                 <label for="no">No</label><br>
                                 <input type="radio" id="yes" name="onlyone" value="yes">
                                 <label for="yes">Yes</label><br>
-                                <?php  } elseif ($onlyone == 'Yes') { ?>
-                                <input type="radio" id="" name="onlyone" value="default">
+                                <?php  } elseif ($onlyone == 'yes') { ?>
+                                <input type="radio" id="default" name="onlyone" value="default">
                                 <label for="">Default</label><br>
                                 <input type="radio" id="no" name="onlyone" value="no">
                                 <label for="no">No</label><br>
-                                <input type="radio" id="yes" name="onlyone" checked="1" value="yes">
+                                <input type="radio" id="yes" name="onlyone" checked value="yes">
                                 <label for="yes">Yes</label><br>
                                 <?php } else { ?>
-                                <input type="radio" id="" name="onlyone" checked="1" value="default">
+                                <input type="radio" id="default" name="onlyone" checked value="default">
                                 <label for="">Default</label><br>
                                 <input type="radio" id="no" name="onlyone" value="no">
                                 <label for="no">No</label><br>
