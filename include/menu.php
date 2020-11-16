@@ -355,7 +355,7 @@ if ($idleto != "disable") {
       </div>
 
       <!-- ppp active -->
-      <a href="./?ppp=active&session=<?= $session; ?>" class=""> <i class="fa fa-globe "></i> <?= $_ppp_active ?> </a>
+      <a href="./?ppp=active&session=<?= $session; ?>" class="<?= $spactive; ?>"> <i class="fa fa-globe "></i> <?= $_ppp_active ?> </a>
 
       <!-- <a href="./?ppp=users&profile=all&session=<?= $session; ?>" class="<?= $ssch; ?>"> <i class="fa fa-user-secret "></i> <?= $_ppp_secrets ?> </a>
       <a href="./admin.php?id=reboot&session=<?= $session; ?>" class=""> <i class="fa fa-users "></i> <?= $_ppp_profiles ?> </a>
