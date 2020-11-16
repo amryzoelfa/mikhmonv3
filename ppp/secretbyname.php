@@ -22,39 +22,39 @@ if (!isset($_SESSION["mikhmon"])) {
     header("Location:../admin.php?id=login");
 } else {
 
+    $getprofile = $API->comm("/ppp/profile/print");
 
-    if (substr($secret, 0, 1) == "*") {
-        $secret = $secret;
-    } elseif (substr($secret, 0, 1) != "") {
+    if (substr($secretbyname, 0, 1) == "*") {
+        $secretbyname = $secretbyname;
+    } elseif (substr($secretbyname, 0, 1) != "") {
         $getsecret = $API->comm("/ppp/secret/print", array(
-            "?name" => "$secret",
+            "?name" => "$secretbyname",
         ));
-        $secret = $getsecret[0]['.id'];
-        if ($secret == "") {
+        $secretbyname = $getsecret[0]['.id'];
+        if ($secretbyname == "") {
             echo "<b>Secrets not found</b>";
         }
+    } else {
+        $secretbyname = substr($secretbyname, 7);
     }
 
+
     $getsecret = $API->comm("/ppp/secret/print", array(
-        "?.id" => "$secret"
+        "?.id" => "$secretbyname"
     ));
     $secretdetail = $getsecret[0];
     $sid = $secretdetail['.id'];
     $sname = $secretdetail['name'];
     $password = $secretdetail['password'];
     $service = $secretdetail['service'];
-    $callerid = $secretdetail['callerid'];
+    $callerid = $secretdetail['caller-id'];
     $profile = $secretdetail['profile'];
-    $localaddress = $secretdetail['localaddress'];
-    $remoteaddress = $secretdetail['remoteaddress'];
+    $localaddress = $secretdetail['local-address'];
+    $remoteaddress = $secretdetail['remote-address'];
     $routes = $secretdetail['routes'];
-    $limitbytesin = $secretdetail['limitbytesin'];
-    $limitbytesout = $secretdetail['limitbytesout'];
-    $lastloggedout = $secretdetail['lastloggedout'];
-
-    $getprofile = $API->comm("/ppp/profile/print", array(
-        "?name" => "$profile"
-    ));
+    $limitbytesin = $secretdetail['limit-by-tesin'];
+    $limitbytesout = $secretdetail['limit-by-tesout'];
+    $lastloggedout = $secretdetail['last-logged-out'];
 
     if (isset($_POST['name'])) {
         $name = (preg_replace('/\s+/', '-', $_POST['name']));
@@ -115,15 +115,87 @@ if (!isset($_SESSION["mikhmon"])) {
                         <tr>
                             <td class="align-middle">Service</td>
                             <td>
-                                <select class="form-control" name="service" required="1">
-                                    <option value="any">any</option>
-                                    <option value="async">async</option>
-                                    <option value="l2tp">l2tp</option>
-                                    <option value="ovpn">ovpn</option>
-                                    <option value="pppoe">pppoe</option>
-                                    <option value="pptp">pptp</option>
-                                    <option value="sstp">sstp</option>
-                                </select>
+                                <?php if ($service == 'any') { ?>
+                                    <select class="form-control" name="service" required="1">
+                                        <option value="any" selected>any</option>
+                                        <option value="async">async</option>
+                                        <option value="l2tp">l2tp</option>
+                                        <option value="ovpn">ovpn</option>
+                                        <option value="pppoe">pppoe</option>
+                                        <option value="pptp">pptp</option>
+                                        <option value="sstp">sstp</option>
+                                    </select>
+                                <?php } elseif ($service == 'async') { ?>
+                                    <select class="form-control" name="service" required="1">
+                                        <option value="any">any</option>
+                                        <option value="async" selected>async</option>
+                                        <option value="l2tp">l2tp</option>
+                                        <option value="ovpn">ovpn</option>
+                                        <option value="pppoe">pppoe</option>
+                                        <option value="pptp">pptp</option>
+                                        <option value="sstp">sstp</option>
+                                    </select>
+                                <?php } elseif ($service == '12tp') { ?>
+                                    <select class="form-control" name="service" required="1">
+                                        <option value="any">any</option>
+                                        <option value="async">async</option>
+                                        <option value="l2tp" selected>l2tp</option>
+                                        <option value="ovpn">ovpn</option>
+                                        <option value="pppoe">pppoe</option>
+                                        <option value="pptp">pptp</option>
+                                        <option value="sstp">sstp</option>
+                                    </select>
+                                <?php } elseif ($service == 'ovpn') { ?>
+                                    <select class="form-control" name="service" required="1">
+                                        <option value="any">any</option>
+                                        <option value="async">async</option>
+                                        <option value="l2tp">l2tp</option>
+                                        <option value="ovpn" selected>ovpn</option>
+                                        <option value="pppoe">pppoe</option>
+                                        <option value="pptp">pptp</option>
+                                        <option value="sstp">sstp</option>
+                                    </select>
+                                <?php } elseif ($service == 'pppoe') { ?>
+                                    <select class="form-control" name="service" required="1">
+                                        <option value="any">any</option>
+                                        <option value="async">async</option>
+                                        <option value="l2tp">l2tp</option>
+                                        <option value="ovpn">ovpn</option>
+                                        <option value="pppoe" selected>pppoe</option>
+                                        <option value="pptp">pptp</option>
+                                        <option value="sstp">sstp</option>
+                                    </select>
+                                <?php } elseif ($service == 'pptp') { ?>
+                                    <select class="form-control" name="service" required="1">
+                                        <option value="any">any</option>
+                                        <option value="async">async</option>
+                                        <option value="l2tp">l2tp</option>
+                                        <option value="ovpn">ovpn</option>
+                                        <option value="pppoe">pppoe</option>
+                                        <option value="pptp" selected>pptp</option>
+                                        <option value="sstp">sstp</option>
+                                    </select>
+                                <?php } elseif ($service == 'sstp') { ?>
+                                    <select class="form-control" name="service" required="1">
+                                        <option value="any">any</option>
+                                        <option value="async">async</option>
+                                        <option value="l2tp">l2tp</option>
+                                        <option value="ovpn">ovpn</option>
+                                        <option value="pppoe">pppoe</option>
+                                        <option value="pptp">pptp</option>
+                                        <option value="sstp" selected>sstp</option>
+                                    </select>
+                                <?php } else { ?>
+                                    <select class="form-control" name="service" required="1">
+                                        <option value="any">any</option>
+                                        <option value="async">async</option>
+                                        <option value="l2tp">l2tp</option>
+                                        <option value="ovpn">ovpn</option>
+                                        <option value="pppoe">pppoe</option>
+                                        <option value="pptp">pptp</option>
+                                        <option value="sstp">sstp</option>
+                                    </select>
+                                <?php } ?>
                             </td>
                         </tr>
                         <tr>
@@ -134,8 +206,17 @@ if (!isset($_SESSION["mikhmon"])) {
                             <td class="align-middle">Profile</td>
                             <td>
                                 <select class="form-control" name="profile" required="1">
-                                    <option value="default">default</option>
-                                    <option value="default-encryption">default-encryption</option>
+                                    <?php $TotalReg = count($getprofile);
+                                    for ($i = 0; $i < $TotalReg; $i++) {
+                                        if ($getprofile[$i]['name'] == $profile) {
+                                            echo "<option selected>" . $getprofile[$i]['name'] . "</option>";
+                                        } else {
+                                            echo "<option>" . $getprofile[$i]['name'] . "</option>";
+                                        }
+                                    }
+                                    ?>
+                                    <!-- <option value="default">default</option>
+                                    <option value="default-encryption">default-encryption</option> -->
                                 </select>
                             </td>
                         </tr>
