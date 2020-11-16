@@ -39,6 +39,7 @@ if (!isset($_SESSION["mikhmon"])) {
     $dnsserver = ($_POST['dnsserver']);
     $winsserver = ($_POST['winsserver']);
     $changetcp = ($_POST['changetcp']);
+    $useupnp = ($_POST['useupnp']);
 
     $API->comm("/ppp/profile/add", array(
       /*"add-mac-cookie" => "yes",*/
@@ -58,6 +59,7 @@ if (!isset($_SESSION["mikhmon"])) {
       "dns-server" => "$dnsserver",
       "wins-server" => "$winsserver",
       "change-tcp-mss" => "$changetcp",
+      "use-upnp" => "$useupnp",
     ));
   }
 }
@@ -71,7 +73,7 @@ if (!isset($_SESSION["mikhmon"])) {
       <div class="card-body">
         <form autocomplete="off" method="post" action="">
           <div>
-            <a class="btn bg-warning" href="./?hotspot=user-profiles&session=<?= $session; ?>"> <i class="fa fa-close btn-mrg"></i> <?= $_close ?></a>
+            <a class="btn bg-warning" href="./?ppp=profile&session=<?= $session; ?>"> <i class="fa fa-close btn-mrg"></i> <?= $_close ?></a>
             <button type="submit" name="save" class="btn bg-primary btn-mrg"><i class="fa fa-save btn-mrg"></i> <?= $_save ?></button>
           </div>
           <table class="table">
@@ -105,11 +107,25 @@ if (!isset($_SESSION["mikhmon"])) {
             </tr>
             <tr>
               <td class="align-middle">Incoming Filter</td>
-              <td><input class="form-control" type="text" size="4" autocomplete="off" name="incomingfilter" required="0"></td>
+              <td>
+                 <select class="form-control" id="incomingfilter" name="incomingfilter" required="0">
+                    <option value="">== Pilih ==</option>
+                    <option value="input">input</option>
+                    <option value="forward">forward</option>
+                    <option value="output">output</option>
+                  </select>
+              </td>
             </tr>
             <tr>
               <td class="align-middle">Outgoing Filter</td>
-              <td><input class="form-control" type="text" size="4" autocomplete="off" name="outgoingfilter" required="0"></td>
+              <td>
+                 <select class="form-control" id="outgoingfilter" name="outgoingfilter" required="0">
+                    <option value="">== Pilih ==</option>
+                    <option value="input">input</option>
+                    <option value="forward">forward</option>
+                    <option value="output">output</option>
+                  </select>
+              </td>
             </tr>
             <tr>
               <td class="align-middle">Address List</td>
@@ -117,7 +133,15 @@ if (!isset($_SESSION["mikhmon"])) {
             </tr>
             <tr>
               <td class="align-middle">Interface List</td>
-              <td><input class="form-control" type="text" size="4" autocomplete="off" name="interfacelist" required="0"></td>
+               <td>
+                 <select class="form-control" id="interfacelist" name="interfacelist" required="0">
+                    <option value="">== Pilih ==</option>
+                    <option value="all">all</option>
+                    <option value="dynamic">dynamic</option>
+                    <option value="none">none</option>
+                    <option value="static">static</option>
+                  </select>
+              </td>
             </tr>
             <tr>
               <td class="align-middle">DNS Server</td>
@@ -130,12 +154,23 @@ if (!isset($_SESSION["mikhmon"])) {
             <tr>
               <td class="align-middle">Change TCP MSS</td>
               <td>
-                <input type="radio" id="" name="changetcp" value="default">
-                <label for="">Default</label><br>
-                <input type="radio" id="" name="changetcp" value="no">
-                <label for="no">No</label><br>
-                <input type="radio" id="" name="changetcp" value="yes">
-                <label for="yes">Yes</label><br>
+                 <select class="form-control" id="changetcp" name="changetcp" required="0">
+                    <option value="">== Pilih ==</option>
+                    <option value="default">default</option>
+                    <option value="no">no</option>
+                    <option value="yes">yes</option>
+                  </select>
+              </td>
+            </tr>
+             <tr>
+              <td class="align-middle">Use UPnP</td>
+              <td>
+                 <select class="form-control" id="useupnp" name="useupnp" required="0">
+                    <option value="">== Pilih ==</option>
+                    <option value="default">default</option>
+                    <option value="no">no</option>
+                    <option value="yes">yes</option>
+                  </select>
               </td>
             </tr>
             <tr>
@@ -145,12 +180,12 @@ if (!isset($_SESSION["mikhmon"])) {
             <tr>
               <td class="align-middle">Only One</td>
               <td>
-                <input type="radio" id="" name="onlyone" value="default">
-                <label for="">Default</label><br>
-                <input type="radio" id="no" name="onlyone" value="no">
-                <label for="no">No</label><br>
-                <input type="radio" id="yes" name="onlyone" value="yes">
-                <label for="yes">Yes</label><br>
+                <select class="form-control" id="onlyone" name="onlyone" required="0">
+                    <option value="">== Pilih ==</option>
+                    <option value="default">default</option>
+                    <option value="no">no</option>
+                    <option value="yes">yes</option>
+                  </select>
               </td>
             </tr>
           </table>
