@@ -22,6 +22,8 @@ if (!isset($_SESSION["mikhmon"])) {
     header("Location:../admin.php?id=login");
 } else {
 
+    $getprofile = $API->comm("/ppp/profile/print");
+
     if (isset($_POST['name'])) {
         $name = (preg_replace('/\s+/', '-', $_POST['name']));
         $password = ($_POST['password']);
@@ -38,10 +40,10 @@ if (!isset($_SESSION["mikhmon"])) {
         $API->comm("/ppp/secret/add", array(
             /*"add-mac-cookie" => "yes",*/
             "name" => "$name",
-            "local-address" => "$password",
-            "remote-address" => "$service",
+            "password" => "$password",
+            "service" => "$service",
             "caller-id" => "$callerid",
-            "rate-limit" => "$profile",
+            "profile" => "$profile",
             "local-address" => "$localaddress",
             "remote-address" => "$remoteaddress",
             "routes" => "$routes",
@@ -95,8 +97,13 @@ if (!isset($_SESSION["mikhmon"])) {
                             <td class="align-middle">Profile</td>
                             <td>
                                 <select class="form-control" name="profile" required="1">
-                                    <option value="default">default</option>
-                                    <option value="default-encryption">default-encryption</option>
+                                    <?php $TotalReg = count($getprofile);
+                                    for ($i = 0; $i < $TotalReg; $i++) {
+                                        echo "<option>" . $getprofile[$i]['name'] . "</option>";
+                                    }
+                                    ?>
+                                    <!-- <option value="default">default</option>
+                                    <option value="default-encryption">default-encryption</option> -->
                                 </select>
                             </td>
                         </tr>

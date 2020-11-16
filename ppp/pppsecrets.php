@@ -45,7 +45,7 @@ if (!isset($_SESSION["mikhmon"])) {
 		<div class="card">
 			<div class="card-header align-middle">
 				<h3><i class=" fa fa-pie-chart"></i> PPP Secrets
-					&nbsp; | &nbsp; <a href="./?ppp=add-secret&session=<?= $session; ?>" title="Add Secrets"><i class="fa fa-user-plus"></i> Add</a>
+					&nbsp; | &nbsp; <a href="./?ppp=addsecret&session=<?= $session; ?>" title="Add Secrets"><i class="fa fa-user-plus"></i> Add</a>
 				</h3>
 			</div>
 			<!-- /.card-header -->
@@ -91,7 +91,7 @@ if (!isset($_SESSION["mikhmon"])) {
 								<td style='text-align:center;'><i class='fa fa-minus-square text-danger pointer' onclick="if(confirm('Are you sure to delete profile (<?= $pname; ?>)?')){loadpage('./?remove-ppp-profile=<?= $sid; ?>&pname=<?= $pname ?>&session=<?= $session; ?>')}else{}" title='Remove <?= $pname; ?>'></i>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 								<?php
 								echo "<a title='Open User by secret " . $sname . "'  href='./?ppp=users&profile=" . $sname . "&session=" . $session . "'><i class='fa fa-users'></i></a></td>";
-								echo "<td><a title='Open User secret " . $sname . "' href='./?user-profile=" . $sid . "&session=" . $session . "'><i class='fa fa-edit'></i> $sname</a></td>";
+								echo "<td><a title='Open User secret " . $sname . "' href='./?secret=" . $sid . "&session=" . $session . "'><i class='fa fa-edit'></i> $sname</a></td>";
 								//$profiledetalis = $ARRAY[$i];echo "<td>" . $profiledetalis['name'];echo "</td>";
 								echo "<td>" . $password;
 								echo "</td>";
