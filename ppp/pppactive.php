@@ -32,10 +32,10 @@ if (!isset($_SESSION["mikhmon"])) {
 
 
 	// get ppp profile
-	$getprofile = $API->comm("/ppp/profile/print");
-	$TotalReg = count($getprofile);
+	$getactive = $API->comm("/ppp/active-connection/print");
+	$TotalReg = count($getactive);
 	// count ppp profile
-	$countprofile = $API->comm("/ppp/profile/print", array(
+	$countactive = $API->comm("/ppp/active-connection/print", array(
 		"count-only" => "",
 	));
 }
@@ -53,10 +53,10 @@ if (!isset($_SESSION["mikhmon"])) {
                             <tr>
                                 <th style="min-width:50px;" class="text-center">
                                     <?php
-									if ($countprofile < 2) {
-										echo "$countprofile item  ";
-									} elseif ($countprofile > 1) {
-										echo "$countprofile items   ";
+									if ($countactive < 2) {
+										echo "$countactive item  ";
+									} elseif ($countactive > 1) {
+										echo "$countactive items   ";
 									}
 									?></th>
                                 <th class="align-middle"><?= $_name ?></th>
@@ -72,43 +72,37 @@ if (!isset($_SESSION["mikhmon"])) {
 
 							for ($i = 0; $i < $TotalReg; $i++) {
 
-								$profiledetalis = $getprofile[$i];
+								$profiledetalis = $getactive[$i];
 								$pid = $profiledetalis['.id'];
-								$pname = $profiledetalis['name'];
-								$local_address = $profiledetalis['local-address'];
-								$remote_address = $profiledetalis['remote-address'];
-								$bridge = $profiledetalis['bridge'];
-								$rate_limit = $profiledetalis['rate-limit'];
-								$only_one = $profiledetalis['only-one'];
-								$getmonexpired = $API->comm("/system/scheduler/print", array(
-									"?name" => "$pname",
-								));
-								$monexpired = $getmonexpired[0];
-								$monid = $monexpired['.id'];
-								$pmon = $monexpired['name'];
-								$chkpmon = $monexpired['disabled'];
-								if (empty($pmon) || $chkpmon == "true") {
+								$aname = $profiledetalis['name'];
+								$service = $profiledetalis['service'];
+								$caller_id = $profiledetalis['caller-id'];
+								$encoding = $profiledetalis['encoding'];
+								$address = $profiledetalis['address'];
+								$uptime = $profiledetalis['uptime'];
+								
+								if (empty($aname) || $aname == "true") {
 									$moncolor = "text-orange";
 								} else {
 									$moncolor = "text-green";
 								}
 							?>
                             <td style='text-align:center;'><i class='fa fa-minus-square text-danger pointer'
-                                    onclick="if(confirm('Are you sure to delete profile (<?= $pname; ?>)?')){loadpage('./?remove-ppp-profile=<?= $pid; ?>&pname=<?= $pname ?>&session=<?= $session; ?>')}else{}"
-                                    title='Remove <?= $pname; ?>'></i>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                    onclick="if(confirm('Are you sure to delete profile (<?= $aname; ?>)?')){loadpage('./?remove-ppp-profile=<?= $pid; ?>&aname=<?= $aname ?>&session=<?= $session; ?>')}else{}"
+                                    title='Remove <?= $aname; ?>'></i>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                 <?php
-								echo "<a title='Open User by profile " . $pname . "'  href='./?ppp=users&profile=" . $pname . "&session=" . $session . "'><i class='fa fa-users'></i></a></td>";
-								echo "<td><a title='Open User Profile " . $pname . "' href='./?ppp=edit-profile=" . $pid . "&session=" . $session . "'><i class='fa fa-edit'></i> <i class='fa fa-ci fa-circle " . $moncolor . "'></i> $pname</a></td>";
+								echo "</td>";
+								echo "<td><a title='Open User Profile " . $aname . "' href='./?ppp=edit-profile=" . $pid . "&session=" . $session . "'><i class='fa fa-edit'></i> <i class='fa fa-ci fa-circle " . $moncolor . "'></i> $aname</a></td>";
 								//$profiledetalis = $ARRAY[$i];echo "<td>" . $profiledetalis['name'];echo "</td>";
-								echo "<td>" . $local_address;
+								echo "<td>" . $service;
 								echo "</td>";
-								echo "<td>" . $remote_address;
+								echo "<td>" . $caller_id;
 								echo "</td>";
-								echo "<td>" . $bridge;
+								echo "<td>" . $encoding;
 								echo "</td>";
-								echo "<td>" . $rate_limit;
+								echo "<td>" . $address;
 								echo "</td>";
-								echo "<td>" . $only_one;
+								echo "<td>" . $uptime;
 								echo "</td>";
 								echo "</tr>";
 							}
