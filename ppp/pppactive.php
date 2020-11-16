@@ -88,7 +88,7 @@ if (!isset($_SESSION["mikhmon"])) {
 								}
 							?>
                             <td style='text-align:center;'><i class='fa fa-minus-square text-danger pointer'
-                                    onclick="if(confirm('Are you sure to delete profile (<?= $aname; ?>)?')){loadpage('./?remove-ppp-profile=<?= $pid; ?>&aname=<?= $aname ?>&session=<?= $session; ?>')}else{}"
+                                    onclick="if(confirm('Are you sure to delete profile (<?= $aname; ?>)?')){loadpage('./?remove-pactive=<?= $pid; ?>&aname=<?= $aname ?>&session=<?= $session; ?>')}else{}"
                                     title='Remove <?= $aname; ?>'></i>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                 <?php
 								echo "</td>";
