@@ -91,24 +91,24 @@ if (!isset($_SESSION["mikhmon"])) {
             </tr>
             <tr>
               <td class="align-middle">Bridge</td>
-              <td><input class="form-control" type="text" size="4" autocomplete="off" name="bridge" required="0"></td>
+              <td><input class="form-control" type="text" size="4" autocomplete="off" name="bridge"></td>
             </tr>
             <tr>
               <td class="align-middle">Bridge Port Priority</td>
-              <td><input class="form-control" type="text" size="4" autocomplete="off" name="bridgeportpriority" required="0"></td>
+              <td><input class="form-control" type="text" size="4" autocomplete="off" name="bridgeportpriority"></td>
             </tr>
             <tr>
               <td class="align-middle">Bridge Port Cost</td>
-              <td><input class="form-control" type="text" size="4" autocomplete="off" name="bridgepathcost" required="0"></td>
+              <td><input class="form-control" type="text" size="4" autocomplete="off" name="bridgepathcost"></td>
             </tr>
             <tr>
               <td class="align-middle">Bridge Horizon</td>
-              <td><input class="form-control" type="text" size="4" autocomplete="off" name="bridgehorizon" required="0"></td>
+              <td><input class="form-control" type="text" size="4" autocomplete="off" name="bridgehorizon"></td>
             </tr>
             <tr>
               <td class="align-middle">Incoming Filter</td>
               <td>
-                 <select class="form-control" id="incomingfilter" name="incomingfilter" required="0">
+                 <select class="form-control" id="incomingfilter" name="incomingfilter">
                     <option value="">== Pilih ==</option>
                     <option value="input">input</option>
                     <option value="forward">forward</option>
@@ -119,7 +119,7 @@ if (!isset($_SESSION["mikhmon"])) {
             <tr>
               <td class="align-middle">Outgoing Filter</td>
               <td>
-                 <select class="form-control" id="outgoingfilter" name="outgoingfilter" required="0">
+                 <select class="form-control" id="outgoingfilter" name="outgoingfilter">
                     <option value="">== Pilih ==</option>
                     <option value="input">input</option>
                     <option value="forward">forward</option>
@@ -129,12 +129,12 @@ if (!isset($_SESSION["mikhmon"])) {
             </tr>
             <tr>
               <td class="align-middle">Address List</td>
-              <td><input class="form-control" type="text" size="4" autocomplete="off" name="addresslist" required="0"></td>
+              <td><input class="form-control" type="text" size="4" autocomplete="off" name="addresslist"></td>
             </tr>
             <tr>
               <td class="align-middle">Interface List</td>
                <td>
-                 <select class="form-control" id="interfacelist" name="interfacelist" required="0">
+                 <select class="form-control" id="interfacelist" name="interfacelist">
                     <option value="">== Pilih ==</option>
                     <option value="all">all</option>
                     <option value="dynamic">dynamic</option>
@@ -145,16 +145,16 @@ if (!isset($_SESSION["mikhmon"])) {
             </tr>
             <tr>
               <td class="align-middle">DNS Server</td>
-              <td><input class="form-control" type="text" size="4" autocomplete="off" name="dnsserver" required="0"></td>
+              <td><input class="form-control" type="text" size="4" autocomplete="off" name="dnsserver"></td>
             </tr>
             <tr>
               <td class="align-middle">WINS Server</td>
-              <td><input class="form-control" type="text" size="4" autocomplete="off" name="winsserver" required="0"></td>
+              <td><input class="form-control" type="text" size="4" autocomplete="off" name="winsserver"></td>
             </tr>
             <tr>
               <td class="align-middle">Change TCP MSS</td>
               <td>
-                 <select class="form-control" id="changetcp" name="changetcp" required="0">
+                 <select class="form-control" id="changetcp" name="changetcp">
                     <option value="">== Pilih ==</option>
                     <option value="default">default</option>
                     <option value="no">no</option>
@@ -165,7 +165,7 @@ if (!isset($_SESSION["mikhmon"])) {
              <tr>
               <td class="align-middle">Use UPnP</td>
               <td>
-                 <select class="form-control" id="useupnp" name="useupnp" required="0">
+                 <select class="form-control" id="useupnp" name="useupnp">
                     <option value="">== Pilih ==</option>
                     <option value="default">default</option>
                     <option value="no">no</option>
@@ -180,7 +180,7 @@ if (!isset($_SESSION["mikhmon"])) {
             <tr>
               <td class="align-middle">Only One</td>
               <td>
-                <select class="form-control" id="onlyone" name="onlyone" required="0">
+                <select class="form-control" id="onlyone" name="onlyone">
                     <option value="">== Pilih ==</option>
                     <option value="default">default</option>
                     <option value="no">no</option>

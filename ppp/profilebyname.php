@@ -140,49 +140,49 @@ if (!isset($_SESSION["mikhmon"])) {
                         <tr>
                             <td class="align-middle">Bridge</td>
                             <td><input class="form-control" type="text" size="4" value="<?= $bridge; ?>"
-                                    autocomplete="off" name="bridge" required="0"></td>
+                                    autocomplete="off" name="bridge"></td>
                         </tr>
                         <tr>
                             <td class="align-middle">Bridge Port Priority</td>
                             <td><input class="form-control" type="text" size="4" value="<?= $bridgeportpriority; ?>"
-                                    autocomplete="off" name="bridgeportpriority" required="0"></td>
+                                    autocomplete="off" name="bridgeportpriority"></td>
                         </tr>
                         <tr>
                             <td class="align-middle">Bridge Port Cost</td>
                             <td><input class="form-control" type="text" size="4" value="<?= $bridgepathcost; ?>"
-                                    autocomplete="off" name="bridgepathcost" required="0"></td>
+                                    autocomplete="off" name="bridgepathcost"></td>
                         </tr>
                         <tr>
                             <td class="align-middle">Bridge Horizon</td>
                             <td><input class="form-control" type="text" size="4" value="<?= $bridgehorizon; ?>"
-                                    autocomplete="off" name="bridgehorizon" required="0"></td>
+                                    autocomplete="off" name="bridgehorizon"></td>
                         </tr>
                         <tr>
                             <td class="align-middle">Incoming Filter</td>
                              <td>
                                  <?php if ($incomingfilter == 'forward') { ?>
-                                 <select class="form-control" id="incomingfilter" name="incomingfilter" required="0">
+                                 <select class="form-control" id="incomingfilter" name="incomingfilter">
                                     <option value="">== Pilih ==</option>
                                     <option value="input">input</option>
                                     <option value="forward" selected>forward</option>
                                     <option value="output">output</option>
                                   </select>
                                 <?php  } elseif ($incomingfilter == 'output') { ?>
-                                  <select class="form-control" id="incomingfilter" name="incomingfilter" required="0">
+                                  <select class="form-control" id="incomingfilter" name="incomingfilter">
                                     <option value="">== Pilih ==</option>
                                     <option value="input">input</option>
                                     <option value="forward">forward</option>
                                     <option value="output" selected>output</option>
                                   </select>
                                 <?php } elseif ($incomingfilter == 'input') { ?>
-                                 <select class="form-control" id="incomingfilter" name="incomingfilter" required="0">
+                                 <select class="form-control" id="incomingfilter" name="incomingfilter">
                                     <option value="">== Pilih ==</option>
                                     <option value="input" selected >input</option>
                                     <option value="forward">forward</option>
                                     <option value="output">output</option>
                                   </select>
                                 <?php } else { ?>
-                                  <select class="form-control" id="incomingfilter" name="incomingfilter" required="0">
+                                  <select class="form-control" id="incomingfilter" name="incomingfilter">
                                     <option value="">== Pilih ==</option>
                                     <option value="input">input</option>
                                     <option value="forward">forward</option>
@@ -195,28 +195,28 @@ if (!isset($_SESSION["mikhmon"])) {
                             <td class="align-middle">Outgoing Filter</td>
                              <td>
                                  <?php if ($outgoingfilter == 'forward') { ?>
-                                 <select class="form-control" id="outgoingfilter" name="outgoingfilter" required="0">
+                                 <select class="form-control" id="outgoingfilter" name="outgoingfilter">
                                     <option value="">== Pilih ==</option>
                                     <option value="input">input</option>
                                     <option value="forward" selected>forward</option>
                                     <option value="yes">yes</option>
                                   </select>
                                 <?php  } elseif ($outgoingfilter == 'output') { ?>
-                                  <select class="form-control" id="outgoingfilter" name="outgoingfilter" required="0">
+                                  <select class="form-control" id="outgoingfilter" name="outgoingfilter">
                                     <option value="">== Pilih ==</option>
                                     <option value="input">input</option>
                                     <option value="forward">forward</option>
                                     <option value="output" selected>output</option>
                                   </select>
                                 <?php } elseif ($outgoingfilter == 'input') { ?>
-                                 <select class="form-control" id="outgoingfilter" name="outgoingfilter" required="0">
+                                 <select class="form-control" id="outgoingfilter" name="outgoingfilter">
                                     <option value="">== Pilih ==</option>
                                     <option value="input" selected >input</option>
                                     <option value="forward">forward</option>
                                     <option value="output">output</option>
                                   </select>
                                  <?php } else { ?>
-                                  <select class="form-control" id="outgoingfilter" name="outgoingfilter" required="0">
+                                  <select class="form-control" id="outgoingfilter" name="outgoingfilter">
                                     <option value="">== Pilih ==</option>
                                     <option value="input">input</option>
                                     <option value="forward">forward</option>
@@ -228,49 +228,49 @@ if (!isset($_SESSION["mikhmon"])) {
                         <tr>
                             <td class="align-middle">Address List</td>
                             <td><input class="form-control" type="text" size="4" value="<?= $addresslist; ?>"
-                                    autocomplete="off" name="addresslist" required="0"></td>
+                                    autocomplete="off" name="addresslist"></td>
                         </tr>
                         <tr>
                             <td class="align-middle">Interface List</td>
                             <td><input class="form-control" type="text" size="4" value="<?= $interfacelist; ?>"
-                                    autocomplete="off" name="interfacelist" required="0"></td>
+                                    autocomplete="off" name="interfacelist"></td>
                         </tr>
                         <tr>
                             <td class="align-middle">DNS Server</td>
                             <td><input class="form-control" type="text" size="4" value="<?= $dnsserver; ?>"
-                                    autocomplete="off" name="dnsserver" required="0"></td>
+                                    autocomplete="off" name="dnsserver"></td>
                         </tr>
                         <tr>
                             <td class="align-middle">WINS Server</td>
                             <td><input class="form-control" type="text" size="4" value="<?= $winsserver; ?>"
-                                    autocomplete="off" name="winsserver" required="0"></td>
+                                    autocomplete="off" name="winsserver"></td>
                         </tr>
                         <tr>
                             <td class="align-middle">Change TCP MSS</td>
                             <td>
                                 <?php if ($changetcp == 'no') { ?>
-                                 <select class="form-control" id="changetcp" name="changetcp" required="0">
+                                 <select class="form-control" id="changetcp" name="changetcp">
                                     <option value="">== Pilih ==</option>
                                     <option value="default">default</option>
                                     <option value="no" selected>no</option>
                                     <option value="yes">yes</option>
                                   </select>
                                 <?php  } elseif ($changetcp == 'yes') { ?>
-                                  <select class="form-control" id="changetcp" name="changetcp" required="0">
+                                  <select class="form-control" id="changetcp" name="changetcp">
                                     <option value="">== Pilih ==</option>
                                     <option value="default">default</option>
                                     <option value="no">no</option>
                                     <option value="yes" selected>yes</option>
                                   </select>
                                 <?php } elseif ($changetcp == 'default') { ?>
-                                 <select class="form-control" id="changetcp" name="changetcp" required="0">
+                                 <select class="form-control" id="changetcp" name="changetcp">
                                     <option value="">== Pilih ==</option>
                                     <option value="default" selected >default</option>
                                     <option value="no">no</option>
                                     <option value="yes">yes</option>
                                   </select>
                                  <?php } else { ?>
-                                 <select class="form-control" id="changetcp" name="changetcp" required="0">
+                                 <select class="form-control" id="changetcp" name="changetcp">
                                     <option value="" selected>== Pilih ==</option>
                                     <option value="default">default</option>
                                     <option value="no">no</option>
@@ -283,28 +283,28 @@ if (!isset($_SESSION["mikhmon"])) {
                               <td class="align-middle">Use UPnP</td>
                               <td>
                                 <?php if ($useupnp == 'no') { ?>
-                                 <select class="form-control" id="useupnp" name="useupnp" required="0">
+                                 <select class="form-control" id="useupnp" name="useupnp">
                                     <option value="">== Pilih ==</option>
                                     <option value="default">default</option>
                                     <option value="no" selected>no</option>
                                     <option value="yes">yes</option>
                                   </select>
                                 <?php  } elseif ($useupnp == 'yes') { ?>
-                                  <select class="form-control" id="useupnp" name="useupnp" required="0">
+                                  <select class="form-control" id="useupnp" name="useupnp">
                                     <option value="">== Pilih ==</option>
                                     <option value="default">default</option>
                                     <option value="no">no</option>
                                     <option value="yes" selected>yes</option>
                                   </select>
                                 <?php } elseif ($useupnp == 'default') { ?>
-                                 <select class="form-control" id="useupnp" name="useupnp" required="0">
+                                 <select class="form-control" id="useupnp" name="useupnp">
                                     <option value="">== Pilih ==</option>
                                     <option value="default" selected >default</option>
                                     <option value="no">no</option>
                                     <option value="yes">yes</option>
                                   </select>
                                  <?php } else { ?>
-                                 <select class="form-control" id="useupnp" name="useupnp" required="0">
+                                 <select class="form-control" id="useupnp" name="useupnp">
                                     <option value="" selected>== Pilih ==</option>
                                     <option value="default">default</option>
                                     <option value="no">no</option>
@@ -322,28 +322,28 @@ if (!isset($_SESSION["mikhmon"])) {
                             <td class="align-middle">Only One</td>
                             <td>
                                 <?php if ($onlyone == 'no') { ?>
-                                 <select class="form-control" id="onlyone" name="onlyone" required="0">
+                                 <select class="form-control" id="onlyone" name="onlyone">
                                     <option value="">== Pilih ==</option>
                                     <option value="default">default</option>
                                     <option value="no" selected>no</option>
                                     <option value="yes">yes</option>
                                   </select>
                                 <?php  } elseif ($onlyone == 'yes') { ?>
-                                   <select class="form-control" id="onlyone" name="onlyone" required="0">
+                                   <select class="form-control" id="onlyone" name="onlyone">
                                     <option value="">== Pilih ==</option>
                                     <option value="default">default</option>
                                     <option value="no">no</option>
                                     <option value="yes" selected>yes</option>
                                    </select>
                                 <?php } elseif ($onlyone == 'default') { ?>
-                                   <select class="form-control" id="onlyone" name="onlyone" required="0">
+                                   <select class="form-control" id="onlyone" name="onlyone">
                                     <option value="">== Pilih ==</option>
                                     <option value="default" selected>default</option>
                                     <option value="no">no</option>
                                     <option value="yes">yes</option>
                                    </select>
                                  <?php } else { ?>
-                                 <select class="form-control" id="changetcp" name="changetcp" required="0">
+                                 <select class="form-control" id="changetcp" name="changetcp">
                                     <option value="" selected>== Pilih ==</option>
                                     <option value="default">default</option>
                                     <option value="no">no</option>

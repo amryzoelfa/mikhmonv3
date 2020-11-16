@@ -110,7 +110,7 @@ if (!isset($_SESSION["mikhmon"])) {
                         </tr>
                         <tr>
                             <td class="align-middle">Password</td>
-                            <td><input class="form-control" type="text" size="4" autocomplete="off" name="password" value="<?= $password; ?>" required="0"></td>
+                            <td><input class="form-control" type="text" size="4" autocomplete="off" name="password" value="<?= $password; ?>"></td>
                         </tr>
                         <tr>
                             <td class="align-middle">Service</td>
@@ -200,7 +200,7 @@ if (!isset($_SESSION["mikhmon"])) {
                         </tr>
                         <tr>
                             <td class="align-middle">Caller ID</td>
-                            <td><input class="form-control" type="text" size="4" autocomplete="off" name="callerid" value="<?= $callerid; ?>" required="0"></td>
+                            <td><input class="form-control" type="text" size="4" autocomplete="off" name="callerid" value="<?= $callerid; ?>"></td>
                         </tr>
                         <tr>
                             <td class="align-middle">Profile</td>
@@ -222,27 +222,27 @@ if (!isset($_SESSION["mikhmon"])) {
                         </tr>
                         <tr>
                             <td class="align-middle">Local Address</td>
-                            <td><input class="form-control" type="text" size="4" autocomplete="off" name="localaddress" value="<?= $localaddress; ?>" required="0"></td>
+                            <td><input class="form-control" type="text" size="4" autocomplete="off" name="localaddress" value="<?= $localaddress; ?>"></td>
                         </tr>
                         <tr>
                             <td class="align-middle">Remote Address</td>
-                            <td><input class="form-control" type="text" size="4" autocomplete="off" name="remoteaddress" value="<?= $remoteaddress; ?>" required="0"></td>
+                            <td><input class="form-control" type="text" size="4" autocomplete="off" name="remoteaddress" value="<?= $remoteaddress; ?>"></td>
                         </tr>
                         <tr>
                             <td class="align-middle">Routes</td>
-                            <td><input class="form-control" type="text" size="4" autocomplete="off" name="routes" value="<?= $routes; ?>" required="0"></td>
+                            <td><input class="form-control" type="text" size="4" autocomplete="off" name="routes" value="<?= $routes; ?>"></td>
                         </tr>
                         <tr>
                             <td class="align-middle">Limit Bytes In</td>
-                            <td><input class="form-control" type="text" size="4" autocomplete="off" name="limitbytesin" value="<?= $limitbytesin; ?>" required="0"></td>
+                            <td><input class="form-control" type="text" size="4" autocomplete="off" name="limitbytesin" value="<?= $limitbytesin; ?>"></td>
                         </tr>
                         <tr>
                             <td class="align-middle">Limit Bytes Out</td>
-                            <td><input class="form-control" type="text" size="4" autocomplete="off" name="limitbytesout" value="<?= $limitbytesout; ?>" required="0"></td>
+                            <td><input class="form-control" type="text" size="4" autocomplete="off" name="limitbytesout" value="<?= $limitbytesout; ?>"></td>
                         </tr>
                         <tr>
                             <td class="align-middle">Last Logged Out</td>
-                            <td><input class="form-control" type="text" size="4" autocomplete="off" name="lastloggedout" value="<?= $lastloggedout; ?>" required="0"></td>
+                            <td><input class="form-control" type="text" size="4" autocomplete="off" name="lastloggedout" value="<?= $lastloggedout; ?>"></td>
                         </tr>
                     </table>
                 </form>

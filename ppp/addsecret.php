@@ -73,7 +73,7 @@ if (!isset($_SESSION["mikhmon"])) {
                         </tr>
                         <tr>
                             <td class="align-middle">Password</td>
-                            <td><input class="form-control" type="text" size="4" autocomplete="off" name="password" required="0"></td>
+                            <td><input class="form-control" type="text" size="4" autocomplete="off" name="password"></td>
                         </tr>
                         <tr>
                             <td class="align-middle">Service</td>
@@ -91,7 +91,7 @@ if (!isset($_SESSION["mikhmon"])) {
                         </tr>
                         <tr>
                             <td class="align-middle">Caller ID</td>
-                            <td><input class="form-control" type="text" size="4" autocomplete="off" name="callerid" required="0"></td>
+                            <td><input class="form-control" type="text" size="4" autocomplete="off" name="callerid"></td>
                         </tr>
                         <tr>
                             <td class="align-middle">Profile</td>
@@ -109,27 +109,27 @@ if (!isset($_SESSION["mikhmon"])) {
                         </tr>
                         <tr>
                             <td class="align-middle">Local Address</td>
-                            <td><input class="form-control" type="text" size="4" autocomplete="off" name="localaddress" required="0"></td>
+                            <td><input class="form-control" type="text" size="4" autocomplete="off" name="localaddress"></td>
                         </tr>
                         <tr>
                             <td class="align-middle">Remote Address</td>
-                            <td><input class="form-control" type="text" size="4" autocomplete="off" name="remoteaddress" required="0"></td>
+                            <td><input class="form-control" type="text" size="4" autocomplete="off" name="remoteaddress"></td>
                         </tr>
                         <tr>
                             <td class="align-middle">Routes</td>
-                            <td><input class="form-control" type="text" size="4" autocomplete="off" name="routes" required="0"></td>
+                            <td><input class="form-control" type="text" size="4" autocomplete="off" name="routes"></td>
                         </tr>
                         <tr>
                             <td class="align-middle">Limit Bytes In</td>
-                            <td><input class="form-control" type="text" size="4" autocomplete="off" name="limitbytesin" required="0"></td>
+                            <td><input class="form-control" type="text" size="4" autocomplete="off" name="limitbytesin"></td>
                         </tr>
                         <tr>
                             <td class="align-middle">Limit Bytes Out</td>
-                            <td><input class="form-control" type="text" size="4" autocomplete="off" name="limitbytesout" required="0"></td>
+                            <td><input class="form-control" type="text" size="4" autocomplete="off" name="limitbytesout"></td>
                         </tr>
                         <tr>
                             <td class="align-middle">Last Logged Out</td>
-                            <td><input class="form-control" type="text" size="4" autocomplete="off" name="lastloggedout" required="0"></td>
+                            <td><input class="form-control" type="text" size="4" autocomplete="off" name="lastloggedout"></td>
                         </tr>
                     </table>
                 </form>

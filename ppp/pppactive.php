@@ -60,11 +60,11 @@ if (!isset($_SESSION["mikhmon"])) {
 									}
 									?></th>
                                 <th class="align-middle"><?= $_name ?></th>
-                                <th class="align-middle">Local<br>Address</th>
-                                <th class="align-middle">Remote<br>Address</th>
-                                <th class="align-middle">Bridge</th>
-                                <th class="align-middle">Rate<br>Limit</th>
-                                <th class="align-middle">Only<br>One</th>
+                                <th class="align-middle">Service</th>
+                                <th class="align-middle">Caller<br>ID</th>
+                                <th class="align-middle">Encoding</th>
+                                <th class="align-middle">Address</th>
+                                <th class="align-middle">Uptime</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -80,8 +80,14 @@ if (!isset($_SESSION["mikhmon"])) {
 								$encoding = $profiledetalis['encoding'];
 								$address = $profiledetalis['address'];
 								$uptime = $profiledetalis['uptime'];
-								
-								if (empty($aname) || $aname == "true") {
+								$getmonexpired = $API->comm("/system/scheduler/print", array(
+									"?name" => "$pname",
+								));
+								$monexpired = $getmonexpired[0];
+								$monid = $monexpired['.id'];
+								$pmon = $monexpired['name'];
+								$chkpmon = $monexpired['disabled'];
+								if (empty($pmon) || $chkpmon == "true") {
 									$moncolor = "text-orange";
 								} else {
 									$moncolor = "text-green";
@@ -92,7 +98,7 @@ if (!isset($_SESSION["mikhmon"])) {
                                     title='Remove <?= $aname; ?>'></i>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                 <?php
 								echo "</td>";
-								echo "<td><a title='Open User Profile " . $aname . "' href='./?ppp=edit-profile=" . $pid . "&session=" . $session . "'><i class='fa fa-edit'></i> <i class='fa fa-ci fa-circle " . $moncolor . "'></i> $aname</a></td>";
+								echo "<td><i class='fa fa-ci fa-circle " . $moncolor . "'></i> $aname</a></td>";
 								//$profiledetalis = $ARRAY[$i];echo "<td>" . $profiledetalis['name'];echo "</td>";
 								echo "<td>" . $service;
 								echo "</td>";
