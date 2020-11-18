@@ -249,7 +249,7 @@ if (!isset($_SESSION["mikhmon"])) {
             </div>
         </div>
     </div>
-    <div class="col-4">
+    <!-- <div class="col-4">
         <div class="card">
             <div class="card-header">
                 <h3><i class="fa fa-book"></i> <?= $_readme ?></h3>
@@ -269,5 +269,5 @@ if (!isset($_SESSION["mikhmon"])) {
                 </table>
             </div>
         </div>
-    </div>
+    </div> -->
 </div>
