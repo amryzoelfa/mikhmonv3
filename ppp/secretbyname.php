@@ -52,8 +52,8 @@ if (!isset($_SESSION["mikhmon"])) {
     $localaddress = $secretdetail['local-address'];
     $remoteaddress = $secretdetail['remote-address'];
     $routes = $secretdetail['routes'];
-    $limitbytesin = $secretdetail['limit-by-tesin'];
-    $limitbytesout = $secretdetail['limit-by-tesout'];
+    $limitbytesin = $secretdetail['limit-bytes-in'];
+    $limitbytesout = $secretdetail['limit-bytes-out'];
     $lastloggedout = $secretdetail['last-logged-out'];
 
     if (isset($_POST['name'])) {
@@ -83,7 +83,7 @@ if (!isset($_SESSION["mikhmon"])) {
             "routes" => "$routes",
             "limit-bytes-in" => "$limitbytesin",
             "limit-bytes-out" => "$limitbytesout",
-            "last-logged-out" => "$lastloggedout",
+            // "last-logged-out" => "$lastloggedout",
         ));
 
         echo "<script>window.location='./?secret=" . $sid . "&session=" . $session . "'</script>";
@@ -206,13 +206,10 @@ if (!isset($_SESSION["mikhmon"])) {
                             <td class="align-middle">Profile</td>
                             <td>
                                 <select class="form-control" name="profile" required="1">
+                                    <option value="<?php $profile ?>"><?php echo $profile ?></option>
                                     <?php $TotalReg = count($getprofile);
                                     for ($i = 0; $i < $TotalReg; $i++) {
-                                        if ($getprofile[$i]['name'] == $profile) {
-                                            echo "<option selected>" . $getprofile[$i]['name'] . "</option>";
-                                        } else {
-                                            echo "<option>" . $getprofile[$i]['name'] . "</option>";
-                                        }
+                                        echo "<option value='" . $getprofile[$i]['name'] . "' >" . $getprofile[$i]['name'] . "</option>";
                                     }
                                     ?>
                                     <!-- <option value="default">default</option>
@@ -222,11 +219,11 @@ if (!isset($_SESSION["mikhmon"])) {
                         </tr>
                         <tr>
                             <td class="align-middle">Local Address</td>
-                            <td><input class="form-control" type="text" size="4" autocomplete="off" name="localaddress" value="<?= $localaddress; ?>"></td>
+                            <td><input class="form-control" type="text" size="4" required="1" autocomplete="off" name="localaddress" value="<?= $localaddress; ?>"></td>
                         </tr>
                         <tr>
                             <td class="align-middle">Remote Address</td>
-                            <td><input class="form-control" type="text" size="4" autocomplete="off" name="remoteaddress" value="<?= $remoteaddress; ?>"></td>
+                            <td><input class="form-control" type="text" size="4" required="1" autocomplete="off" name="remoteaddress" value="<?= $remoteaddress; ?>"></td>
                         </tr>
                         <tr>
                             <td class="align-middle">Routes</td>
@@ -234,11 +231,11 @@ if (!isset($_SESSION["mikhmon"])) {
                         </tr>
                         <tr>
                             <td class="align-middle">Limit Bytes In</td>
-                            <td><input class="form-control" type="text" size="4" autocomplete="off" name="limitbytesin" value="<?= $limitbytesin; ?>"></td>
+                            <td><input class="form-control" type="text" size="4" required="1" autocomplete="off" name="limitbytesin" value="<?= $limitbytesin; ?>"></td>
                         </tr>
                         <tr>
                             <td class="align-middle">Limit Bytes Out</td>
-                            <td><input class="form-control" type="text" size="4" autocomplete="off" name="limitbytesout" value="<?= $limitbytesout; ?>"></td>
+                            <td><input class="form-control" type="text" size="4" required="1" autocomplete="off" name="limitbytesout" value="<?= $limitbytesout; ?>"></td>
                         </tr>
                         <tr>
                             <td class="align-middle">Last Logged Out</td>

@@ -113,11 +113,11 @@ if (!isset($_SESSION["mikhmon"])) {
                         </tr>
                         <tr>
                             <td class="align-middle">Local Address</td>
-                            <td><input class="form-control" type="text" size="4" autocomplete="off" name="localaddress"></td>
+                            <td><input class="form-control" type="text" size="4" required="1" autocomplete="off" name="localaddress"></td>
                         </tr>
                         <tr>
                             <td class="align-middle">Remote Address</td>
-                            <td><input class="form-control" type="text" size="4" autocomplete="off" name="remoteaddress"></td>
+                            <td><input class="form-control" type="text" size="4" required="1" autocomplete="off" name="remoteaddress"></td>
                         </tr>
                         <tr>
                             <td class="align-middle">Routes</td>
@@ -125,11 +125,11 @@ if (!isset($_SESSION["mikhmon"])) {
                         </tr>
                         <tr>
                             <td class="align-middle">Limit Bytes In</td>
-                            <td><input class="form-control" type="text" size="4" autocomplete="off" name="limitbytesin"></td>
+                            <td><input class="form-control" type="text" size="4" required="1" autocomplete="off" name="limitbytesin"></td>
                         </tr>
                         <tr>
                             <td class="align-middle">Limit Bytes Out</td>
-                            <td><input class="form-control" type="text" size="4" autocomplete="off" name="limitbytesout"></td>
+                            <td><input class="form-control" type="text" size="4" required="1" autocomplete="off" name="limitbytesout"></td>
                         </tr>
                         <!-- <tr>
                             <td class="align-middle">Last Logged Out</td>
