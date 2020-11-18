@@ -27,7 +27,7 @@ if (!isset($_SESSION["mikhmon"])) {
     $ppp = $ppp;
   } elseif (substr($userprofile, 0, 1) != "") {
     $getprofile = $API->comm("/ppp/profile/print", array(
-      "?name" => "$ppp"+"jaslkjfsa",
+      "?name" => "$ppp",
     ));
     $ppp = $getprofile[0]['.id'];
     if ($ppp == "") {
@@ -37,6 +37,8 @@ if (!isset($_SESSION["mikhmon"])) {
     $ppp = substr($ppp, 13);
   }
 
+ $getbridge = $API->comm("/bridge/bridge/print");
+
   $getprofile = $API->comm("/ppp/profile/print", array(
     "?.id" => "$ppp"
   ));
@@ -45,7 +47,7 @@ if (!isset($_SESSION["mikhmon"])) {
     $pname = $profiledetalis['name'];
     $localaddress = $profiledetalis['local-address'];
     $remoteaddress = $profiledetalis['remote-address'];
-    // $bridge = $profiledetalis['bridge'];
+    $bridge = $profiledetalis['bridge'];
     $ratelimit = $profiledetalis['rate-limit'];
     $onlyone = $profiledetalis['only-one'];
     $bridgeportpriority = $profiledetalis['bridge-port-priority'];
@@ -64,7 +66,7 @@ if (!isset($_SESSION["mikhmon"])) {
         $name = (preg_replace('/\s+/', '-', $_POST['name']));
         $localaddress = ($_POST['localaddress']);
         $remoteaddress = ($_POST['remoteaddress']);
-        // $bridge = ($_POST['bridge']);
+        $bridge = ($_POST['bridge']);
         $ratelimit = ($_POST['ratelimit']);
         $onlyone = ($_POST['onlyone']);
         $bridgeportpriority = ($_POST['bridgeportpriority']);
@@ -79,28 +81,51 @@ if (!isset($_SESSION["mikhmon"])) {
         $changetcp = ($_POST['changetcp']);
         $useupnp = ($_POST['useupnp']);
 
-
-        $API->comm("/ppp/profile/set", array(
-            /*"add-mac-cookie" => "yes",*/
-            ".id" => "$pid",
-            "name" => "$name",
-            "local-address" => "$localaddress",
-            "remote-address" => "$remoteaddress",
-            // // "bridge" => "$bridge",
-            "rate-limit" => "$ratelimit",
-            "only-one" => "$onlyone",
-            "bridge-port-priority" => "$bridgeportpriority",
-            "bridge-path-cost" => "$bridgepathcost",
-            "bridge-horizon" => "$bridgehorizon",
-            "incoming-filter" => "$incomingfilter",
-            "outgoing-filter" => "$outgoingfilter",
-            "address-list" => "$addresslist",
-            "interface-list" => "$interfacelist",
-            "dns-server" => "$dnsserver",
-            "wins-server" => "$winsserver",
-            "change-tcp-mss" => "$changetcp",
-            "use-upnp" => "$useupnp",
-        ));
+    if($bridge != '' || $bridge != NULL ){
+      $API->comm("/ppp/profile/set", array(
+        /*"add-mac-cookie" => "yes",*/
+        ".id" => "$pid",
+        "name" => "$name",
+        "local-address" => "$localaddress",
+        "remote-address" => "$remoteaddress",
+        "bridge" => "$bridge",
+        "rate-limit" => "$ratelimit",
+        "only-one" => "$onlyone",
+        "bridge-port-priority" => "$bridgeportpriority",
+        "bridge-path-cost" => "$bridgepathcost",
+        "bridge-horizon" => "$bridgehorizon",
+        "incoming-filter" => "$incomingfilter",
+        "outgoing-filter" => "$outgoingfilter",
+        "address-list" => "$addresslist",
+        "interface-list" => "$interfacelist",
+        "dns-server" => "$dnsserver",
+        "wins-server" => "$winsserver",
+        "change-tcp-mss" => "$changetcp",
+        "use-upnp" => "$useupnp",
+      ));
+    } else {
+      $API->comm("/ppp/profile/set", array(
+        /*"add-mac-cookie" => "yes",*/
+        ".id" => "$pid",
+        "name" => "$name",
+        "local-address" => "$localaddress",
+        "remote-address" => "$remoteaddress",
+        // "bridge" => "$bridge",
+        "rate-limit" => "$ratelimit",
+        "only-one" => "$onlyone",
+        "bridge-port-priority" => "$bridgeportpriority",
+        "bridge-path-cost" => "$bridgepathcost",
+        "bridge-horizon" => "$bridgehorizon",
+        "incoming-filter" => "$incomingfilter",
+        "outgoing-filter" => "$outgoingfilter",
+        "address-list" => "$addresslist",
+        "interface-list" => "$interfacelist",
+        "dns-server" => "$dnsserver",
+        "wins-server" => "$winsserver",
+        "change-tcp-mss" => "$changetcp",
+        "use-upnp" => "$useupnp",
+      ));
+    }
 
         echo "<script>window.location='./?ppp=edit-profile=" . $pid . "&session=" . $session . "'</script>";
     }
@@ -137,11 +162,27 @@ if (!isset($_SESSION["mikhmon"])) {
                             <td><input class="form-control" type="text" size="4" value="<?= $remoteaddress; ?>"
                                     autocomplete="off" name="remoteaddress"></td>
                         </tr>
-                       <!--  <tr>
+                       <?php if(count($getbridge) != 0 ){ ?>
+                        <tr>
                             <td class="align-middle">Bridge</td>
-                            <td><input class="form-control" type="text" size="4" value="<?= $bridge; ?>"
-                                    autocomplete="off" name="bridge"></td>
-                        </tr> -->
+                            <td>
+                                 <select class="form-control " name="bridge">
+                                      <?php 
+                                      if($bridge == null || $bridge == '') {
+                                        echo "<option value=''>==Pilih==</option>";
+                                      } else {
+                                         echo "<option value='".$bridge."'>".$bridge."</option>";
+                                      }
+
+                                      $TotalReg = count($getbridge);
+                                      for ($i = 0; $i < $TotalReg; $i++) {
+                                        echo "<option value='" . $getbridge[$i]['name'] . "'>" . $getbridge[$i]['name'] . "</option>";
+                                      }
+                                      ?>
+                                  </select>
+                            </td>
+                        </tr>
+                        <?php } ?>
                         <tr>
                             <td class="align-middle">Bridge Port Priority</td>
                             <td><input class="form-control" type="text" size="4" value="<?= $bridgeportpriority; ?>"

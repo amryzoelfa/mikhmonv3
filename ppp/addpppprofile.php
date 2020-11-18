@@ -22,11 +22,13 @@ if (!isset($_SESSION["mikhmon"])) {
   header("Location:../admin.php?id=login");
 } else {
 
+  $getbridge = $API->comm("/bridge/bridge/print");
+
   if (isset($_POST['name'])) {
     $name = (preg_replace('/\s+/', '-', $_POST['name']));
     $localaddress = ($_POST['localaddress']);
     $remoteaddress = ($_POST['remoteaddress']);
-    // $bridge = ($_POST['bridge']);
+    $bridge = ($_POST['bridge']);
     $ratelimit = ($_POST['retelimit']);
     $onlyone = ($_POST['onlyone']);
     $bridgeportpriority = ($_POST['bridgeportpriority']);
@@ -41,26 +43,51 @@ if (!isset($_SESSION["mikhmon"])) {
     $changetcp = ($_POST['changetcp']);
     $useupnp = ($_POST['useupnp']);
 
-    $API->comm("/ppp/profile/add", array(
-      /*"add-mac-cookie" => "yes",*/
-      "name" => "$name",
-      "local-address" => "$localaddress",
-      "remote-address" => "$remoteaddress",
-      // "bridge" => "$bridge",
-      "rate-limit" => "$ratelimit",
-      "only-one" => "$onlyone",
-      "bridge-port-priority" => "$bridgeportpriority",
-      "bridge-path-cost" => "$bridgepathcost",
-      "bridge-horizon" => "$bridgehorizon",
-      "incoming-filter" => "$incomingfilter",
-      "outgoing-filter" => "$outgoingfilter",
-      "address-list" => "$addresslist",
-      "interface-list" => "$interfacelist",
-      "dns-server" => "$dnsserver",
-      "wins-server" => "$winsserver",
-      "change-tcp-mss" => "$changetcp",
-      "use-upnp" => "$useupnp",
-    ));
+    if($bridge != '' || $bridge != NULL ){
+      $API->comm("/ppp/profile/add", array(
+        /*"add-mac-cookie" => "yes",*/
+        "name" => "$name",
+        "local-address" => "$localaddress",
+        "remote-address" => "$remoteaddress",
+        "bridge" => "$bridge",
+        "rate-limit" => "$ratelimit",
+        "only-one" => "$onlyone",
+        "bridge-port-priority" => "$bridgeportpriority",
+        "bridge-path-cost" => "$bridgepathcost",
+        "bridge-horizon" => "$bridgehorizon",
+        "incoming-filter" => "$incomingfilter",
+        "outgoing-filter" => "$outgoingfilter",
+        "address-list" => "$addresslist",
+        "interface-list" => "$interfacelist",
+        "dns-server" => "$dnsserver",
+        "wins-server" => "$winsserver",
+        "change-tcp-mss" => "$changetcp",
+        "use-upnp" => "$useupnp",
+      ));
+    } else {
+      $API->comm("/ppp/profile/add", array(
+        /*"add-mac-cookie" => "yes",*/
+        "name" => "$name",
+        "local-address" => "$localaddress",
+        "remote-address" => "$remoteaddress",
+        // "bridge" => "$bridge",
+        "rate-limit" => "$ratelimit",
+        "only-one" => "$onlyone",
+        "bridge-port-priority" => "$bridgeportpriority",
+        "bridge-path-cost" => "$bridgepathcost",
+        "bridge-horizon" => "$bridgehorizon",
+        "incoming-filter" => "$incomingfilter",
+        "outgoing-filter" => "$outgoingfilter",
+        "address-list" => "$addresslist",
+        "interface-list" => "$interfacelist",
+        "dns-server" => "$dnsserver",
+        "wins-server" => "$winsserver",
+        "change-tcp-mss" => "$changetcp",
+        "use-upnp" => "$useupnp",
+      ));
+    }
+
+    
     echo "<script>window.location='./?ppp=profiles&session=" . $session . "'</script>";
   }
 }
@@ -90,10 +117,21 @@ if (!isset($_SESSION["mikhmon"])) {
               <td class="align-middle">Remote Address</td>
               <td><input class="form-control" type="text" size="4" autocomplete="off" name="remoteaddress"></td>
             </tr>
-          <!--   <tr>
+            <?php if(count($getbridge) != 0 ){ ?>
+            <tr>
               <td class="align-middle">Bridge</td>
-              <td><input class="form-control" type="text" size="4" autocomplete="off" name="bridge"></td>
-            </tr> -->
+              <td>
+                 <select class="form-control " name="bridge">
+                    <option value="">==Pilih==</option>
+                      <?php $Totalbridge = count($getbridge);
+                      for ($i = 0; $i < $Totalbridge; $i++) {
+                        echo "<option value='" . $getbridge[$i]['name'] . "'>" . $getbridge[$i]['rx'] . "</option>";
+                      }
+                      ?>
+                  </select>
+              </td>
+            </tr>
+          <?php } ?>
             <tr>
               <td class="align-middle">Bridge Port Priority</td>
               <td><input class="form-control" type="text" size="4" autocomplete="off" name="bridgeportpriority"></td>

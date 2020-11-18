@@ -15,108 +15,81 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
+session_start();
 // hide all error
 error_reporting(0);
 if (!isset($_SESSION["mikhmon"])) {
-	echo '
-<html>
-<head><title>403 Forbidden</title></head>
-<body bgcolor="white">
-<center><h1>403 Forbidden</h1></center>
-<hr><center>nginx/1.14.0</center>
-</body>
-</html>
-';
+	header("Location:../admin.php?id=login");
 } else {
 
+// load session MikroTik
+	$session = $_GET['session'];
+	$serveractive = $_GET['server'];
 
-	// get ppp profile
-	$getactive = $API->comm("/ppp/active-connection/print");
-	$TotalReg = count($getactive);
-	// count ppp profile
-	$countactive = $API->comm("/ppp/active-connection/print", array(
+
+	$getactiveconnections = $API->comm("/ppp/active-connection/print");
+	$TotalReg = count($getactiveconnections);
+
+	$countactiveconnection = $API->comm("/ppp/active-connection/print", array(
 		"count-only" => "",
 	));
 }
 ?>
 <div class="row">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-header align-middle">
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body">
-                <div class="overflow box-bordered" style="max-height: 75vh">
-                    <table id="tFilter" class="table table-bordered table-hover text-nowrap">
-                        <thead>
-                            <tr>
-                                <th style="min-width:50px;" class="text-center">
-                                    <?php
-									if ($countactive < 2) {
-										echo "$countactive item  ";
-									} elseif ($countactive > 1) {
-										echo "$countactive items   ";
-									}
-									?></th>
-                                <th class="align-middle"><?= $_name ?></th>
-                                <th class="align-middle">Service</th>
-                                <th class="align-middle">Caller<br>ID</th>
-                                <th class="align-middle">Encoding</th>
-                                <th class="align-middle">Address</th>
-                                <th class="align-middle">Uptime</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-
-							for ($i = 0; $i < $TotalReg; $i++) {
-
-								$profiledetalis = $getactive[$i];
-								$pid = $profiledetalis['.id'];
-								$aname = $profiledetalis['name'];
-								$service = $profiledetalis['service'];
-								$caller_id = $profiledetalis['caller-id'];
-								$encoding = $profiledetalis['encoding'];
-								$address = $profiledetalis['address'];
-								$uptime = $profiledetalis['uptime'];
-								$getmonexpired = $API->comm("/system/scheduler/print", array(
-									"?name" => "$pname",
-								));
-								$monexpired = $getmonexpired[0];
-								$monid = $monexpired['.id'];
-								$pmon = $monexpired['name'];
-								$chkpmon = $monexpired['disabled'];
-								if (empty($pmon) || $chkpmon == "true") {
-									$moncolor = "text-orange";
-								} else {
-									$moncolor = "text-green";
-								}
-							?>
-                            <td style='text-align:center;'><i class='fa fa-minus-square text-danger pointer'
-                                    onclick="if(confirm('Are you sure to delete profile (<?= $aname; ?>)?')){loadpage('./?remove-pactive=<?= $pid; ?>&aname=<?= $aname ?>&session=<?= $session; ?>')}else{}"
-                                    title='Remove <?= $aname; ?>'></i>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                                <?php
-								echo "</td>";
-								echo "<td><i class='fa fa-ci fa-circle " . $moncolor . "'></i> $aname</a></td>";
-								//$profiledetalis = $ARRAY[$i];echo "<td>" . $profiledetalis['name'];echo "</td>";
-								echo "<td>" . $service;
-								echo "</td>";
-								echo "<td>" . $caller_id;
-								echo "</td>";
-								echo "<td>" . $encoding;
-								echo "</td>";
-								echo "<td>" . $address;
-								echo "</td>";
-								echo "<td>" . $uptime;
-								echo "</td>";
-								echo "</tr>";
-							}
-								?>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+<div id="reloadHotspotActive">
+<div class="col-12">
+	<div class="card">
+		<div class="card-header">
+    		<h3><i class="fa fa-wifi"></i> <?= $_hotspot_active ?> 
+    		<?php
+				if ($countactiveconnection < 2) {
+					echo "$countactiveconnection item";
+				} elseif ($countactiveconnection > 1) {
+					echo "$countactiveconnection items";
+				};
+			?></h3>
         </div>
-    </div>
+         <div class="card-body overflow">
+<table id="tFilter" class="table table-bordered table-hover text-nowrap">
+  <thead>
+  <tr>
+    <th></th>
+    <th class="align-middle"><?= $_name ?></th>
+    <th class="align-middle">Service</th>
+    <th class="align-middle">Caller<br>ID</th>
+    <th class="align-middle">Encoding</th>
+    <th class="align-middle">Address</th>
+    <th class="align-middle">Uptime</th>
+  </tr>
+  </thead>
+  <tbody>
+<?php
+for ($i = 0; $i < $TotalReg; $i++) {
+	$profileactive = $getactiveconnections[$i];
+	$pid = $profileactive['.id'];
+	$aname = $profileactive['name'];
+	$service = $profileactive['service'];
+	$caller_id = $profileactive['caller-id'];
+	$encoding = $profileactive['encoding'];
+	$address = $profileactive['address'];
+	$uptime = $profileactive['uptime'];
+
+	$uriprocess = "'./?removepactive=" . $pid . "&session=" . $session . "'";
+	echo "<tr>";
+	echo "<td style='text-align:center;'><span class='pointer'  title='Remove " . $aname . "' onclick=loadpage(".$uriprocess.")><i class='fa fa-minus-square text-danger'></i></span></td>";
+	echo "<td>" . $aname . "</td>";
+	echo "<td>" . $service . "</td>";
+	echo "<td>" . $caller_id . "</td>";
+	echo "<td>" . $encoding . "</td>";
+	echo "<td>" . $address . "</td>";
+	echo "<td>" . $uptime . "</td>";
+	echo "</tr>";
+}
+?>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
 </div>
