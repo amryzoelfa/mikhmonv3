@@ -87,10 +87,22 @@ if (!isset($_SESSION["mikhmon"])) {
 								$localaddress = $secretdetail['local-address'];
 								$remoteaddress = $secretdetail['remote-address'];
 								$lastloggedout = $secretdetail['last-logged-out'];
+
+								$sdisabled = $secretdetail['disabled'];
 							?>
-								<td style='text-align:center;'><i class='fa fa-minus-square text-danger pointer' onclick="if(confirm('Are you sure to delete profile (<?= $pname; ?>)?')){loadpage('./?remove-ppp-profile=<?= $sid; ?>&pname=<?= $pname ?>&session=<?= $session; ?>')}else{}" title='Remove <?= $pname; ?>'></i>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-								<?php
-								echo "<a title='Open User by secret " . $sname . "'  href='./?ppp=users&profile=" . $sname . "&session=" . $session . "'><i class='fa fa-users'></i></a></td>";
+								<td style='text-align:center;'><i class='fa fa-minus-square text-danger pointer' onclick="if(confirm('Are you sure to delete secret (<?= $sname; ?>)?')){loadpage('./?remove-pppsecret=<?= $sid; ?>&pname=<?= $sname ?>&session=<?= $session; ?>')}else{}" title='Remove <?= $sname; ?>'></i>&nbsp&nbsp&nbsp
+									<?php
+									echo "<a title='Open secret by profil " . $sname . "'  href='./?ppp=profiles&profile=" . $profile . "&session=" . $session . "'><i class='fa fa-users'></i></a>&nbsp&nbsp&nbsp";
+									if ($sdisabled == "true") {
+										$sprocess = "'./?enable-pppsecret=" . $sid . "&session=" . $session . "'";
+										echo '<span class="text-warning pointer" title="Enable User ' . $sname . '"  onclick="loadpage(' . $sprocess . ')"><i class="fa fa-lock "></i></span></td>';
+									} else {
+										$sprocess = "'./?disable-pppsecret=" . $sid . "&session=" . $session . "'";
+										echo '<span class="pointer" title="Disable User ' . $sname . '"  onclick="loadpage(' . $sprocess . ')"><i class="fa fa-unlock "></i></span></td>';
+									}
+									?>
+								</td>
+							<?php
 								echo "<td><a title='Open User secret " . $sname . "' href='./?secret=" . $sid . "&session=" . $session . "'><i class='fa fa-edit'></i> $sname</a></td>";
 								//$profiledetalis = $ARRAY[$i];echo "<td>" . $profiledetalis['name'];echo "</td>";
 								echo "<td>" . $password;
@@ -109,7 +121,7 @@ if (!isset($_SESSION["mikhmon"])) {
 								echo "</td>";
 								echo "</tr>";
 							}
-								?>
+							?>
 						</tbody>
 					</table>
 				</div>

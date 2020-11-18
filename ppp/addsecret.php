@@ -23,6 +23,7 @@ if (!isset($_SESSION["mikhmon"])) {
 } else {
 
     $getprofile = $API->comm("/ppp/profile/print");
+    // $getbridge = $API->comm("/bridge/bridge/print");
 
     if (isset($_POST['name'])) {
         $name = (preg_replace('/\s+/', '-', $_POST['name']));
@@ -35,7 +36,7 @@ if (!isset($_SESSION["mikhmon"])) {
         $routes = ($_POST['routes']);
         $limitbytesin = ($_POST['limitbytesin']);
         $limitbytesout = ($_POST['limitbytesout']);
-        $lastloggedout = ($_POST['lastloggedout']);
+        // $lastloggedout = ($_POST['lastloggedout']);
 
         $API->comm("/ppp/secret/add", array(
             /*"add-mac-cookie" => "yes",*/
@@ -49,8 +50,9 @@ if (!isset($_SESSION["mikhmon"])) {
             "routes" => "$routes",
             "limit-bytes-in" => "$limitbytesin",
             "limit-bytes-out" => "$limitbytesout",
-            "last-logged-out" => "$lastloggedout",
+            // "last-logged-out" => "$lastloggedout",
         ));
+        echo "<script>window.location='./?ppp=secrets&session=" . $session . "'</script>";
     }
 }
 ?>
@@ -97,10 +99,12 @@ if (!isset($_SESSION["mikhmon"])) {
                             <td class="align-middle">Profile</td>
                             <td>
                                 <select class="form-control" name="profile" required="1">
-                                    <?php $TotalReg = count($getprofile);
+                                    <?php
+                                    $TotalReg = count($getprofile);
                                     for ($i = 0; $i < $TotalReg; $i++) {
                                         echo "<option>" . $getprofile[$i]['name'] . "</option>";
                                     }
+
                                     ?>
                                     <!-- <option value="default">default</option>
                                     <option value="default-encryption">default-encryption</option> -->
@@ -127,10 +131,10 @@ if (!isset($_SESSION["mikhmon"])) {
                             <td class="align-middle">Limit Bytes Out</td>
                             <td><input class="form-control" type="text" size="4" autocomplete="off" name="limitbytesout"></td>
                         </tr>
-                        <tr>
+                        <!-- <tr>
                             <td class="align-middle">Last Logged Out</td>
                             <td><input class="form-control" type="text" size="4" autocomplete="off" name="lastloggedout"></td>
-                        </tr>
+                        </tr> -->
                     </table>
                 </form>
             </div>
