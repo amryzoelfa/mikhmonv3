@@ -84,25 +84,13 @@ if (!isset($_SESSION["mikhmon"])) {
 								$bridge = $profiledetalis['bridge'];
 								$rate_limit = $profiledetalis['rate-limit'];
 								$only_one = $profiledetalis['only-one'];
-								$getmonexpired = $API->comm("/system/scheduler/print", array(
-									"?name" => "$pname",
-								));
-								$monexpired = $getmonexpired[0];
-								$monid = $monexpired['.id'];
-								$pmon = $monexpired['name'];
-								$chkpmon = $monexpired['disabled'];
-								if (empty($pmon) || $chkpmon == "true") {
-									$moncolor = "text-orange";
-								} else {
-									$moncolor = "text-green";
-								}
 							?>
                             <td style='text-align:center;'><i class='fa fa-minus-square text-danger pointer'
-                                    onclick="if(confirm('Are you sure to delete profile (<?= $pname; ?>)?')){loadpage('./?remove-ppprofile=<?= $pid; ?>&pname=<?= $pname ?>&session=<?= $session; ?>')}else{}"
+                                    onclick="if(confirm('Are you sure to delete profile (<?= $pname; ?>)?')){loadpage('./?remove-pprofile=<?= $pid; ?>&pname=<?= $pname ?>&session=<?= $session; ?>')}else{}"
                                     title='Remove <?= $pname; ?>'></i>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                 <?php
-								echo "<a title='Open User by profile " . $pname . "'  href='./?ppp=users&profile=" . $pname . "&session=" . $session . "'><i class='fa fa-users'></i></a></td>";
-								echo "<td><a title='Open User Profile " . $pname . "' href='./?ppp=edit-profile=" . $pid . "&session=" . $session . "'><i class='fa fa-edit'></i> <i class='fa fa-ci fa-circle " . $moncolor . "'></i> $pname</a></td>";
+								echo "</td>";
+								echo "<td><a title='Open User Profile " . $pname . "' href='./?ppp=edit-profile=" . $pid . "&session=" . $session . "'><i class='fa fa-edit'></i> $pname</a></td>";
 								//$profiledetalis = $ARRAY[$i];echo "<td>" . $profiledetalis['name'];echo "</td>";
 								echo "<td>" . $local_address;
 								echo "</td>";

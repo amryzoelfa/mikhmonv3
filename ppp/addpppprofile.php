@@ -26,8 +26,8 @@ if (!isset($_SESSION["mikhmon"])) {
     $name = (preg_replace('/\s+/', '-', $_POST['name']));
     $localaddress = ($_POST['localaddress']);
     $remoteaddress = ($_POST['remoteaddress']);
-    $bridge = ($_POST['bridge']);
-    $ratelimit = ($_POST['ratelimit']);
+    // $bridge = ($_POST['bridge']);
+    $ratelimit = ($_POST['retelimit']);
     $onlyone = ($_POST['onlyone']);
     $bridgeportpriority = ($_POST['bridgeportpriority']);
     $bridgepathcost = ($_POST['bridgepathcost']);
@@ -46,7 +46,7 @@ if (!isset($_SESSION["mikhmon"])) {
       "name" => "$name",
       "local-address" => "$localaddress",
       "remote-address" => "$remoteaddress",
-      "bridge" => "$bridge",
+      // "bridge" => "$bridge",
       "rate-limit" => "$ratelimit",
       "only-one" => "$onlyone",
       "bridge-port-priority" => "$bridgeportpriority",
@@ -61,19 +61,20 @@ if (!isset($_SESSION["mikhmon"])) {
       "change-tcp-mss" => "$changetcp",
       "use-upnp" => "$useupnp",
     ));
+    echo "<script>window.location='./?ppp=profiles&session=" . $session . "'</script>";
   }
 }
 ?>
 <div class="row">
-  <div class="col-8">
+  <div class="col-12">
     <div class="card box-bordered">
       <div class="card-header">
-        <h3><i class="fa fa-plus"></i> Add PPP Profiles <small id="loader" style="display: none;"><i><i class='fa fa-circle-o-notch fa-spin'></i> Processing... </i></small></h3>
+        <h3><i class="fa fa-plus"></i>Add PPP Profiles <small id="loader" style="display: none;"><i><i class='fa fa-circle-o-notch fa-spin'></i> Processing... </i></small></h3>
       </div>
       <div class="card-body">
         <form autocomplete="off" method="post" action="">
           <div>
-            <a class="btn bg-warning" href="./?ppp=profile&session=<?= $session; ?>"> <i class="fa fa-close btn-mrg"></i> <?= $_close ?></a>
+            <a class="btn bg-warning" href="./?ppp=profiles&session=<?= $session; ?>"> <i class="fa fa-close btn-mrg"></i> <?= $_close ?></a>
             <button type="submit" name="save" class="btn bg-primary btn-mrg"><i class="fa fa-save btn-mrg"></i> <?= $_save ?></button>
           </div>
           <table class="table">
@@ -83,16 +84,16 @@ if (!isset($_SESSION["mikhmon"])) {
             </tr>
             <tr>
               <td class="align-middle">Local Address</td>
-              <td><input class="form-control" type="text" size="4" autocomplete="off" name="localaddress" required="1"></td>
+              <td><input class="form-control" type="text" size="4" autocomplete="off" name="localaddress"></td>
             </tr>
             <tr>
               <td class="align-middle">Remote Address</td>
-              <td><input class="form-control" type="text" size="4" autocomplete="off" name="remoteaddress" required="1"></td>
+              <td><input class="form-control" type="text" size="4" autocomplete="off" name="remoteaddress"></td>
             </tr>
-            <tr>
+          <!--   <tr>
               <td class="align-middle">Bridge</td>
               <td><input class="form-control" type="text" size="4" autocomplete="off" name="bridge"></td>
-            </tr>
+            </tr> -->
             <tr>
               <td class="align-middle">Bridge Port Priority</td>
               <td><input class="form-control" type="text" size="4" autocomplete="off" name="bridgeportpriority"></td>
@@ -175,7 +176,7 @@ if (!isset($_SESSION["mikhmon"])) {
             </tr>
             <tr>
               <td class="align-middle">Rate Limit</td>
-              <td><input class="form-control" type="text" size="4" autocomplete="off" name="retelimit" placeholder="example: rx/tx" required="1"></td>
+              <td><input class="form-control" type="text" size="4" autocomplete="off" name="retelimit" placeholder="example: rx/tx"></td>
             </tr>
             <tr>
               <td class="align-middle">Only One</td>
@@ -190,27 +191,6 @@ if (!isset($_SESSION["mikhmon"])) {
             </tr>
           </table>
         </form>
-      </div>
-    </div>
-  </div>
-  <div class="col-4">
-    <div class="card">
-      <div class="card-header">
-        <h3><i class="fa fa-book"></i> <?= $_readme ?></h3>
-      </div>
-      <div class="card-body">
-        <table class="table">
-          <tr>
-            <td colspan="2">
-              <p style="padding:0px 5px;">
-                <?= $_details_user_profile ?>
-              </p>
-              <p style="padding:0px 5px;">
-                <?= $_format_validity ?>
-              </p>
-            </td>
-          </tr>
-        </table>
       </div>
     </div>
   </div>

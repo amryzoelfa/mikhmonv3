@@ -19,19 +19,11 @@ session_start();
 // hide all error
 error_reporting(0);
 
-$pid = $removeuserprofile;
+$pid = $removepprofile;
 $pname = $_GET['pname'];
-
-$getmonid = $API->comm("/system/scheduler/print", array(
-    "?name" => "$pname",
-));
-$monid = $getmonid[0]['.id'];
 
 $API->comm("/ppp/profile/remove", array(
     ".id" => "$pid",
 ));
-$API->comm("/system/scheduler/remove", array(
-    ".id" => "$monid",
-));
-echo "<script>window.location='./?ppp=user-profiles&session=" . $session . "'</script>";
+echo "<script>window.location='./?ppp=profiles&session=" . $session . "'</script>";
 ?>

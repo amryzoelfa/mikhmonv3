@@ -45,7 +45,7 @@ if (!isset($_SESSION["mikhmon"])) {
     $pname = $profiledetalis['name'];
     $localaddress = $profiledetalis['local-address'];
     $remoteaddress = $profiledetalis['remote-address'];
-    $bridge = $profiledetalis['bridge'];
+    // $bridge = $profiledetalis['bridge'];
     $ratelimit = $profiledetalis['rate-limit'];
     $onlyone = $profiledetalis['only-one'];
     $bridgeportpriority = $profiledetalis['bridge-port-priority'];
@@ -58,13 +58,13 @@ if (!isset($_SESSION["mikhmon"])) {
     $dnsserver = $profiledetalis['dns-server'];
     $winsserver = $profiledetalis['wins-server'];
     $changetcp = $profiledetalis['change-tcp-mss'];
-    $useupnp = ($_POST['useupnp']);
+    $useupnp = $profiledetalis['use-upnp'];
 
     if (isset($_POST['name'])) {
         $name = (preg_replace('/\s+/', '-', $_POST['name']));
         $localaddress = ($_POST['localaddress']);
         $remoteaddress = ($_POST['remoteaddress']);
-        $bridge = ($_POST['bridge']);
+        // $bridge = ($_POST['bridge']);
         $ratelimit = ($_POST['ratelimit']);
         $onlyone = ($_POST['onlyone']);
         $bridgeportpriority = ($_POST['bridgeportpriority']);
@@ -86,7 +86,7 @@ if (!isset($_SESSION["mikhmon"])) {
             "name" => "$name",
             "local-address" => "$localaddress",
             "remote-address" => "$remoteaddress",
-            "bridge" => "$bridge",
+            // // "bridge" => "$bridge",
             "rate-limit" => "$ratelimit",
             "only-one" => "$onlyone",
             "bridge-port-priority" => "$bridgeportpriority",
@@ -107,7 +107,7 @@ if (!isset($_SESSION["mikhmon"])) {
 }
 ?>
 <div class="row">
-    <div class="col-8">
+    <div class="col-12">
         <div class="card">
             <div class="card-header">
                 <h3><i class="fa fa-edit"></i> 
@@ -130,18 +130,18 @@ if (!isset($_SESSION["mikhmon"])) {
                         <tr>
                             <td class="align-middle">Local Address</td>
                             <td><input class="form-control" type="text" size="4" value="<?= $localaddress; ?>"
-                                    autocomplete="off" name="localaddress" required="1"></td>
+                                    autocomplete="off" name="localaddress"></td>
                         </tr>
                         <tr>
                             <td class="align-middle">Remote Address</td>
                             <td><input class="form-control" type="text" size="4" value="<?= $remoteaddress; ?>"
-                                    autocomplete="off" name="remoteaddress" required="1"></td>
+                                    autocomplete="off" name="remoteaddress"></td>
                         </tr>
-                        <tr>
+                       <!--  <tr>
                             <td class="align-middle">Bridge</td>
                             <td><input class="form-control" type="text" size="4" value="<?= $bridge; ?>"
                                     autocomplete="off" name="bridge"></td>
-                        </tr>
+                        </tr> -->
                         <tr>
                             <td class="align-middle">Bridge Port Priority</td>
                             <td><input class="form-control" type="text" size="4" value="<?= $bridgeportpriority; ?>"
@@ -232,8 +232,41 @@ if (!isset($_SESSION["mikhmon"])) {
                         </tr>
                         <tr>
                             <td class="align-middle">Interface List</td>
-                            <td><input class="form-control" type="text" size="4" value="<?= $interfacelist; ?>"
-                                    autocomplete="off" name="interfacelist"></td>
+                            <td>
+                                <select class="form-control" id="interfacelist" name="interfacelist">
+                                    <?php if($interfacelist == 'all') {?>
+                                    <option value="">== Pilih ==</option>
+                                    <option value="all" selected>all</option>
+                                    <option value="dynamic">dynamic</option>
+                                    <option value="none">none</option>
+                                    <option value="static">static</option>
+                                <?php } elseif ($interfacelist == 'dynamic') { ?>
+                                    <option value="">== Pilih ==</option>
+                                    <option value="all">all</option>
+                                    <option value="dynamic" selected>dynamic</option>
+                                    <option value="none">none</option>
+                                    <option value="static">static</option>
+                                <?php } elseif ($interfacelist == 'none') { ?>
+                                    <option value="">== Pilih ==</option>
+                                    <option value="all">all</option>
+                                    <option value="dynamic">dynamic</option>
+                                    <option value="none" selected>none</option>
+                                    <option value="static">static</option>
+                                <?php } elseif ($interfacelist == 'static') { ?>
+                                    <option value="">== Pilih ==</option>
+                                    <option value="all">all</option>
+                                    <option value="dynamic">dynamic</option>
+                                    <option value="none">none</option>
+                                    <option value="static" selected>static</option>
+                                <?php } else {?>
+                                    <option value="" selected>== Pilih ==</option>
+                                    <option value="all">all</option>
+                                    <option value="dynamic">dynamic</option>
+                                    <option value="none">none</option>
+                                    <option value="static">static</option>
+                                <?php } ?>
+                                </select>
+                            </td>
                         </tr>
                         <tr>
                             <td class="align-middle">DNS Server</td>
@@ -316,7 +349,7 @@ if (!isset($_SESSION["mikhmon"])) {
                         <tr>
                             <td class="align-middle">Rate Limit</td>
                             <td><input class="form-control" type="text" value="<?= $ratelimit; ?>" size="4"
-                                    autocomplete="off" name="retelimit" placeholder="example: rx/tx" required="1"></td>
+                                    autocomplete="off" name="ratelimit" placeholder="example: rx/tx"></td>
                         </tr>
                         <tr>
                             <td class="align-middle">Only One</td>
@@ -354,27 +387,6 @@ if (!isset($_SESSION["mikhmon"])) {
                         </tr>
                     </table>
                 </form>
-            </div>
-        </div>
-    </div>
-    <div class="col-4">
-        <div class="card">
-            <div class="card-header">
-                <h3><i class="fa fa-book"></i> <?= $_readme ?></h3>
-            </div>
-            <div class="card-body">
-                <table class="table">
-                    <tr>
-                        <td colspan="2">
-                            <p style="padding:0px 5px;">
-                                <?= $_details_user_profile ?>
-                            </p>
-                            <p style="padding:0px 5px;">
-                                <?= $_format_validity ?>
-                            </p>
-                        </td>
-                    </tr>
-                </table>
             </div>
         </div>
     </div>
