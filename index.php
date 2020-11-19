@@ -111,6 +111,7 @@ if (!isset($_SESSION["mikhmon"])) {
   $srv = $_GET['srv'];
   $prof = $_GET['profile'];
   $comm = $_GET['comment'];
+  $name = $_GET['name'];
   $serveractive = $_GET['server'];
   $report = $_GET['report'];
   $removereport = $_GET['remove-report'];
@@ -493,6 +494,14 @@ if (!isset($_SESSION["mikhmon"])) {
     echo "<b class='cl-w'><i class='fa fa-circle-o-notch fa-spin' style='font-size:24px'></i> Processing...</b>";
 
     include_once('./process/removepprofile.php');
+  }
+  // hotspot users filter by profile
+  elseif ($ppp == "profiles" && $name != "") {
+    $_SESSION['ubp'] = $prof;
+    $_SESSION['hua'] = "";
+    $_SESSION['ubc'] = "";
+    $_SESSION['vcr'] = "";
+    include_once('./hotspot/users.php');
   }
 
   // sys scheduler

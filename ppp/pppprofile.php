@@ -31,13 +31,39 @@ if (!isset($_SESSION["mikhmon"])) {
 } else {
 
 
-	// get ppp profile
-	$getprofile = $API->comm("/ppp/profile/print");
-	$TotalReg = count($getprofile);
-	// count ppp profile
-	$countprofile = $API->comm("/ppp/profile/print", array(
-		"count-only" => "",
-	));
+	
+
+	if ($name == "all") {
+	    $getprofile = $API->comm("/ppp/profile/print");
+	    $TotalReg = count($getprofile);
+
+	    $counttuser = $API->comm("/ppp/profile/print", array(
+	      "count-only" => ""
+	    ));
+
+	  } elseif ($name == '') {
+	  	// get ppp profile
+		$getprofile = $API->comm("/ppp/profile/print");
+		$TotalReg = count($getprofile);
+		// count ppp profile
+		$countprofile = $API->comm("/ppp/profile/print", array(
+			"count-only" => "",
+		));
+	  } elseif ($name != "all") {
+	    $getprofile = $API->comm("/ppp/profile/print", array(
+	      "?name" => "$name",
+	    ));
+	    $TotalReg = count($getprofile);
+
+	    $counttuser = $API->comm("/ppp/profile/print", array(
+	      "count-only" => "",
+	      "?name" => "$name",
+	    ));
+
+	  } 
+	// get name
+	$getname = $API->comm("/ppp/profile/print");
+	$Totalname = count($getname);
 }
 ?>
 <div class="row">
@@ -51,8 +77,27 @@ if (!isset($_SESSION["mikhmon"])) {
             </div>
             <!-- /.card-header -->
             <div class="card-body">
+            	<!-- /.card-header -->
+            <div class="card-body">
+            	<div class="input-group">
+				    <div class="input-group-3 col-box-3">
+				      <input id="filterTable" type="text" style="padding:5.8px;" class="group-item group-item-l" placeholder="<?= $_search ?>">
+				    </div>
+				    <div class="input-group-3 col-box-3">
+				      <select style="padding:5px;" class="group-item group-item-m" onchange="location = this.value; loader()" title="Filter by Profile">
+				        <option><?= $_name ?> </option>
+				        <option value="./?ppp=profiles&name=all&session=<?= $session; ?>"><?= $_show_all ?></option>
+				      <?php
+				      for ($i = 0; $i < $Totalname; $i++) {
+				        $profile = $getname[$i];
+				        echo "<option value='./?ppp=profiles&name=" . $profile['name'] . "&session=" . $session . "'>" . $profile['name'] . "</option>";
+				      }
+				      ?>
+				    </select>
+				  </div>
+				</div>
                 <div class="overflow box-bordered" style="max-height: 75vh">
-                    <table id="tFilter" class="table table-bordered table-hover text-nowrap">
+                    <table id="dataTable"  class="table table-bordered table-hover text-nowrap">
                         <thead>
                             <tr>
                                 <th style="min-width:50px;" class="text-center">
