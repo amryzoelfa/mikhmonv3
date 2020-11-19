@@ -50,46 +50,51 @@ if (!isset($_SESSION["mikhmon"])) {
 			?></h3>
         </div>
          <div class="card-body overflow">
-<table id="tFilter" class="table table-bordered table-hover text-nowrap">
-  <thead>
-  <tr>
-    <th></th>
-    <th class="align-middle"><?= $_name ?></th>
-    <th class="align-middle">Service</th>
-    <th class="align-middle">Caller<br>ID</th>
-    <th class="align-middle">Encoding</th>
-    <th class="align-middle">Address</th>
-    <th class="align-middle">Uptime</th>
-  </tr>
-  </thead>
-  <tbody>
-<?php
-for ($i = 0; $i < $TotalReg; $i++) {
-	$profileactive = $getactiveconnections[$i];
-	$pid = $profileactive['.id'];
-	$aname = $profileactive['name'];
-	$service = $profileactive['service'];
-	$caller_id = $profileactive['caller-id'];
-	$encoding = $profileactive['encoding'];
-	$address = $profileactive['address'];
-	$uptime = $profileactive['uptime'];
+         	<div class="input-group">
+				    <div class="input-group-3 col-box-3">
+				      <input id="filterTable" type="text" style="padding:5.8px;" class="group-item group-item-l" placeholder="<?= $_search ?>">
+				    </div>
+				</div>
+			<table id="dataTable" class="table table-bordered table-hover text-nowrap">
+			  <thead>
+			  <tr>
+			    <th></th>
+			    <th class="align-middle"><?= $_name ?></th>
+			    <th class="align-middle">Service</th>
+			    <th class="align-middle">Caller<br>ID</th>
+			    <th class="align-middle">Encoding</th>
+			    <th class="align-middle">Address</th>
+			    <th class="align-middle">Uptime</th>
+			  </tr>
+			  </thead>
+			  <tbody>
+			<?php
+			for ($i = 0; $i < $TotalReg; $i++) {
+				$profileactive = $getactiveconnections[$i];
+				$pid = $profileactive['.id'];
+				$aname = $profileactive['name'];
+				$service = $profileactive['service'];
+				$caller_id = $profileactive['caller-id'];
+				$encoding = $profileactive['encoding'];
+				$address = $profileactive['address'];
+				$uptime = $profileactive['uptime'];
 
-	$uriprocess = "'./?removepactive=" . $pid . "&session=" . $session . "'";
-	echo "<tr>";
-	echo "<td style='text-align:center;'><span class='pointer'  title='Remove " . $aname . "' onclick=loadpage(".$uriprocess.")><i class='fa fa-minus-square text-danger'></i></span></td>";
-	echo "<td>" . $aname . "</td>";
-	echo "<td>" . $service . "</td>";
-	echo "<td>" . $caller_id . "</td>";
-	echo "<td>" . $encoding . "</td>";
-	echo "<td>" . $address . "</td>";
-	echo "<td>" . $uptime . "</td>";
-	echo "</tr>";
-}
-?>
-  </tbody>
-</table>
-</div>
-</div>
-</div>
-</div>
+				$uriprocess = "'./?removepactive=" . $pid . "&session=" . $session . "'";
+				echo "<tr>";
+				echo "<td style='text-align:center;'><span class='pointer'  title='Remove " . $aname . "' onclick=loadpage(".$uriprocess.")><i class='fa fa-minus-square text-danger'></i></span></td>";
+				echo "<td>" . $aname . "</td>";
+				echo "<td>" . $service . "</td>";
+				echo "<td>" . $caller_id . "</td>";
+				echo "<td>" . $encoding . "</td>";
+				echo "<td>" . $address . "</td>";
+				echo "<td>" . $uptime . "</td>";
+				echo "</tr>";
+			}
+			?>
+			  </tbody>
+			</table>
+			</div>
+			</div>
+		</div>
+	</div>
 </div>

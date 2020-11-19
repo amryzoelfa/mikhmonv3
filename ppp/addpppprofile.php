@@ -111,11 +111,11 @@ if (!isset($_SESSION["mikhmon"])) {
             </tr>
             <tr>
               <td class="align-middle">Local Address</td>
-              <td><input class="form-control" type="text" size="4" autocomplete="off" name="localaddress"></td>
+              <td><input class="form-control" type="text" size="4" autocomplete="off" required="1" name="localaddress"></td>
             </tr>
             <tr>
               <td class="align-middle">Remote Address</td>
-              <td><input class="form-control" type="text" size="4" autocomplete="off" name="remoteaddress"></td>
+              <td><input class="form-control" type="text" size="4" autocomplete="off" required="1" name="remoteaddress"></td>
             </tr>
             <?php if(count($getbridge) != 0 ){ ?>
             <tr>
@@ -134,15 +134,15 @@ if (!isset($_SESSION["mikhmon"])) {
           <?php } ?>
             <tr>
               <td class="align-middle">Bridge Port Priority</td>
-              <td><input class="form-control" type="text" size="4" autocomplete="off" name="bridgeportpriority"></td>
+              <td><input class="form-control" type="text" size="4" autocomplete="off" required="1" name="bridgeportpriority"></td>
             </tr>
             <tr>
               <td class="align-middle">Bridge Port Cost</td>
-              <td><input class="form-control" type="text" size="4" autocomplete="off" name="bridgepathcost"></td>
+              <td><input class="form-control" type="text" size="4" autocomplete="off" required="1" name="bridgepathcost"></td>
             </tr>
             <tr>
               <td class="align-middle">Bridge Horizon</td>
-              <td><input class="form-control" type="text" size="4" autocomplete="off" name="bridgehorizon"></td>
+              <td><input class="form-control" type="text" size="4" autocomplete="off" required="1" name="bridgehorizon"></td>
             </tr>
             <tr>
               <td class="align-middle">Incoming Filter</td>
@@ -173,7 +173,7 @@ if (!isset($_SESSION["mikhmon"])) {
             <tr>
               <td class="align-middle">Interface List</td>
                <td>
-                 <select class="form-control" id="interfacelist" name="interfacelist">
+                 <select class="form-control" id="interfacelist" required="1" name="interfacelist">
                     <option value="">== Pilih ==</option>
                     <option value="all">all</option>
                     <option value="dynamic">dynamic</option>
@@ -193,7 +193,7 @@ if (!isset($_SESSION["mikhmon"])) {
             <tr>
               <td class="align-middle">Change TCP MSS</td>
               <td>
-                 <select class="form-control" id="changetcp" name="changetcp">
+                 <select class="form-control" id="changetcp" required="1" name="changetcp">
                     <option value="">== Pilih ==</option>
                     <option value="default">default</option>
                     <option value="no">no</option>
@@ -204,7 +204,7 @@ if (!isset($_SESSION["mikhmon"])) {
              <tr>
               <td class="align-middle">Use UPnP</td>
               <td>
-                 <select class="form-control" id="useupnp" name="useupnp">
+                 <select class="form-control" id="useupnp" required="1" name="useupnp">
                     <option value="">== Pilih ==</option>
                     <option value="default">default</option>
                     <option value="no">no</option>
@@ -214,12 +214,12 @@ if (!isset($_SESSION["mikhmon"])) {
             </tr>
             <tr>
               <td class="align-middle">Rate Limit</td>
-              <td><input class="form-control" type="text" size="4" autocomplete="off" name="retelimit" placeholder="example: rx/tx"></td>
+              <td><input class="form-control" type="text" size="4" autocomplete="off" required="1" name="retelimit" placeholder="example: rx/tx"></td>
             </tr>
             <tr>
               <td class="align-middle">Only One</td>
               <td>
-                <select class="form-control" id="onlyone" name="onlyone">
+                <select class="form-control" id="onlyone" required="1" name="onlyone">
                     <option value="">== Pilih ==</option>
                     <option value="default">default</option>
                     <option value="no">no</option>

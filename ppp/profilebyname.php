@@ -154,12 +154,12 @@ if (!isset($_SESSION["mikhmon"])) {
                         </tr>
                         <tr>
                             <td class="align-middle">Local Address</td>
-                            <td><input class="form-control" type="text" size="4" value="<?= $localaddress; ?>"
+                            <td><input class="form-control" type="text" required="1" size="4" value="<?= $localaddress; ?>"
                                     autocomplete="off" name="localaddress"></td>
                         </tr>
                         <tr>
                             <td class="align-middle">Remote Address</td>
-                            <td><input class="form-control" type="text" size="4" value="<?= $remoteaddress; ?>"
+                            <td><input class="form-control" type="text" required="1" size="4" value="<?= $remoteaddress; ?>"
                                     autocomplete="off" name="remoteaddress"></td>
                         </tr>
                        <?php if(count($getbridge) != 0 ){ ?>
@@ -185,17 +185,17 @@ if (!isset($_SESSION["mikhmon"])) {
                         <?php } ?>
                         <tr>
                             <td class="align-middle">Bridge Port Priority</td>
-                            <td><input class="form-control" type="text" size="4" value="<?= $bridgeportpriority; ?>"
+                            <td><input class="form-control" type="text" required="1" size="4" value="<?= $bridgeportpriority; ?>"
                                     autocomplete="off" name="bridgeportpriority"></td>
                         </tr>
                         <tr>
                             <td class="align-middle">Bridge Port Cost</td>
-                            <td><input class="form-control" type="text" size="4" value="<?= $bridgepathcost; ?>"
+                            <td><input class="form-control" type="text" required="1" size="4" value="<?= $bridgepathcost; ?>"
                                     autocomplete="off" name="bridgepathcost"></td>
                         </tr>
                         <tr>
                             <td class="align-middle">Bridge Horizon</td>
-                            <td><input class="form-control" type="text" size="4" value="<?= $bridgehorizon; ?>"
+                            <td><input class="form-control" type="text" required="1" size="4" value="<?= $bridgehorizon; ?>"
                                     autocomplete="off" name="bridgehorizon"></td>
                         </tr>
                         <tr>
@@ -274,7 +274,7 @@ if (!isset($_SESSION["mikhmon"])) {
                         <tr>
                             <td class="align-middle">Interface List</td>
                             <td>
-                                <select class="form-control" id="interfacelist" name="interfacelist">
+                                <select class="form-control" id="interfacelist" name="interfacelist" required="1">
                                     <?php if($interfacelist == 'all') {?>
                                     <option value="">== Pilih ==</option>
                                     <option value="all" selected>all</option>
@@ -323,28 +323,28 @@ if (!isset($_SESSION["mikhmon"])) {
                             <td class="align-middle">Change TCP MSS</td>
                             <td>
                                 <?php if ($changetcp == 'no') { ?>
-                                 <select class="form-control" id="changetcp" name="changetcp">
+                                 <select class="form-control" id="changetcp" name="changetcp" required="1">
                                     <option value="">== Pilih ==</option>
                                     <option value="default">default</option>
                                     <option value="no" selected>no</option>
                                     <option value="yes">yes</option>
                                   </select>
                                 <?php  } elseif ($changetcp == 'yes') { ?>
-                                  <select class="form-control" id="changetcp" name="changetcp">
+                                  <select class="form-control" id="changetcp" name="changetcp" required="1">
                                     <option value="">== Pilih ==</option>
                                     <option value="default">default</option>
                                     <option value="no">no</option>
                                     <option value="yes" selected>yes</option>
                                   </select>
                                 <?php } elseif ($changetcp == 'default') { ?>
-                                 <select class="form-control" id="changetcp" name="changetcp">
+                                 <select class="form-control" id="changetcp" name="changetcp" required="1">
                                     <option value="">== Pilih ==</option>
                                     <option value="default" selected >default</option>
                                     <option value="no">no</option>
                                     <option value="yes">yes</option>
                                   </select>
                                  <?php } else { ?>
-                                 <select class="form-control" id="changetcp" name="changetcp">
+                                 <select class="form-control" id="changetcp" name="changetcp" required="1">
                                     <option value="" selected>== Pilih ==</option>
                                     <option value="default">default</option>
                                     <option value="no">no</option>
@@ -357,28 +357,28 @@ if (!isset($_SESSION["mikhmon"])) {
                               <td class="align-middle">Use UPnP</td>
                               <td>
                                 <?php if ($useupnp == 'no') { ?>
-                                 <select class="form-control" id="useupnp" name="useupnp">
+                                 <select class="form-control" id="useupnp" name="useupnp" required="1">
                                     <option value="">== Pilih ==</option>
                                     <option value="default">default</option>
                                     <option value="no" selected>no</option>
                                     <option value="yes">yes</option>
                                   </select>
                                 <?php  } elseif ($useupnp == 'yes') { ?>
-                                  <select class="form-control" id="useupnp" name="useupnp">
+                                  <select class="form-control" id="useupnp" name="useupnp" required="1">
                                     <option value="">== Pilih ==</option>
                                     <option value="default">default</option>
                                     <option value="no">no</option>
                                     <option value="yes" selected>yes</option>
                                   </select>
                                 <?php } elseif ($useupnp == 'default') { ?>
-                                 <select class="form-control" id="useupnp" name="useupnp">
+                                 <select class="form-control" id="useupnp" name="useupnp" required="1">
                                     <option value="">== Pilih ==</option>
                                     <option value="default" selected >default</option>
                                     <option value="no">no</option>
                                     <option value="yes">yes</option>
                                   </select>
                                  <?php } else { ?>
-                                 <select class="form-control" id="useupnp" name="useupnp">
+                                 <select class="form-control" id="useupnp" name="useupnp" required="1">
                                     <option value="" selected>== Pilih ==</option>
                                     <option value="default">default</option>
                                     <option value="no">no</option>
@@ -389,35 +389,35 @@ if (!isset($_SESSION["mikhmon"])) {
                             </tr>
                         <tr>
                             <td class="align-middle">Rate Limit</td>
-                            <td><input class="form-control" type="text" value="<?= $ratelimit; ?>" size="4"
+                            <td><input class="form-control" type="text" required="1" value="<?= $ratelimit; ?>" size="4"
                                     autocomplete="off" name="ratelimit" placeholder="example: rx/tx"></td>
                         </tr>
                         <tr>
                             <td class="align-middle">Only One</td>
                             <td>
                                 <?php if ($onlyone == 'no') { ?>
-                                 <select class="form-control" id="onlyone" name="onlyone">
+                                 <select class="form-control" id="onlyone" name="onlyone" required="1">
                                     <option value="">== Pilih ==</option>
                                     <option value="default">default</option>
                                     <option value="no" selected>no</option>
                                     <option value="yes">yes</option>
                                   </select>
                                 <?php  } elseif ($onlyone == 'yes') { ?>
-                                   <select class="form-control" id="onlyone" name="onlyone">
+                                   <select class="form-control" id="onlyone" name="onlyone" required="1">
                                     <option value="">== Pilih ==</option>
                                     <option value="default">default</option>
                                     <option value="no">no</option>
                                     <option value="yes" selected>yes</option>
                                    </select>
                                 <?php } elseif ($onlyone == 'default') { ?>
-                                   <select class="form-control" id="onlyone" name="onlyone">
+                                   <select class="form-control" id="onlyone" name="onlyone" required="1">
                                     <option value="">== Pilih ==</option>
                                     <option value="default" selected>default</option>
                                     <option value="no">no</option>
                                     <option value="yes">yes</option>
                                    </select>
                                  <?php } else { ?>
-                                 <select class="form-control" id="changetcp" name="changetcp">
+                                 <select class="form-control" id="changetcp" name="onlyone" required="1">
                                     <option value="" selected>== Pilih ==</option>
                                     <option value="default">default</option>
                                     <option value="no">no</option>
