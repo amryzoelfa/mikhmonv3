@@ -69,7 +69,6 @@ if (!isset($_SESSION["mikhmon"])) {
         $limitbytesout = ($_POST['limitbytesout']);
         $lastloggedout = ($_POST['lastloggedout']);
 
-
         $API->comm("/ppp/secret/set", array(
             /*"add-mac-cookie" => "yes",*/
             ".id" => "$sid",
@@ -85,8 +84,7 @@ if (!isset($_SESSION["mikhmon"])) {
             "limit-bytes-out" => "$limitbytesout",
             // "last-logged-out" => "$lastloggedout",
         ));
-
-        echo "<script>window.location='./?secret=" . $sid . "&session=" . $session . "'</script>";
+        echo "<script>window.location='./?ppp=secrets&session=" . $session . "'</script>";
     }
 }
 ?>
@@ -206,14 +204,12 @@ if (!isset($_SESSION["mikhmon"])) {
                             <td class="align-middle">Profile</td>
                             <td>
                                 <select class="form-control" name="profile" required="1">
-                                    <option value="<?php $profile ?>"><?php echo $profile ?></option>
+                                    <option value="<?php echo $profile; ?>"><?php echo $profile; ?></option>
                                     <?php $TotalReg = count($getprofile);
                                     for ($i = 0; $i < $TotalReg; $i++) {
                                         echo "<option value='" . $getprofile[$i]['name'] . "' >" . $getprofile[$i]['name'] . "</option>";
                                     }
                                     ?>
-                                    <!-- <option value="default">default</option>
-                                    <option value="default-encryption">default-encryption</option> -->
                                 </select>
                             </td>
                         </tr>

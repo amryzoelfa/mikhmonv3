@@ -22,7 +22,7 @@ if (!isset($_SESSION["mikhmon"])) {
   header("Location:../admin.php?id=login");
 } else {
 
-  $getbridge = $API->comm("/bridge/bridge/print");
+  $getbridge = $API->comm("/interface/bridge/print");
 
   if (isset($_POST['name'])) {
     $name = (preg_replace('/\s+/', '-', $_POST['name']));
@@ -43,7 +43,7 @@ if (!isset($_SESSION["mikhmon"])) {
     $changetcp = ($_POST['changetcp']);
     $useupnp = ($_POST['useupnp']);
 
-    if($bridge != '' || $bridge != NULL ){
+    if ($bridge != '' || $bridge != NULL) {
       $API->comm("/ppp/profile/add", array(
         /*"add-mac-cookie" => "yes",*/
         "name" => "$name",
@@ -87,7 +87,7 @@ if (!isset($_SESSION["mikhmon"])) {
       ));
     }
 
-    
+
     echo "<script>window.location='./?ppp=profiles&session=" . $session . "'</script>";
   }
 }
@@ -117,21 +117,21 @@ if (!isset($_SESSION["mikhmon"])) {
               <td class="align-middle">Remote Address</td>
               <td><input class="form-control" type="text" size="4" autocomplete="off" required="1" name="remoteaddress"></td>
             </tr>
-            <?php if(count($getbridge) != 0 ){ ?>
-            <tr>
-              <td class="align-middle">Bridge</td>
-              <td>
-                 <select class="form-control " name="bridge">
+            <?php if (count($getbridge) != 0) { ?>
+              <tr>
+                <td class="align-middle">Bridge</td>
+                <td>
+                  <select class="form-control " name="bridge">
                     <option value="">==Pilih==</option>
-                      <?php $Totalbridge = count($getbridge);
-                      for ($i = 0; $i < $Totalbridge; $i++) {
-                        echo "<option value='" . $getbridge[$i]['name'] . "'>" . $getbridge[$i]['rx'] . "</option>";
-                      }
-                      ?>
+                    <?php $Totalbridge = count($getbridge);
+                    for ($i = 0; $i < $Totalbridge; $i++) {
+                      echo "<option value='" . $getbridge[$i]['name'] . "'>" . $getbridge[$i]['name'] . "</option>";
+                    }
+                    ?>
                   </select>
-              </td>
-            </tr>
-          <?php } ?>
+                </td>
+              </tr>
+            <?php } ?>
             <tr>
               <td class="align-middle">Bridge Port Priority</td>
               <td><input class="form-control" type="text" size="4" autocomplete="off" required="1" name="bridgeportpriority"></td>
@@ -147,23 +147,23 @@ if (!isset($_SESSION["mikhmon"])) {
             <tr>
               <td class="align-middle">Incoming Filter</td>
               <td>
-                 <select class="form-control" id="incomingfilter" name="incomingfilter">
-                    <option value="">== Pilih ==</option>
-                    <option value="input">input</option>
-                    <option value="forward">forward</option>
-                    <option value="output">output</option>
-                  </select>
+                <select class="form-control" id="incomingfilter" name="incomingfilter">
+                  <option value="">== Pilih ==</option>
+                  <option value="input">input</option>
+                  <option value="forward">forward</option>
+                  <option value="output">output</option>
+                </select>
               </td>
             </tr>
             <tr>
               <td class="align-middle">Outgoing Filter</td>
               <td>
-                 <select class="form-control" id="outgoingfilter" name="outgoingfilter">
-                    <option value="">== Pilih ==</option>
-                    <option value="input">input</option>
-                    <option value="forward">forward</option>
-                    <option value="output">output</option>
-                  </select>
+                <select class="form-control" id="outgoingfilter" name="outgoingfilter">
+                  <option value="">== Pilih ==</option>
+                  <option value="input">input</option>
+                  <option value="forward">forward</option>
+                  <option value="output">output</option>
+                </select>
               </td>
             </tr>
             <tr>
@@ -172,14 +172,14 @@ if (!isset($_SESSION["mikhmon"])) {
             </tr>
             <tr>
               <td class="align-middle">Interface List</td>
-               <td>
-                 <select class="form-control" id="interfacelist" required="1" name="interfacelist">
-                    <option value="">== Pilih ==</option>
-                    <option value="all">all</option>
-                    <option value="dynamic">dynamic</option>
-                    <option value="none">none</option>
-                    <option value="static">static</option>
-                  </select>
+              <td>
+                <select class="form-control" id="interfacelist" required="1" name="interfacelist">
+                  <option value="">== Pilih ==</option>
+                  <option value="all">all</option>
+                  <option value="dynamic">dynamic</option>
+                  <option value="none">none</option>
+                  <option value="static">static</option>
+                </select>
               </td>
             </tr>
             <tr>
@@ -193,23 +193,23 @@ if (!isset($_SESSION["mikhmon"])) {
             <tr>
               <td class="align-middle">Change TCP MSS</td>
               <td>
-                 <select class="form-control" id="changetcp" required="1" name="changetcp">
-                    <option value="">== Pilih ==</option>
-                    <option value="default">default</option>
-                    <option value="no">no</option>
-                    <option value="yes">yes</option>
-                  </select>
+                <select class="form-control" id="changetcp" required="1" name="changetcp">
+                  <option value="">== Pilih ==</option>
+                  <option value="default">default</option>
+                  <option value="no">no</option>
+                  <option value="yes">yes</option>
+                </select>
               </td>
             </tr>
-             <tr>
+            <tr>
               <td class="align-middle">Use UPnP</td>
               <td>
-                 <select class="form-control" id="useupnp" required="1" name="useupnp">
-                    <option value="">== Pilih ==</option>
-                    <option value="default">default</option>
-                    <option value="no">no</option>
-                    <option value="yes">yes</option>
-                  </select>
+                <select class="form-control" id="useupnp" required="1" name="useupnp">
+                  <option value="">== Pilih ==</option>
+                  <option value="default">default</option>
+                  <option value="no">no</option>
+                  <option value="yes">yes</option>
+                </select>
               </td>
             </tr>
             <tr>
@@ -220,11 +220,11 @@ if (!isset($_SESSION["mikhmon"])) {
               <td class="align-middle">Only One</td>
               <td>
                 <select class="form-control" id="onlyone" required="1" name="onlyone">
-                    <option value="">== Pilih ==</option>
-                    <option value="default">default</option>
-                    <option value="no">no</option>
-                    <option value="yes">yes</option>
-                  </select>
+                  <option value="">== Pilih ==</option>
+                  <option value="default">default</option>
+                  <option value="no">no</option>
+                  <option value="yes">yes</option>
+                </select>
               </td>
             </tr>
           </table>

@@ -30,14 +30,54 @@ if (!isset($_SESSION["mikhmon"])) {
 ';
 } else {
 
+	if ($prof == "all") {
+		$getsecret = $API->comm("/ppp/secret/print");
+		$TotalReg = count($getsecret);
 
-	// get user secret
-	$getsecret = $API->comm("/ppp/secret/print");
-	$TotalReg = count($getsecret);
-	// count user secret
-	$countsecret = $API->comm("/ppp/secret/print", array(
-		"count-only" => "",
-	));
+		$countsecret = $API->comm("/ppp/secret/print", array(
+			"count-only" => ""
+		));
+	} elseif ($prof == "") {
+		$getsecret = $API->comm("/ppp/secret/print");
+		$TotalReg = count($getsecret);
+
+		$countsecret = $API->comm("/ppp/secret/print", array(
+			"count-only" => ""
+		));
+	} elseif ($prof != "all") {
+		$getsecret = $API->comm("/ppp/secret/print", array(
+			"?profile" => "$prof",
+		));
+		$TotalReg = count($getsecret);
+
+		$countsecret = $API->comm("/ppp/secret/print", array(
+			"count-only" => "",
+			"?profile" => "$prof",
+		));
+	}
+	if ($comm != "") {
+		$getsecret = $API->comm("/ppp/secret/print", array(
+			"?comment" => "$comm",
+			//"?uptime" => "00:00:00"
+		));
+		$TotalReg = count($getsecret);
+
+		$countsecret = $API->comm("/ppp/secret/print", array(
+			"count-only" => "",
+			"?comment" => "$comm",
+		));
+	}
+	$getprofile = $API->comm("/ppp/profile/print");
+	$TotalReg2 = count($getprofile);
+
+
+	// // get user secret
+	// $getsecret = $API->comm("/ppp/secret/print");
+	// $TotalReg = count($getsecret);
+	// // count user secret
+	// $countsecret = $API->comm("/ppp/secret/print", array(
+	// 	"count-only" => "",
+	// ));
 }
 ?>
 <div class="row">
@@ -50,8 +90,85 @@ if (!isset($_SESSION["mikhmon"])) {
 			</div>
 			<!-- /.card-header -->
 			<div class="card-body">
+				<div class="row">
+					<div class="col-6 pd-t-5 pd-b-5">
+						<div class="input-group">
+							<div class="input-group-4 col-box-4">
+								<input id="filterTable" type="text" style="padding:5.8px;" class="group-item group-item-l" placeholder="<?= $_search ?>">
+							</div>
+							<div class="input-group-4 col-box-4">
+								<select style="padding:5px;" class="group-item group-item-m" onchange="location = this.value; loader()" title="Filter by Profile">
+									<option><?= $_profile ?> </option>
+									<option value="./?ppp=secrets&profile=all&session=<?= $session; ?>"><?= $_show_all ?></option>
+									<?php
+									for ($i = 0; $i < $TotalReg2; $i++) {
+										$profile = $getprofile[$i];
+										echo "<option value='./?ppp=secrets&profile=" . $profile['name'] . "&session=" . $session . "'>" . $profile['name'] . "</option>";
+									}
+									?>
+								</select>
+							</div>
+							<!-- <div class="input-group-4 col-box-4">
+								<select style="padding:5px;" class="group-item group-item-r" id="comment" name="comment" onchange="location = './?ppp=secrets&comment='+ this.value +'&session=<?= $session; ?>';">
+									<?php
+									if ($comm != "") {
+									} else {
+										echo "<option value=''>" . $_comment . "</option>";
+									}
+									$TotalReg = count($getsecret);
+									for ($i = 0; $i < $TotalReg; $i++) {
+										$ucomment = $getsecret[$i]['comment'];
+										$uprofile = $getsecret[$i]['profile'];
+										$acomment .= "," . $ucomment . "#" . $uprofile;
+									}
+
+									$ocomment =  explode(",", $acomment);
+
+									$comments = array_count_values($ocomment);
+									foreach ($comments as $tcomment => $value) {
+
+										if (is_numeric(substr($tcomment, 3, 3))) {
+
+											echo "<option value='" . explode("#", $tcomment)[0] . "' >" . explode("#", $tcomment)[0] . " " . explode("#", $tcomment)[1] . " [" . $value . "]</option>";
+										}
+									}
+
+									?>
+								</select>
+							</div> -->
+						</div>
+					</div>
+
+					<!-- <div class="col-6">
+						<?php if ($comm != "") { ?>
+							<button class="btn bg-red" onclick="if(confirm('Are you sure to delete username by comment (<?= $comm; ?>)?')){loadpage('./?remove-hotspot-user-by-comment=<?= $comm; ?>&session=<?= $session; ?>');loader();}else{}" title="Remove user by comment <?= $comm; ?>"> <i class="fa fa-trash"></i> <?= $_by_comment ?></button>
+							<?php;
+            			} else if ($exp == "1") { ?>
+							<button class="btn bg-red" onclick="if(confirm('Are you sure to delete users?')){loadpage('./?remove-hotspot-user-expired=1&session=<?= $session; ?>');loader();}else{}" title="Remove user expired"> <i class="fa fa-trash"></i> Expired Users</button>
+						<?php } ?>
+						<script>
+							function printV(a, b) {
+								var comm = document.getElementById('comment').value;
+								var url = "./voucher/print.php?id=" + comm + "&" + a + "=" + b + "&session=<?= $session; ?>";
+								if (comm === "") {
+									<?php if ($currency == in_array($currency, $cekindo['indo'])) { ?>
+										alert('Silakan pilih salah satu Comment terlebih dulu!');
+									<?php
+									} else { ?>
+										alert('Please choose one of the Comments first!');
+									<?php
+									} ?>
+								} else {
+									var win = window.open(url, '_blank');
+									win.focus();
+								}
+							}
+						</script>
+					</div> -->
+				</div>
+				<br>
 				<div class="overflow box-bordered" style="max-height: 75vh">
-					<table id="tFilter" class="table table-bordered table-hover text-nowrap">
+					<table id="dataTable" class="table table-bordered table-hover text-nowrap">
 						<thead>
 							<tr>
 								<th style="min-width:50px;" class="text-center">
@@ -73,55 +190,56 @@ if (!isset($_SESSION["mikhmon"])) {
 							</tr>
 						</thead>
 						<tbody>
-							<?php
+							<tr>
+								<?php
 
-							for ($i = 0; $i < $TotalReg; $i++) {
+								for ($i = 0; $i < $TotalReg; $i++) {
 
-								$secretdetail = $getsecret[$i];
-								$sid = $secretdetail['.id'];
-								$sname = $secretdetail['name'];
-								$password = $secretdetail['password'];
-								$service = $secretdetail['service'];
-								$callerid = $secretdetail['caller-id'];
-								$profile = $secretdetail['profile'];
-								$localaddress = $secretdetail['local-address'];
-								$remoteaddress = $secretdetail['remote-address'];
-								$lastloggedout = $secretdetail['last-logged-out'];
+									$secretdetail = $getsecret[$i];
+									$sid = $secretdetail['.id'];
+									$sname = $secretdetail['name'];
+									$password = $secretdetail['password'];
+									$service = $secretdetail['service'];
+									$callerid = $secretdetail['caller-id'];
+									$profile = $secretdetail['profile'];
+									$localaddress = $secretdetail['local-address'];
+									$remoteaddress = $secretdetail['remote-address'];
+									$lastloggedout = $secretdetail['last-logged-out'];
 
-								$sdisabled = $secretdetail['disabled'];
-							?>
-								<td style='text-align:center;'><i class='fa fa-minus-square text-danger pointer' onclick="if(confirm('Are you sure to delete secret (<?= $sname; ?>)?')){loadpage('./?remove-pppsecret=<?= $sid; ?>&pname=<?= $sname ?>&session=<?= $session; ?>')}else{}" title='Remove <?= $sname; ?>'></i>&nbsp&nbsp&nbsp
-									<?php
-									echo "<a title='Open secret by profil " . $sname . "'  href='./?ppp=profiles&profile=" . $profile . "&session=" . $session . "'><i class='fa fa-users'></i></a>&nbsp&nbsp&nbsp";
-									if ($sdisabled == "true") {
-										$sprocess = "'./?enable-pppsecret=" . $sid . "&session=" . $session . "'";
-										echo '<span class="text-warning pointer" title="Enable User ' . $sname . '"  onclick="loadpage(' . $sprocess . ')"><i class="fa fa-lock "></i></span></td>';
-									} else {
-										$sprocess = "'./?disable-pppsecret=" . $sid . "&session=" . $session . "'";
-										echo '<span class="pointer" title="Disable User ' . $sname . '"  onclick="loadpage(' . $sprocess . ')"><i class="fa fa-unlock "></i></span></td>';
-									}
-									?>
-								</td>
-							<?php
-								echo "<td><a title='Open User secret " . $sname . "' href='./?secret=" . $sid . "&session=" . $session . "'><i class='fa fa-edit'></i> $sname</a></td>";
-								//$profiledetalis = $ARRAY[$i];echo "<td>" . $profiledetalis['name'];echo "</td>";
-								echo "<td>" . $password;
-								echo "</td>";
-								echo "<td>" . $service;
-								echo "</td>";
-								echo "<td>" . $callerid;
-								echo "</td>";
-								echo "<td>" . $profile;
-								echo "</td>";
-								echo "<td>" . $localaddress;
-								echo "</td>";
-								echo "<td>" . $remoteaddress;
-								echo "</td>";
-								echo "<td>" . $lastloggedout;
-								echo "</td>";
-								echo "</tr>";
-							}
-							?>
+									$sdisabled = $secretdetail['disabled'];
+								?>
+									<td style='text-align:center;'><i class='fa fa-minus-square text-danger pointer' onclick="if(confirm('Are you sure to delete secret (<?= $sname; ?>)?')){loadpage('./?remove-pppsecret=<?= $sid; ?>&pname=<?= $sname ?>&session=<?= $session; ?>')}else{}" title='Remove <?= $sname; ?>'></i>&nbsp&nbsp&nbsp
+										<?php
+										echo "<a title='Open secret by profil " . $sname . "'  href='./?ppp=profiles&profile=" . $profile . "&session=" . $session . "'><i class='fa fa-users'></i></a>&nbsp&nbsp&nbsp";
+										if ($sdisabled == "true") {
+											$sprocess = "'./?enable-pppsecret=" . $sid . "&session=" . $session . "'";
+											echo '<span class="text-warning pointer" title="Enable User ' . $sname . '"  onclick="loadpage(' . $sprocess . ')"><i class="fa fa-lock "></i></span></td>';
+										} else {
+											$sprocess = "'./?disable-pppsecret=" . $sid . "&session=" . $session . "'";
+											echo '<span class="pointer" title="Disable User ' . $sname . '"  onclick="loadpage(' . $sprocess . ')"><i class="fa fa-unlock "></i></span></td>';
+										}
+										?>
+									</td>
+								<?php
+									echo "<td><a title='Open User secret " . $sname . "' href='./?secret=" . $sid . "&session=" . $session . "'><i class='fa fa-edit'></i> $sname</a></td>";
+									//$profiledetalis = $ARRAY[$i];echo "<td>" . $profiledetalis['name'];echo "</td>";
+									echo "<td>" . $password;
+									echo "</td>";
+									echo "<td>" . $service;
+									echo "</td>";
+									echo "<td>" . $callerid;
+									echo "</td>";
+									echo "<td>" . $profile;
+									echo "</td>";
+									echo "<td>" . $localaddress;
+									echo "</td>";
+									echo "<td>" . $remoteaddress;
+									echo "</td>";
+									echo "<td>" . $lastloggedout;
+									echo "</td>";
+									echo "</tr>";
+								}
+								?>
 						</tbody>
 					</table>
 				</div>

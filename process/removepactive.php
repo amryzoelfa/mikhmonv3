@@ -19,7 +19,7 @@ session_start();
 // hide all error
 error_reporting(0);
 
-$API->comm("/ppp/active-connection/remove", array(
+$API->comm("/ppp/active/remove", array(
     ".id" => "$removepactive",
 ));
 
