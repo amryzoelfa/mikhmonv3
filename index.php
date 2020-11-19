@@ -456,6 +456,23 @@ if (!isset($_SESSION["mikhmon"])) {
     include_once('./process/psecret.php');
   }
 
+  // secrets profile
+  elseif ($ppp == "secrets" && $prof == "all") {
+    $_SESSION['ubp'] = "";
+    $_SESSION['hua'] = "";
+    $_SESSION['ubc'] = "";
+    $_SESSION['vcr'] = "";
+    include_once('./ppp/pppsecrets.php');
+  }
+
+  // ppp profile filter by profile
+  elseif ($ppp == "profiles" && $prof != "") {
+    $_SESSION['ubp'] = $prof;
+    $_SESSION['hua'] = "";
+    $_SESSION['ubc'] = "";
+    $_SESSION['vcr'] = "";
+    include_once('./ppp/pppsecrets.php');
+  }
 
   // ppp active connection
   elseif ($ppp == "active") {
