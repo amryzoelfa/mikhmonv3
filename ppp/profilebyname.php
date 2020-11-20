@@ -69,9 +69,6 @@ if (!isset($_SESSION["mikhmon"])) {
     $bridge = ($_POST['bridge']);
     $ratelimit = ($_POST['ratelimit']);
     $onlyone = ($_POST['onlyone']);
-    $bridgeportpriority = ($_POST['bridgeportpriority']);
-    $bridgepathcost = ($_POST['bridgepathcost']);
-    $bridgehorizon = ($_POST['bridgehorizon']);
     $incomingfilter = ($_POST['incomingfilter']);
     $outgoingfilter = ($_POST['outgoingfilter']);
     $addresslist = ($_POST['addresslist']);
@@ -91,9 +88,6 @@ if (!isset($_SESSION["mikhmon"])) {
         "bridge" => "$bridge",
         "rate-limit" => "$ratelimit",
         "only-one" => "$onlyone",
-        "bridge-port-priority" => "$bridgeportpriority",
-        "bridge-path-cost" => "$bridgepathcost",
-        "bridge-horizon" => "$bridgehorizon",
         "incoming-filter" => "$incomingfilter",
         "outgoing-filter" => "$outgoingfilter",
         "address-list" => "$addresslist",
@@ -113,9 +107,6 @@ if (!isset($_SESSION["mikhmon"])) {
         // "bridge" => "$bridge",
         "rate-limit" => "$ratelimit",
         "only-one" => "$onlyone",
-        "bridge-port-priority" => "$bridgeportpriority",
-        "bridge-path-cost" => "$bridgepathcost",
-        "bridge-horizon" => "$bridgehorizon",
         "incoming-filter" => "$incomingfilter",
         "outgoing-filter" => "$outgoingfilter",
         "address-list" => "$addresslist",
@@ -163,7 +154,11 @@ if (!isset($_SESSION["mikhmon"])) {
                 <td class="align-middle">Bridge</td>
                 <td>
                   <select class="form-control " name="bridge">
-                    <option value="<?php $$bridge ?>"><?php echo $bridge ?></option>
+                    <?php if ($bridge == '') { ?>
+                        <option value="">==Pilih==</option>
+                    <?php } else { ?>
+                        <option value="<?php echo $bridge; ?>"><?php echo $bridge ?></option>
+                    <?php } ?>
                     <?php
                     $TotalReg = count($getbridge);
                     for ($i = 0; $i < $TotalReg; $i++) {
@@ -174,18 +169,6 @@ if (!isset($_SESSION["mikhmon"])) {
                 </td>
               </tr>
             <?php } ?>
-            <tr>
-              <td class="align-middle">Bridge Port Priority</td>
-              <td><input class="form-control" type="text" required="1" size="4" value="<?= $bridgeportpriority; ?>" autocomplete="off" name="bridgeportpriority"></td>
-            </tr>
-            <tr>
-              <td class="align-middle">Bridge Port Cost</td>
-              <td><input class="form-control" type="text" required="1" size="4" value="<?= $bridgepathcost; ?>" autocomplete="off" name="bridgepathcost"></td>
-            </tr>
-            <tr>
-              <td class="align-middle">Bridge Horizon</td>
-              <td><input class="form-control" type="text" required="1" size="4" value="<?= $bridgehorizon; ?>" autocomplete="off" name="bridgehorizon"></td>
-            </tr>
             <tr>
               <td class="align-middle">Incoming Filter</td>
               <td>

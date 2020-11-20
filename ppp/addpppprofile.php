@@ -52,9 +52,6 @@ if (!isset($_SESSION["mikhmon"])) {
         "bridge" => "$bridge",
         "rate-limit" => "$ratelimit",
         "only-one" => "$onlyone",
-        "bridge-port-priority" => "$bridgeportpriority",
-        "bridge-path-cost" => "$bridgepathcost",
-        "bridge-horizon" => "$bridgehorizon",
         "incoming-filter" => "$incomingfilter",
         "outgoing-filter" => "$outgoingfilter",
         "address-list" => "$addresslist",
@@ -73,9 +70,6 @@ if (!isset($_SESSION["mikhmon"])) {
         // "bridge" => "$bridge",
         "rate-limit" => "$ratelimit",
         "only-one" => "$onlyone",
-        "bridge-port-priority" => "$bridgeportpriority",
-        "bridge-path-cost" => "$bridgepathcost",
-        "bridge-horizon" => "$bridgehorizon",
         "incoming-filter" => "$incomingfilter",
         "outgoing-filter" => "$outgoingfilter",
         "address-list" => "$addresslist",
@@ -111,11 +105,11 @@ if (!isset($_SESSION["mikhmon"])) {
             </tr>
             <tr>
               <td class="align-middle">Local Address</td>
-              <td><input class="form-control" type="text" size="4" autocomplete="off" required="1" name="localaddress"></td>
+              <td><input class="form-control" type="text" size="4" autocomplete="off" name="localaddress"></td>
             </tr>
             <tr>
               <td class="align-middle">Remote Address</td>
-              <td><input class="form-control" type="text" size="4" autocomplete="off" required="1" name="remoteaddress"></td>
+              <td><input class="form-control" type="text" size="4" autocomplete="off" name="remoteaddress"></td>
             </tr>
             <?php if (count($getbridge) != 0) { ?>
               <tr>
@@ -132,18 +126,6 @@ if (!isset($_SESSION["mikhmon"])) {
                 </td>
               </tr>
             <?php } ?>
-            <tr>
-              <td class="align-middle">Bridge Port Priority</td>
-              <td><input class="form-control" type="text" size="4" autocomplete="off" required="1" name="bridgeportpriority"></td>
-            </tr>
-            <tr>
-              <td class="align-middle">Bridge Port Cost</td>
-              <td><input class="form-control" type="text" size="4" autocomplete="off" required="1" name="bridgepathcost"></td>
-            </tr>
-            <tr>
-              <td class="align-middle">Bridge Horizon</td>
-              <td><input class="form-control" type="text" size="4" autocomplete="off" required="1" name="bridgehorizon"></td>
-            </tr>
             <tr>
               <td class="align-middle">Incoming Filter</td>
               <td>
