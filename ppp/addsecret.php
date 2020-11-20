@@ -140,27 +140,6 @@ if (!isset($_SESSION["mikhmon"])) {
             </div>
         </div>
     </div>
-    <div class="col-4">
-        <div class="card">
-            <div class="card-header">
-                <h3><i class="fa fa-book"></i> <?= $_readme ?></h3>
-            </div>
-            <div class="card-body">
-                <table class="table">
-                    <tr>
-                        <td colspan="2">
-                            <p style="padding:0px 5px;">
-                                <?= $_details_user_profile ?>
-                            </p>
-                            <p style="padding:0px 5px;">
-                                <?= $_format_validity ?>
-                            </p>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-    </div>
 </div>
 <script type="text/javascript">
     function remSpace() {
