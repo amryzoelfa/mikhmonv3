@@ -23,6 +23,7 @@ if (!isset($_SESSION["mikhmon"])) {
 } else {
 
   $getbridge = $API->comm("/interface/bridge/print");
+  $getremoteaddress = $API->comm("/ip/pool/print");
 
   if (isset($_POST['name'])) {
     $name = (preg_replace('/\s+/', '-', $_POST['name']));
@@ -55,7 +56,6 @@ if (!isset($_SESSION["mikhmon"])) {
         "incoming-filter" => "$incomingfilter",
         "outgoing-filter" => "$outgoingfilter",
         "address-list" => "$addresslist",
-        "interface-list" => "$interfacelist",
         "dns-server" => "$dnsserver",
         "wins-server" => "$winsserver",
         "change-tcp-mss" => "$changetcp",
@@ -73,7 +73,6 @@ if (!isset($_SESSION["mikhmon"])) {
         "incoming-filter" => "$incomingfilter",
         "outgoing-filter" => "$outgoingfilter",
         "address-list" => "$addresslist",
-        "interface-list" => "$interfacelist",
         "dns-server" => "$dnsserver",
         "wins-server" => "$winsserver",
         "change-tcp-mss" => "$changetcp",
@@ -105,11 +104,20 @@ if (!isset($_SESSION["mikhmon"])) {
             </tr>
             <tr>
               <td class="align-middle">Local Address</td>
-              <td><input class="form-control" type="text" size="4" autocomplete="off" name="localaddress"></td>
+              <td><input class="form-control" type="text" size="4" required="1" autocomplete="off" name="localaddress"></td>
             </tr>
             <tr>
               <td class="align-middle">Remote Address</td>
-              <td><input class="form-control" type="text" size="4" autocomplete="off" name="remoteaddress"></td>
+               <td>
+                  <select class="form-control " name="remoteaddress" required="1">
+                    <option value="">==Pilih==</option>
+                    <?php $TotalRemote = count($getremoteaddress);
+                    for ($i = 0; $i < $TotalRemote; $i++) {
+                      echo "<option value='" . $getremoteaddress[$i]['name'] . "'>" . $getremoteaddress[$i]['name'] . "</option>";
+                    }
+                    ?>
+                  </select>
+                </td>
             </tr>
             <?php if (count($getbridge) != 0) { ?>
               <tr>
@@ -153,18 +161,6 @@ if (!isset($_SESSION["mikhmon"])) {
               <td><input class="form-control" type="text" size="4" autocomplete="off" name="addresslist"></td>
             </tr>
             <tr>
-              <td class="align-middle">Interface List</td>
-              <td>
-                <select class="form-control" id="interfacelist" required="1" name="interfacelist">
-                  <option value="">== Pilih ==</option>
-                  <option value="all">all</option>
-                  <option value="dynamic">dynamic</option>
-                  <option value="none">none</option>
-                  <option value="static">static</option>
-                </select>
-              </td>
-            </tr>
-            <tr>
               <td class="align-middle">DNS Server</td>
               <td><input class="form-control" type="text" size="4" autocomplete="off" name="dnsserver"></td>
             </tr>
@@ -176,7 +172,6 @@ if (!isset($_SESSION["mikhmon"])) {
               <td class="align-middle">Change TCP MSS</td>
               <td>
                 <select class="form-control" id="changetcp" required="1" name="changetcp">
-                  <option value="">== Pilih ==</option>
                   <option value="default">default</option>
                   <option value="no">no</option>
                   <option value="yes">yes</option>
@@ -187,7 +182,6 @@ if (!isset($_SESSION["mikhmon"])) {
               <td class="align-middle">Use UPnP</td>
               <td>
                 <select class="form-control" id="useupnp" required="1" name="useupnp">
-                  <option value="">== Pilih ==</option>
                   <option value="default">default</option>
                   <option value="no">no</option>
                   <option value="yes">yes</option>
@@ -202,7 +196,6 @@ if (!isset($_SESSION["mikhmon"])) {
               <td class="align-middle">Only One</td>
               <td>
                 <select class="form-control" id="onlyone" required="1" name="onlyone">
-                  <option value="">== Pilih ==</option>
                   <option value="default">default</option>
                   <option value="no">no</option>
                   <option value="yes">yes</option>
