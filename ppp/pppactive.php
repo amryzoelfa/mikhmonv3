@@ -81,7 +81,10 @@ if (!isset($_SESSION["mikhmon"])) {
 
 								$uriprocess = "'./?removepactive=" . $pid . "&session=" . $session . "'";
 								echo "<tr>";
-								echo "<td style='text-align:center;'><span class='pointer'  title='Remove " . $aname . "' onclick=loadpage(" . $uriprocess . ")><i class='fa fa-minus-square text-danger'></i></span></td>";
+							?>
+								<td style='text-align:center;'><i class='fa fa-minus-square text-danger pointer' onclick="if(confirm('Are you sure to delete ppp active (<?= $aname; ?>)?')){loadpage('./?remove-pactive=<?= $pid; ?>&pname=<?= $aname ?>&session=<?= $session; ?>')}else{}" title='Remove <?= $aname; ?>'></i></td>
+							<?php
+								// echo "<td style='text-align:center;'><span class='pointer'  title='Remove " . $aname . "' onclick=loadpage(" . $uriprocess . ")><i class='fa fa-minus-square text-danger'></i></span></td>";
 								echo "<td>" . $aname . "</td>";
 								echo "<td>" . $service . "</td>";
 								echo "<td>" . $caller_id . "</td>";

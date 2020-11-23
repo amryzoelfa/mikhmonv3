@@ -19,8 +19,27 @@ session_start();
 // hide all error
 error_reporting(0);
 
-$API->comm("/ppp/active/remove", array(
-    ".id" => "$removepactive",
-));
+// $API->comm("/ppp/active/remove", array(
+//     ".id" => "$removepactive",
+// ));
 
-echo "<script>window.location='./?ppp=active&session=" . $session . "'</script>";
+// echo "<script>window.location='./?ppp=active&session=" . $session . "'</script>";
+
+// remove active
+if ($removepactive != "") {
+    $API->comm("/ppp/active/remove", array(
+        ".id" => "$removepactive",
+    ));
+
+    echo "<script>window.location='./?ppp=active&session=" . $session . "'</script>";
+}
+
+// disable secret
+if ($disablesecr != "") {
+    $API->comm("/ppp/secret/set", array(
+        ".id" => "$disablesecr",
+        "disabled" => "yes",
+    ));
+
+    echo "<script>window.location='./?ppp=secrets&session=" . $session . "'</script>";
+}

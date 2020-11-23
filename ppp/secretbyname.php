@@ -49,12 +49,6 @@ if (!isset($_SESSION["mikhmon"])) {
     $service = $secretdetail['service'];
     $callerid = $secretdetail['caller-id'];
     $profile = $secretdetail['profile'];
-    // $localaddress = $secretdetail['local-address'];
-    // $remoteaddress = $secretdetail['remote-address'];
-    // $routes = $secretdetail['routes'];
-    // $limitbytesin = $secretdetail['limit-bytes-in'];
-    // $limitbytesout = $secretdetail['limit-bytes-out'];
-    // $lastloggedout = $secretdetail['last-logged-out'];
 
     if (isset($_POST['name'])) {
         $name = (preg_replace('/\s+/', '-', $_POST['name']));
@@ -62,12 +56,6 @@ if (!isset($_SESSION["mikhmon"])) {
         $service = ($_POST['service']);
         $callerid = ($_POST['callerid']);
         $profile = ($_POST['profile']);
-        // $localaddress = ($_POST['localaddress']);
-        // $remoteaddress = ($_POST['remoteaddress']);
-        // $routes = ($_POST['routes']);
-        // $limitbytesin = ($_POST['limitbytesin']);
-        // $limitbytesout = ($_POST['limitbytesout']);
-        // $lastloggedout = ($_POST['lastloggedout']);
 
         $API->comm("/ppp/secret/set", array(
             /*"add-mac-cookie" => "yes",*/
@@ -77,12 +65,6 @@ if (!isset($_SESSION["mikhmon"])) {
             "service" => "$service",
             "caller-id" => "$callerid",
             "profile" => "$profile",
-            // "local-address" => "$localaddress",
-            // "remote-address" => "$remoteaddress",
-            // "routes" => "$routes",
-            // "limit-bytes-in" => "$limitbytesin",
-            // "limit-bytes-out" => "$limitbytesout",
-            // "last-logged-out" => "$lastloggedout",
         ));
         echo "<script>window.location='./?ppp=secrets&session=" . $session . "'</script>";
     }
@@ -213,30 +195,6 @@ if (!isset($_SESSION["mikhmon"])) {
                                 </select>
                             </td>
                         </tr>
-                        <!-- <tr>
-                            <td class="align-middle">Local Address</td>
-                            <td><input class="form-control" type="text" size="4" required="1" autocomplete="off" name="localaddress" value="<?= $localaddress; ?>"></td>
-                        </tr>
-                        <tr>
-                            <td class="align-middle">Remote Address</td>
-                            <td><input class="form-control" type="text" size="4" required="1" autocomplete="off" name="remoteaddress" value="<?= $remoteaddress; ?>"></td>
-                        </tr>
-                        <tr>
-                            <td class="align-middle">Routes</td>
-                            <td><input class="form-control" type="text" size="4" autocomplete="off" name="routes" value="<?= $routes; ?>"></td>
-                        </tr>
-                        <tr>
-                            <td class="align-middle">Limit Bytes In</td>
-                            <td><input class="form-control" type="text" size="4" required="1" autocomplete="off" name="limitbytesin" value="<?= $limitbytesin; ?>"></td>
-                        </tr>
-                        <tr>
-                            <td class="align-middle">Limit Bytes Out</td>
-                            <td><input class="form-control" type="text" size="4" required="1" autocomplete="off" name="limitbytesout" value="<?= $limitbytesout; ?>"></td>
-                        </tr>
-                        <tr>
-                            <td class="align-middle">Last Logged Out</td>
-                            <td><input class="form-control" type="text" size="4" autocomplete="off" name="lastloggedout" value="<?= $lastloggedout; ?>"></td>
-                        </tr> -->
                     </table>
                 </form>
             </div>
