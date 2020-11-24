@@ -223,7 +223,7 @@ if (!isset($_SESSION["mikhmon"])) {
 								<?php
 									echo "<td><a title='Open User secret " . $sname . "' href='./?secret=" . $sid . "&session=" . $session . "'><i class='fa fa-edit'></i> $sname</a></td>";
 									//$profiledetalis = $ARRAY[$i];echo "<td>" . $profiledetalis['name'];echo "</td>";
-									echo "<td>" . $sname;
+									echo "<td>" . $password;
 									echo "</td>";
 									echo "<td>" . $service;
 									echo "</td>";
