@@ -108,6 +108,7 @@ if (!isset($_SESSION["mikhmon"])) {
   $removesecr = $_GET['remove-pppsecret'];
   $removepprofile = $_GET['remove-pprofile'];
   $removepactive = $_GET['remove-pactive'];
+  $disablesecrname = $_GET['disabled-name'];
   $srv = $_GET['srv'];
   $prof = $_GET['profile'];
   $comm = $_GET['comment'];
@@ -480,7 +481,7 @@ if (!isset($_SESSION["mikhmon"])) {
   }
 
   // remove ppp active connection
-  elseif ($removepactive != "") {
+  elseif ($removepactive != "" && $disablesecrname != "") {
     echo "<b class='cl-w'><i class='fa fa-circle-o-notch fa-spin' style='font-size:24px'></i> Processing...</b>";
 
     include_once('./process/removepactive.php');
