@@ -108,63 +108,9 @@ if (!isset($_SESSION["mikhmon"])) {
 									?>
 								</select>
 							</div>
-							<!-- <div class="input-group-4 col-box-4">
-								<select style="padding:5px;" class="group-item group-item-r" id="comment" name="comment" onchange="location = './?ppp=secrets&comment='+ this.value +'&session=<?= $session; ?>';">
-									<?php
-									if ($comm != "") {
-									} else {
-										echo "<option value=''>" . $_comment . "</option>";
-									}
-									$TotalReg = count($getsecret);
-									for ($i = 0; $i < $TotalReg; $i++) {
-										$ucomment = $getsecret[$i]['comment'];
-										$uprofile = $getsecret[$i]['profile'];
-										$acomment .= "," . $ucomment . "#" . $uprofile;
-									}
-
-									$ocomment =  explode(",", $acomment);
-
-									$comments = array_count_values($ocomment);
-									foreach ($comments as $tcomment => $value) {
-
-										if (is_numeric(substr($tcomment, 3, 3))) {
-
-											echo "<option value='" . explode("#", $tcomment)[0] . "' >" . explode("#", $tcomment)[0] . " " . explode("#", $tcomment)[1] . " [" . $value . "]</option>";
-										}
-									}
-
-									?>
-								</select>
-							</div> -->
 						</div>
 					</div>
 
-					<!-- <div class="col-6">
-						<?php if ($comm != "") { ?>
-							<button class="btn bg-red" onclick="if(confirm('Are you sure to delete username by comment (<?= $comm; ?>)?')){loadpage('./?remove-hotspot-user-by-comment=<?= $comm; ?>&session=<?= $session; ?>');loader();}else{}" title="Remove user by comment <?= $comm; ?>"> <i class="fa fa-trash"></i> <?= $_by_comment ?></button>
-							<?php;
-            			} else if ($exp == "1") { ?>
-							<button class="btn bg-red" onclick="if(confirm('Are you sure to delete users?')){loadpage('./?remove-hotspot-user-expired=1&session=<?= $session; ?>');loader();}else{}" title="Remove user expired"> <i class="fa fa-trash"></i> Expired Users</button>
-						<?php } ?>
-						<script>
-							function printV(a, b) {
-								var comm = document.getElementById('comment').value;
-								var url = "./voucher/print.php?id=" + comm + "&" + a + "=" + b + "&session=<?= $session; ?>";
-								if (comm === "") {
-									<?php if ($currency == in_array($currency, $cekindo['indo'])) { ?>
-										alert('Silakan pilih salah satu Comment terlebih dulu!');
-									<?php
-									} else { ?>
-										alert('Please choose one of the Comments first!');
-									<?php
-									} ?>
-								} else {
-									var win = window.open(url, '_blank');
-									win.focus();
-								}
-							}
-						</script>
-					</div> -->
 				</div>
 				<br>
 				<div class="overflow box-bordered" style="max-height: 75vh">

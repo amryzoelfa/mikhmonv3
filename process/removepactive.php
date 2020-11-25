@@ -37,6 +37,5 @@ if ($removepactive != "") {
         ".id" => "$removepactive",
     ));
 
-    // echo "<script>window.location='./?ppp=active&session=" . $session . "'</script>";
+    echo "<script>window.location='./?ppp=active&session=" . $session . "'</script>";
 }
-
