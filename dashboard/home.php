@@ -405,7 +405,7 @@ if (!isset($_SESSION["mikhmon"])) {
                                 <thead>
                                     <tr>
                                         <th><?= $_time ?></th>
-                                        <th><?= $_users ?> (IP)</th>
+                                        <!-- <th><?= $_users ?> (IP)</th> -->
                                         <th><?= $_messages ?></th>
                                     </tr>
                                 </thead>

@@ -296,7 +296,7 @@ if (!isset($_SESSION["mikhmon"])) {
                             <thead>
                                 <tr>
                                     <th><?= $_time . $THotspotLog; ?></th>
-                                    <th><?= $_users ?> (IP)</th>
+                                    <!-- <th><?= $_users ?> (IP)</th> -->
                                     <th><?= $_messages ?></th>
                                 </tr>
                             </thead>
@@ -311,21 +311,21 @@ if (!isset($_SESSION["mikhmon"])) {
                                     echo "<tr>";
                                     if (substr($log[$i]['message'], 0, 2) == "->") {
                                         echo "<td>" . $time . "</td>";
-                                        echo substr($mess[1], 0, 2);
-                                        echo "<td>";
-                                        if (count($mess) > 6) {
-                                            echo $mess[1] . ":" . $mess[2] . ":" . $mess[3] . ":" . $mess[4] . ":" . $mess[5] . ":" . $mess[6];
-                                        } else {
-                                            echo $mess[1];
-                                        }
-                                        echo "</td>";
-                                        echo "<td>";
-                                        if (count($mess) > 6) {
-                                            echo str_replace("trying to", "", $mess[7] . " " . $mess[8] . " " . $mess[9] . " " . $mess[10]);
-                                        } else {
-                                            echo str_replace("trying to", "", $mess[2] . " " . $mess[3] . " " . $mess[4] . " " . $mess[5]);
-                                        }
-                                        echo "</td>";
+                                        echo "<td>" . $mess[1] . ":" . $mess[2] . ":" . $mess[3] . ":" . $mess[4] . $mess[5] . ":" . $mess[6] . "</td>";
+                                        // echo "<td>";
+                                        // if (count($mess) > 6) {
+                                        //     echo $mess[1] . ":" . $mess[2] . ":" . $mess[3] . ":" . $mess[4] . ":" . $mess[5] . ":" . $mess[6];
+                                        // } else {
+                                        //     echo $mess[1];
+                                        // }
+                                        // echo "</td>";
+                                        // echo "<td>";
+                                        // if (count($mess) > 6) {
+                                        //     echo str_replace("trying to", "", $mess[7] . " " . $mess[8] . " " . $mess[9] . " " . $mess[10]);
+                                        // } else {
+                                        //     echo str_replace("trying to", "", $mess[2] . " " . $mess[3] . " " . $mess[4] . " " . $mess[5]);
+                                        // }
+                                        // echo "</td>";
                                     } else {
                                     }
                                     echo "</tr>";
