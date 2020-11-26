@@ -40,7 +40,7 @@ elseif ($enablesecr != "") {
     $name = "PPP Secret Disabled " . $hariini;
     $start_date = date('M/d/Y');
     $start_time = date('H:i:s');
-    $interval = "30d 00:00:00";
+    $interval = "30d";
     // $interval = "00:00:30";
     $on_event = "/ppp secret set disabled=yes [/ppp secret find .id=" . $enablesecr . "]";
 
