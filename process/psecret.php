@@ -33,6 +33,26 @@ elseif ($enablesecr != "") {
         ".id" => "$enablesecr",
         "disabled" => "no",
     ));
+    date_default_timezone_set('Asia/Jakarta');
+    $hari = date('d/M/Y');
+    $hariini = strtolower(date('M/d/Y H:i:s'));
+
+    $name = "PPP Secret Disabled " . $hariini;
+    $start_date = date('M/d/Y');
+    $start_time = date('H:i:s');
+    $interval = "30d 00:00:00";
+    // $interval = "00:00:30";
+    $on_event = "/ppp secret set disabled=yes [/ppp secret find .id=" . $enablesecr . "]";
+
+    $API->comm("/system/scheduler/add", array(
+        /*"add-mac-cookie" => "yes",*/
+        "name" => "$name",
+        "start-date" => "$start_date",
+        "start-time" => "$start_time",
+        "interval" => "$interval",
+        "on-event" => "$on_event",
+    ));
+
 
     echo "<script>window.location='./?ppp=secrets&session=" . $session . "'</script>";
 }
