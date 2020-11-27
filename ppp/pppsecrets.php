@@ -159,7 +159,7 @@ if (!isset($_SESSION["mikhmon"])) {
 									$sdisabled = $secretdetail['disabled'];
 								?>
                                 <td style='text-align:center;'><i class='fa fa-minus-square text-danger pointer'
-                                        onclick="if(confirm('Are you sure to delete secret (<?= $sname; ?>)?')){loadpage('./?remove-pppsecret=<?= $sid; ?>&pname=<?= $sname ?>&session=<?= $session; ?>')}else{}"
+                                        onclick="if(confirm('Are you sure to delete secret (<?= $sname; ?>)?')){loadpage('./?remove-pppsecret=<?= $sid; ?>&rempname=<?= $sname ?>&session=<?= $session; ?>')}else{}"
                                         title='Remove <?= $sname; ?>'></i>&nbsp&nbsp&nbsp
                                     <?php
 										echo "<a title='Open secret by profil " . $sname . "'  href='./?ppp=profiles&profile=" . $profile . "&session=" . $session . "'><i class='fa fa-users'></i></a>&nbsp&nbsp&nbsp";
