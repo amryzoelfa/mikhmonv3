@@ -33,6 +33,10 @@ if ($removepactive != "") {
         "disabled" => "yes",
     ));
 
+    // $API->comm("/system/scheduler/remove", array(
+    //     ".id" => "$disablesecrname",
+    // ));
+
     $API->comm("/ppp/active/remove", array(
         ".id" => "$removepactive",
     ));

@@ -37,12 +37,11 @@ elseif ($enablesecr != "") {
     $hari = date('d/M/Y');
     $hariini = strtolower(date('M/d/Y H:i:s'));
 
-    $name = "PPP Secret Disabled " . $hariini;
+    $name = "$namescheduler";
     $start_date = date('M/d/Y');
     $start_time = date('H:i:s');
     $interval = "30d";
-    // $interval = "00:00:30";
-    $on_event = "/ppp secret set disabled=yes [/ppp secret find .id=" . $enablesecr . "]";
+    $on_event = "/ppp secret set disabled=yes [/ppp secret find name=" . $name . "] \r /system scheduler remove [find name=" . $name . "]";
 
     $API->comm("/system/scheduler/add", array(
         /*"add-mac-cookie" => "yes",*/
@@ -62,6 +61,20 @@ elseif ($disablesecr != "") {
     $API->comm("/ppp/secret/set", array(
         ".id" => "$disablesecr",
         "disabled" => "yes",
+    ));
+    $name = "coba";
+    $start_date = date('M/d/Y');
+    $start_time = date('H:i:s');
+    $interval = "00:00:00";
+    $on_event = "/system scheduler remove [find name=" . $name . "] \r /system scheduler remove [find name=" . $namescheduler . "]";
+
+    $API->comm("/system/scheduler/add", array(
+        /*"add-mac-cookie" => "yes",*/
+        "name" => "$name",
+        "start-date" => "$start_date",
+        "start-time" => "$start_time",
+        "interval" => "$interval",
+        "on-event" => "$on_event",
     ));
 
     echo "<script>window.location='./?ppp=secrets&session=" . $session . "'</script>";

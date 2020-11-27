@@ -104,6 +104,7 @@ if (!isset($_SESSION["mikhmon"])) {
   $ppp = $_GET['ppp'];
   $secretbyname = $_GET['secret'];
   $enablesecr = $_GET['enable-pppsecret'];
+  $namescheduler = $_GET['secretsheduler'];
   $disablesecr = $_GET['disable-pppsecret'];
   $removesecr = $_GET['remove-pppsecret'];
   $removepprofile = $_GET['remove-pprofile'];
@@ -526,13 +527,13 @@ if (!isset($_SESSION["mikhmon"])) {
 
 ?>
 
-  </div>
-  </div>
-  </div>
-  <script src="./js/highcharts/highcharts.js"></script>
-  <script src="./js/highcharts/themes/hc.<?= $theme; ?>.js"></script>
-  <script src="./js/mikhmon-ui.<?= $theme; ?>.min.js"></script>
-  <script src="./js/mikhmon.js?t=<?= str_replace(" ", "_", date("Y-m-d H:i:s")); ?>"></script>
+</div>
+</div>
+</div>
+<script src="./js/highcharts/highcharts.js"></script>
+<script src="./js/highcharts/themes/hc.<?= $theme; ?>.js"></script>
+<script src="./js/mikhmon-ui.<?= $theme; ?>.min.js"></script>
+<script src="./js/mikhmon.js?t=<?= str_replace(" ", "_", date("Y-m-d H:i:s")); ?>"></script>
 
 <?php
   if ($hotspot == "dashboard" || substr(end(explode("/", $url)), 0, 8) == "?session") {
