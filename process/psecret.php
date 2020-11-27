@@ -37,11 +37,11 @@ elseif ($enablesecr != "") {
     $hari = date('d/M/Y');
     $hariini = strtolower(date('M/d/Y H:i:s'));
 
-    $name = "$namescheduler";
+    $name = "coba_enabled";
     $start_date = date('M/d/Y');
     $start_time = date('H:i:s');
-    $interval = "30d";
-    $on_event = "/ppp secret set disabled=yes [/ppp secret find name=" . $name . "] \r /system scheduler remove [find name=" . $name . "]";
+    $interval = "00:00:01";
+    $on_event = "/system scheduler remove [find name=" . $name . "] \r /system scheduler enable [find name=" . $namescheduler . "]";
 
     $API->comm("/system/scheduler/add", array(
         /*"add-mac-cookie" => "yes",*/
@@ -62,11 +62,11 @@ elseif ($disablesecr != "") {
         ".id" => "$disablesecr",
         "disabled" => "yes",
     ));
-    $name = "coba";
+    $name = "coba_disabled";
     $start_date = date('M/d/Y');
     $start_time = date('H:i:s');
-    $interval = "00:00:00";
-    $on_event = "/system scheduler remove [find name=" . $name . "] \r /system scheduler remove [find name=" . $namescheduler . "]";
+    $interval = "00:00:01";
+    $on_event = "/system scheduler remove [find name=" . $name . "] \r /system scheduler disable [find name=" . $namescheduler . "]";
 
     $API->comm("/system/scheduler/add", array(
         /*"add-mac-cookie" => "yes",*/
