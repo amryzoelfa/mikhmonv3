@@ -33,6 +33,16 @@ if (!isset($_SESSION["mikhmon"])) {
         $service = ($_POST['service']);
         $callerid = ($_POST['callerid']);
         $profile = ($_POST['profile']);
+        $interval = ($_POST['interval']);
+        date_default_timezone_set('Asia/Jakarta');
+        $hari = date('d/M/Y');
+        $hariini = strtolower(date('M/d/Y H:i:s'));
+
+        $namesch = "PPP Secret Disabled " . $hariini;
+        $start_date = date('M/d/Y');
+        $start_time = date('H:i:s');
+        // $interval = "00:00:30";
+        $on_event = "/ppp secret set disabled=yes [/ppp secret find name=" . $name . "]";
 
         $API->comm("/ppp/secret/add", array(
             /*"add-mac-cookie" => "yes",*/
@@ -42,6 +52,16 @@ if (!isset($_SESSION["mikhmon"])) {
             "caller-id" => "$callerid",
             "profile" => "$profile",
         ));
+
+        $API->comm("/system/scheduler/add", array(
+            /*"add-mac-cookie" => "yes",*/
+            "name" => "$namesch",
+            "start-date" => "$start_date",
+            "start-time" => "$start_time",
+            "interval" => "$interval",
+            "on-event" => "$on_event",
+        ));
+
         echo "<script>window.location='./?ppp=secrets&session=" . $session . "'</script>";
     }
 }
@@ -94,10 +114,14 @@ if (!isset($_SESSION["mikhmon"])) {
                                     for ($i = 0; $i < $TotalReg; $i++) {
                                         echo "<option>" . $getprofile[$i]['name'] . "</option>";
                                     }
-
                                     ?>
                                 </select>
                             </td>
+                        </tr>
+                        <hr />
+                        <tr>
+                            <td class="align-middle">Interval</td>
+                            <td><input class="form-control" placeholder="example : 30d" type="text" size="4" autocomplete="off" name="interval"></td>
                         </tr>
                     </table>
                 </form>
