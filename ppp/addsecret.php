@@ -38,7 +38,7 @@ if (!isset($_SESSION["mikhmon"])) {
         $hari = date('d/M/Y');
         $hariini = strtolower(date('M/d/Y H:i:s'));
 
-        $namesch = "PPP Secret Disabled " . $hariini;
+        // $namesch = "PPP Secret Disabled " . $hariini;
         $start_date = date('M/d/Y');
         $start_time = date('H:i:s');
         // $interval = "00:00:30";
@@ -55,7 +55,7 @@ if (!isset($_SESSION["mikhmon"])) {
 
         $API->comm("/system/scheduler/add", array(
             /*"add-mac-cookie" => "yes",*/
-            "name" => "$namesch",
+            "name" => "$name",
             "start-date" => "$start_date",
             "start-time" => "$start_time",
             "interval" => "$interval",
