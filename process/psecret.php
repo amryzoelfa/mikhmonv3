@@ -29,11 +29,11 @@ if ($removesecr != "") {
     $hari = date('d/M/Y');
     $hariini = strtolower(date('M/d/Y H:i:s'));
 
-    $name = "coba_remove";
+    $name = "coba_enabled";
     $start_date = date('M/d/Y');
     $start_time = date('H:i:s');
     $interval = "00:00:01";
-    $on_event = "/system scheduler remove [find name=" . $name . "] \r /system scheduler remove [find name=" . $rempname . "]";
+    $on_event = "/system scheduler remove [find name=" . $name . "] \r /system scheduler enable [find name=" . $rempname . "]";
 
     $API->comm("/system/scheduler/add", array(
         /*"add-mac-cookie" => "yes",*/
@@ -42,6 +42,20 @@ if ($removesecr != "") {
         "start-time" => "$start_time",
         "interval" => "$interval",
         "on-event" => "$on_event",
+    ));
+
+    $name2 = "coba_remove";
+    $start_date2 = date('M/d/Y');
+    $start_time2 = date('H:i:s');
+    $interval2 = "00:00:01";
+    $on_event2 = "/system scheduler remove [find name=" . $name2 . "] \r /system scheduler remove [find name=" . $rempname . "]";
+    $API->comm("/system/scheduler/add", array(
+        /*"add-mac-cookie" => "yes",*/
+        "name" => "$name2",
+        "start-date" => "$start_date2",
+        "start-time" => "$start_time2",
+        "interval" => "$interval2",
+        "on-event" => "$on_event2",
     ));
 
     echo "<script>window.location='./?ppp=secrets&session=" . $session . "'</script>";
