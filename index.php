@@ -105,7 +105,7 @@ if (!isset($_SESSION["mikhmon"])) {
   $secretbyname = $_GET['secret'];
   $schedulerbyname = $_GET['schedulerbyname'];
   $enablesecr = $_GET['enable-pppsecret'];
-  $namescheduler = $_GET['secretsheduler'];
+  $secretsheduler = $_GET['secretsheduler'];
   $disablesecr = $_GET['disable-pppsecret'];
   $removesecr = $_GET['remove-pppsecret'];
   $rempname = $_GET['rempname'];

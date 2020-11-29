@@ -70,11 +70,11 @@ elseif ($enablesecr != "") {
     $hari = date('d/M/Y');
     $hariini = strtolower(date('M/d/Y H:i:s'));
 
-    $name = "coba_enabled";
+    $name = "coba_enabledd";
     $start_date = date('M/d/Y');
     $start_time = date('H:i:s');
     $interval = "00:00:01";
-    $on_event = "/system scheduler remove [find name=" . $name . "] \r /system scheduler enable [find name=" . $namescheduler . "]";
+    $on_event = "/system scheduler enable [find name=" . $secretsheduler . "] \r /system scheduler remove [find name=" . $name . "]";
 
     $API->comm("/system/scheduler/add", array(
         /*"add-mac-cookie" => "yes",*/
@@ -99,7 +99,7 @@ elseif ($disablesecr != "") {
     $start_date = date('M/d/Y');
     $start_time = date('H:i:s');
     $interval = "00:00:01";
-    $on_event = "/system scheduler remove [find name=" . $name . "] \r /system scheduler disable [find name=" . $namescheduler . "]";
+    $on_event = "/system scheduler disable [find name=" . $secretsheduler . "] \r /system scheduler remove [find name=" . $name . "]";
 
     $API->comm("/system/scheduler/add", array(
         /*"add-mac-cookie" => "yes",*/
