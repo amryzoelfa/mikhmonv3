@@ -219,7 +219,7 @@ if (!isset($_SESSION["mikhmon"])) {
                             </td>
                         </tr>
                         <tr>
-                            <input type="text" name="schid" value="<?php echo $schid; ?>">
+                            <input type="hidden" name="schid" value="<?php echo $schid; ?>">
                             <td class="align-middle">Interval</td>
                             <td><input class="form-control" value="<?php echo $schinterval; ?>" type="text" size="4"
                                     autocomplete="off" name="interval"></td>
