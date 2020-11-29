@@ -81,67 +81,64 @@ if (!isset($_SESSION["mikhmon"])) {
 }
 ?>
 <div class="row">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-header align-middle">
-                <h3><i class=" fa fa-pie-chart"></i> PPP Secrets
-                    &nbsp; | &nbsp; <a href="./?ppp=addsecret&session=<?= $session; ?>" title="Add Secrets"><i
-                            class="fa fa-user-plus"></i> Add</a>
-                </h3>
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-6 pd-t-5 pd-b-5">
-                        <div class="input-group">
-                            <div class="input-group-4 col-box-4">
-                                <input id="filterTable" type="text" style="padding:5.8px;"
-                                    class="group-item group-item-l" placeholder="<?= $_search ?>">
-                            </div>
-                            <div class="input-group-4 col-box-4">
-                                <select style="padding:5px;" class="group-item group-item-m"
-                                    onchange="location = this.value; loader()" title="Filter by Profile">
-                                    <option><?= $_profile ?> </option>
-                                    <option value="./?ppp=secrets&profile=all&session=<?= $session; ?>">
-                                        <?= $_show_all ?></option>
-                                    <?php
+	<div class="col-12">
+		<div class="card">
+			<div class="card-header align-middle">
+				<h3><i class=" fa fa-pie-chart"></i> PPP Secrets
+					&nbsp; | &nbsp; <a href="./?ppp=addsecret&session=<?= $session; ?>" title="Add Secrets"><i class="fa fa-user-plus"></i> Add</a>
+				</h3>
+			</div>
+			<!-- /.card-header -->
+			<div class="card-body">
+				<div class="row">
+					<div class="col-6 pd-t-5 pd-b-5">
+						<div class="input-group">
+							<div class="input-group-4 col-box-4">
+								<input id="filterTable" type="text" style="padding:5.8px;" class="group-item group-item-l" placeholder="<?= $_search ?>">
+							</div>
+							<div class="input-group-4 col-box-4">
+								<select style="padding:5px;" class="group-item group-item-m" onchange="location = this.value; loader()" title="Filter by Profile">
+									<option><?= $_profile ?> </option>
+									<option value="./?ppp=secrets&profile=all&session=<?= $session; ?>">
+										<?= $_show_all ?></option>
+									<?php
 									for ($i = 0; $i < $TotalReg2; $i++) {
 										$profile = $getprofile[$i];
 										echo "<option value='./?ppp=secrets&profile=" . $profile['name'] . "&session=" . $session . "'>" . $profile['name'] . "</option>";
 									}
 									?>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
+								</select>
+							</div>
+						</div>
+					</div>
 
-                </div>
-                <br>
-                <div class="overflow box-bordered" style="max-height: 75vh">
-                    <table id="dataTable" class="table table-bordered table-hover text-nowrap">
-                        <thead>
-                            <tr>
-                                <th style="min-width:50px;" class="text-center">
-                                    <?php
+				</div>
+				<br>
+				<div class="overflow box-bordered" style="max-height: 75vh">
+					<table id="dataTable" class="table table-bordered table-hover text-nowrap">
+						<thead>
+							<tr>
+								<th style="min-width:50px;" class="text-center">
+									<?php
 									if ($countsecret < 2) {
 										echo "$countsecret item  ";
 									} elseif ($countsecret > 1) {
 										echo "$countsecret items   ";
 									}
 									?></th>
-                                <th class="align-middle"><?= $_name ?></th>
-                                <th class="align-middle">Password</th>
-                                <th class="align-middle">Service</th>
-                                <th class="align-middle">Caller Id</th>
-                                <th class="align-middle">Profile</th>
-                                <th class="align-middle">Local Address</th>
-                                <th class="align-middle">Remote Address</th>
-                                <th class="align-middle">Last<br>Logged<br>Out</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <?php
+								<th class="align-middle"><?= $_name ?></th>
+								<th class="align-middle">Password</th>
+								<th class="align-middle">Service</th>
+								<th class="align-middle">Caller Id</th>
+								<th class="align-middle">Profile</th>
+								<th class="align-middle">Local Address</th>
+								<th class="align-middle">Remote Address</th>
+								<th class="align-middle">Last<br>Logged<br>Out</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<?php
 
 								for ($i = 0; $i < $TotalReg; $i++) {
 
@@ -158,10 +155,8 @@ if (!isset($_SESSION["mikhmon"])) {
 
 									$sdisabled = $secretdetail['disabled'];
 								?>
-                                <td style='text-align:center;'><i class='fa fa-minus-square text-danger pointer'
-                                        onclick="if(confirm('Are you sure to delete secret (<?= $sname; ?>)?')){loadpage('./?remove-pppsecret=<?= $sid; ?>&rempname=<?= $sname ?>&session=<?= $session; ?>')}else{}"
-                                        title='Remove <?= $sname; ?>'></i>&nbsp&nbsp&nbsp
-                                    <?php
+									<td style='text-align:center;'><i class='fa fa-minus-square text-danger pointer' onclick="if(confirm('Are you sure to delete secret (<?= $sname; ?>)?')){loadpage('./?remove-pppsecret=<?= $sid; ?>&rempname=<?= $sname; ?>&session=<?= $session; ?>')}else{}" title='Remove <?= $sname; ?>'></i>&nbsp&nbsp&nbsp
+										<?php
 										echo "<a title='Open secret by profil " . $sname . "'  href='./?ppp=profiles&profile=" . $profile . "&session=" . $session . "'><i class='fa fa-users'></i></a>&nbsp&nbsp&nbsp";
 										if ($sdisabled == "true") {
 											$sprocess = "'./?enable-pppsecret=" . $sid . "&secretsheduler=" . $sname . "&session=" . $session . "'";
@@ -171,9 +166,9 @@ if (!isset($_SESSION["mikhmon"])) {
 											echo '<span class="pointer" title="Disable User ' . $sname . '"  onclick="loadpage(' . $sprocess . ')"><i class="fa fa-unlock "></i></span></td>';
 										}
 										?>
-                                </td>
-                                <?php
-									echo "<td><a title='Open User secret " . $sname . "' href='./?secret=" . $sid . "&session=" . $session . "'><i class='fa fa-edit'></i> $sname</a></td>";
+									</td>
+								<?php
+									echo "<td><a title='Open User secret " . $sname . "' href='./?secret=" . $sid . "&schedulerbyname=" . $sname . "&session=" . $session . "'><i class='fa fa-edit'></i> $sname</a></td>";
 									//$profiledetalis = $ARRAY[$i];echo "<td>" . $profiledetalis['name'];echo "</td>";
 									echo "<td>" . $password;
 									echo "</td>";
@@ -192,10 +187,10 @@ if (!isset($_SESSION["mikhmon"])) {
 									echo "</tr>";
 								}
 								?>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

@@ -103,6 +103,7 @@ if (!isset($_SESSION["mikhmon"])) {
   $ipbinding = $_GET['addr'];
   $ppp = $_GET['ppp'];
   $secretbyname = $_GET['secret'];
+  $schedulerbyname = $_GET['schedulerbyname'];
   $enablesecr = $_GET['enable-pppsecret'];
   $namescheduler = $_GET['secretsheduler'];
   $disablesecr = $_GET['disable-pppsecret'];

@@ -42,7 +42,8 @@ if (!isset($_SESSION["mikhmon"])) {
         $start_date = date('M/d/Y');
         $start_time = date('H:i:s');
         // $interval = "00:00:30";
-        $on_event = "/ppp secret set disabled=yes [/ppp secret find name=" . $name . "]";
+        // $on_event = "/ppp secret set disabled=yes [/ppp secret find name=" . $name . "] \r /system scheduler remove [find name=" . $name . "]";
+        $on_event = "/ppp secret set disabled=yes [/ppp secret find name=" . $name . "] \r /system scheduler disable [find name=" . $name . "]";
 
         $API->comm("/ppp/secret/add", array(
             /*"add-mac-cookie" => "yes",*/
@@ -70,22 +71,27 @@ if (!isset($_SESSION["mikhmon"])) {
     <div class="col-8">
         <div class="card box-bordered">
             <div class="card-header">
-                <h3><i class="fa fa-plus"></i> Add PPP Secrets <small id="loader" style="display: none;"><i><i class='fa fa-circle-o-notch fa-spin'></i> Processing... </i></small></h3>
+                <h3><i class="fa fa-plus"></i> Add PPP Secrets <small id="loader" style="display: none;"><i><i
+                                class='fa fa-circle-o-notch fa-spin'></i> Processing... </i></small></h3>
             </div>
             <div class="card-body">
                 <form autocomplete="off" method="post" action="">
                     <div>
-                        <a class="btn bg-warning" href="./?ppp=secrets&session=<?= $session; ?>"> <i class="fa fa-close btn-mrg"></i> <?= $_close ?></a>
-                        <button type="submit" name="save" class="btn bg-primary btn-mrg"><i class="fa fa-save btn-mrg"></i> <?= $_save ?></button>
+                        <a class="btn bg-warning" href="./?ppp=secrets&session=<?= $session; ?>"> <i
+                                class="fa fa-close btn-mrg"></i> <?= $_close ?></a>
+                        <button type="submit" name="save" class="btn bg-primary btn-mrg"><i
+                                class="fa fa-save btn-mrg"></i> <?= $_save ?></button>
                     </div>
                     <table class="table">
                         <tr>
                             <td class="align-middle"><?= $_name ?></td>
-                            <td><input class="form-control" type="text" onchange="remSpace();" autocomplete="off" name="name" value="" required="1" autofocus></td>
+                            <td><input class="form-control" type="text" onchange="remSpace();" autocomplete="off"
+                                    name="name" value="" required="1" autofocus></td>
                         </tr>
                         <tr>
                             <td class="align-middle">Password</td>
-                            <td><input class="form-control" type="text" size="4" autocomplete="off" name="password"></td>
+                            <td><input class="form-control" type="text" size="4" autocomplete="off" name="password">
+                            </td>
                         </tr>
                         <tr>
                             <td class="align-middle">Service</td>
@@ -103,7 +109,8 @@ if (!isset($_SESSION["mikhmon"])) {
                         </tr>
                         <tr>
                             <td class="align-middle">Caller ID</td>
-                            <td><input class="form-control" type="text" size="4" autocomplete="off" name="callerid"></td>
+                            <td><input class="form-control" type="text" size="4" autocomplete="off" name="callerid">
+                            </td>
                         </tr>
                         <tr>
                             <td class="align-middle">Profile</td>
@@ -121,7 +128,8 @@ if (!isset($_SESSION["mikhmon"])) {
                         <hr />
                         <tr>
                             <td class="align-middle">Interval</td>
-                            <td><input class="form-control" placeholder="example : 30d" type="text" size="4" autocomplete="off" name="interval"></td>
+                            <td><input class="form-control" placeholder="example : 30d" type="text" size="4"
+                                    autocomplete="off" name="interval"></td>
                         </tr>
                     </table>
                 </form>
@@ -130,15 +138,16 @@ if (!isset($_SESSION["mikhmon"])) {
     </div>
 </div>
 <script type="text/javascript">
-    function remSpace() {
-        var upName = document.getElementsByName("name")[0];
-        var newUpName = upName.value.replace(/\s/g, "-");
-        //alert("<?php if ($currency == in_array($currency, $cekindo['indo'])) {
-                        echo "Nama Profile tidak boleh berisi spasi";
-                    } else {
-                        echo "Profile name can't containing white space!";
-                    } ?>");
-        upName.value = newUpName;
-        upName.focus();
-    }
+function remSpace() {
+    var upName = document.getElementsByName("name")[0];
+    var newUpName = upName.value.replace(/\s/g, "-");
+    //alert("<?php if ($currency == in_array($currency, $cekindo['indo'])) {
+    echo "Nama Profile tidak boleh berisi spasi";
+} else {
+    echo "Profile name can't containing white space!";
+} ?>
+");
+upName.value = newUpName;
+upName.focus();
+}
 </script>
